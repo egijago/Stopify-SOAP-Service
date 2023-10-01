@@ -1,0 +1,1 @@
+<!-- API to delete user -->
