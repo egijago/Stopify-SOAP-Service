@@ -1,0 +1,98 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    background-color: #101010;
+}
+
+.sidebar {
+    height: 100vh;
+    width: 250px;
+    background-color: #333;
+    color: white;
+    overflow-x: hidden;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    text-align: center;
+    padding: 10px;
+    font-size: 24px;
+}
+
+h1, h2, h3 {
+    color: white;
+}
+
+.homepage {
+    flex: 1;
+    padding: 20px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.user-icon {
+    margin-right: 10px;
+}
+
+.user-icon i {
+    font-size: 24px;
+}
+
+.recommended-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px; /* Added margin to separate from the "Good morning, vieri" text */
+    margin-right: 75px;
+}
+
+.top-song-first {
+    width: 45%;
+    margin-bottom: 20px;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+img.first {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.top-song-second{
+    width:45%;
+    display: flex;
+    flex-direction: column;
+}
+
+.song-item{
+    background-color: #333;
+    margin: 0 0 20px 0;
+}
+
+.new-song{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+img.new-song{
+    width: 30%;
+    margin-right: 20px;
+}
