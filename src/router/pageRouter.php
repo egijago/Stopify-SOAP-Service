@@ -13,12 +13,10 @@ class pageRouter
     {
         if(file_exists("src/views/$page/index.php"))
         {
-            echo "Matched";
             return $page;
         }
         else
         {
-            echo "Not Matched";
             return "404";
         }
     }
