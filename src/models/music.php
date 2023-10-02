@@ -1,6 +1,7 @@
 <!-- getAlbumByID -->
 <?php
-include('../db/Database.php');
+include(__DIR__ ."/../db/Database.class.php");
+use Database;
 Class Music {
     private $table = 'music';
     private $db;
