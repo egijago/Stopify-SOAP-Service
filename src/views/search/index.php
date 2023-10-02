@@ -1,6 +1,6 @@
 <?php
-require_once("../../../public/partials/side_bar.php");
-require_once("../../../public/partials/album_input_dialog.php");
+require_once(__DIR__ . "/../../../public/partials/side_bar.php");
+require_once(__DIR__ . "/../../../public/partials/album_input_dialog.php");
 ?>
 
 <!DOCTYPE html>
