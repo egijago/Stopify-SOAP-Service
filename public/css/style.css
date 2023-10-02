@@ -2,6 +2,51 @@ html{
     background-color: black;
 }
 
+.sidebar p {
+    color: #FFF;
+    font-family: DM Sans;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.12rem;
+}
+
+.sidebar {
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding-left: 2%;
+    padding-right: 2%;
+    width: 20vw;
+    background-color: black;
+    height: 100vh;
+    position: sticky ; 
+}
+  
+  /* Sidebar links */
+  .sidebar a {
+    display: block;
+    color: white;
+    padding: 16px;
+    font-family: DM Sans;
+    text-decoration: none;
+  }
+  
+  /* Active/current link */
+  .sidebar a.active {
+    background-color: #282828;
+    border-radius: 10px;
+    color: white;
+  }
+  
+  /* Links on mouse-over */
+  .sidebar a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+    border-radius: 10px;
+  }
+
 .message{
     text-align: center;
     background: #f9eded;
