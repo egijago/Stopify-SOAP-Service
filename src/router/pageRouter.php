@@ -1,30 +1,36 @@
 <?php
 
-class pageRouter
+class PageRouter
 {
     private $page;
+    // private $method;
+    // private $params;
 
     public function __construct($page)
     {
-        $this->page = $this->isMatch($page);
+        $parsedUrl = parse_url($page);
+        $pathSegments = explode('/', trim($parsedUrl['path'], '/'));
+        $this->page = $pathSegments[0];
+        // $this->method = $pathSegments[1];
+        // parse_str($parsedUrl['query'], $params);
+        // $this->params = $params;
     }
 
     public function isMatch($page)
     {
-        if(file_exists("src/views/$page/index.php"))
-        {
-            echo "Matched";
-            return $page;
-        }
-        else
-        {
-            echo "Not Matched";
-            return "404";
+        if (file_exists("src/views/$page/index.php")) {
+            return true;
+        } else {
+            return false;
         }
     }
 
     public function getPage()
     {
-        require "src/views/$this->page/index.php";
+        if ($this->isMatch($this->page)) {
+            require_once "src/views/$this->page/index.php";
+        } else {
+            require_once "src/views/404/index.php";
+        }
     }
 }
