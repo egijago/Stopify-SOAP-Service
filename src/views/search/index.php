@@ -29,7 +29,7 @@ require_once(__DIR__ . "/../../../public/partials/album_input_dialog.php");
       <div class="search-section">
         <input class="search-bar" type="text" placeholder="What do you want to listen to?">
         <div class="search-settings">
-          <button class=search-by-filter>
+          <button class=search-by-filter onclick="handler()">
             Artist
           </button>
           <button class=search-by-filter>
@@ -117,6 +117,8 @@ require_once(__DIR__ . "/../../../public/partials/album_input_dialog.php");
 
 </html>
 <script>
+document.getElementsByClassName("dialog-wrapper")[0].addEventListener(onclik)
+
   function closeDialog() {
     document.getElementsByClassName("dialog-wrapper")[0].style.display = "none";
   }
