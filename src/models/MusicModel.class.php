@@ -34,14 +34,13 @@ Class MusicModel {
 		return $this->db->rowCount();
 	}
 
-	public function insertMusic($title, $id_genre, $audio_url, $id_album, $id_music) 
+	public function insertMusic($title, $id_genre, $audio_url, $id_album) 
 	{
-		$this->db->query('INSERT INTO ' . $this->table . ' (title, id_genre, audio_url, id_album, id_music) VALUES (:title, :id_genre, :audio_url, :id_album, :id_music)');
+		$this->db->query('INSERT INTO ' . $this->table . ' (title, id_genre, audio_url, id_album, id_music) VALUES (:title, :id_genre, :audio_url, :id_album)');
 		$this->db->bind('title', $title);
 		$this->db->bind('id_genre', $id_genre);
 		$this->db->bind('audio_url',$audio_url);
 		$this->db->bind('id_album', $id_album);
-		$this->db->bind('id_music', $id_music);
 		$this->db->execute();
 		return $this->db->rowCount();
 	}
