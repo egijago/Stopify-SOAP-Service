@@ -8,13 +8,13 @@ Class GenreModel {
   
     public function __construct()
     {
-      $this->db = new Database();
+		$this->db = new Database();
     }
   
     public function getAllGenre()
     {
-      $this->db->query('SELECT * FROM ' . $this->table);
-      return $this->db->resultSet();
+		$this->db->query('SELECT * FROM ' . $this->table);
+		return $this->db->resultSet();
     }
   
     public function getGenreByGenreID($id)
@@ -35,7 +35,8 @@ Class GenreModel {
 		return $this->db->rowCount();
     }
   
-    public function insertGenre($name, $image_url, $color) {
+    public function insertGenre($name, $image_url, $color) 
+	{
 		$this->db->query('INSERT INTO ' . $this->table . ' (name, image_url, color) VALUES (:name, :image_url, :color)');
 		$this->db->bind('name', $name);
 		$this->db->bind('image_url', $image_url);
@@ -44,7 +45,8 @@ Class GenreModel {
 		return $this->db->rowCount();
     }
   
-    public function deleteGenre($id){
+    public function deleteGenre($id)
+	{
 		$this->db->query('DELETE FROM ' . $this->table . ' WHERE id_genre = :id');
 		$this->db->bind('id', $id);
 		$this->db->execute();

@@ -1,7 +1,7 @@
 <?php
 include(__DIR__ ."/../db/Database.class.php");
 use Database;
-class Auth {
+class UsersModel {
     private $table = 'users';
     private $db;
 
