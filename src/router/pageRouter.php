@@ -31,8 +31,6 @@ class PageRouter
             require_once "src/views/$this->page/index.php";
         } 
         else if($this->page == "api"){
-            
-            
 
             $this->router->get('/api/albums', function($params=null) {
                 AlbumController::getInstance()->getAllAlbums($params);

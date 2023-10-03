@@ -38,4 +38,22 @@ class Users {
     $this->db->execute();
     return $this->db->rowCount();
   }
+  public function login($email, $password)
+  {
+    $this->db->query('SELECT * FROM ' . $this->table . ' WHERE email = :email AND password = :password');
+    $this->db->bind('email', $email);
+    $this->db->bind('password', $password);
+    return $this->db->single();
+  }
+  public function register($data){
+    if($data['password']!=$data['password2']) return false;
+    $query = "INSERT INTO users (email, username, password, role) values (:email, :username, :password, USER)";
+    $this->db->query($query);
+    $this->db->bind('email', $data['email']);
+    $this->db->bind('username', $data['username']);
+    $this->db->bind('password', $data['password']);
+    $this->db->execute();
+    return $this->db->rowCount();
+  }
+
 }
