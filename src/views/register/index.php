@@ -32,10 +32,6 @@
                         <label for="profilname">What should we call you?</label>
                         <input type="text" name="name" id="name" placeholder="Enter a profile name">
                     </div>
-                    <div class="form_input">
-                        <label for="birthdate">Date of birth</label>
-                        <input type="date" id="date" name="DD/MM/YYYY">
-                    </div>
                     <div class="term_form">
                         <input type="checkbox" name="checkbox" id="checkbox">
                         <label for="checkbox">I accept Stopify terms and conditions.</label>

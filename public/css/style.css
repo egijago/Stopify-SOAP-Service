@@ -2,12 +2,12 @@
 
 html, body{
     background-color: #101010;
-    padding-top: 0;
+    padding: 0;
+    margin:0;
 }
 
 .whole-wrapper {
     display: flex;
-    max-width: 80rem; 
 }
 
 
@@ -84,6 +84,7 @@ html, body{
 .page-wrapper {
     flex:1;
     display: inline-block;
+    padding: 20px;
 }
 
 .sidebar p {
@@ -286,3 +287,36 @@ html, body{
     letter-spacing: -0.12rem;
     margin: 0 0 0 0;
 }
+h1,h2,h3,h4,h5,h6,p{
+    color: white;
+    font-family: DM Sans;
+}
+a {
+    text-decoration: none;
+}
+th{
+    color: white;
+}
+td{
+    color: white;
+}
+/* h1{
+    font-size: 40px;
+    margin: 0;
+}
+h2{
+    font-size: 32px;
+    margin: 0;
+}
+h3{
+    font-size: 24px;
+    margin: 0;
+}
+h4{
+    font-size: 20px;
+    margin: 0;
+}
+p{
+    font-size: 20px;
+    margin: 0;
+} */

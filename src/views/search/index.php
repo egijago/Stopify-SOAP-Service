@@ -1,6 +1,7 @@
 <?php
-require_once("../../../public/partials/side_bar.php");
-require_once("../../../public/partials/album_input_dialog.php");
+require_once(__DIR__ . "/../../../public/partials/side_bar.php");
+require_once(__DIR__ . "/../../../public/partials/album_input_dialog.php");
+require_once(__DIR__ . "/../../../public/partials/font.php");
 ?>
 
 <!DOCTYPE html>
@@ -10,13 +11,7 @@ require_once("../../../public/partials/album_input_dialog.php");
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100;0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;0,9..40,900;1,9..40,100;1,9..40,200;1,9..40,300;1,9..40,400;1,9..40,500;1,9..40,600;1,9..40,700;1,9..40,800;1,9..40,900&family=Inter:wght@200;400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../../public/css/style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100;0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;0,9..40,900;1,9..40,100;1,9..40,200;1,9..40,300;1,9..40,400;1,9..40,500;1,9..40,600;1,9..40,700;1,9..40,800;1,9..40,900&display=swap" rel="stylesheet">
+  <?php echo Font(); ?>
   <title>Search - Stopify</title>
 </head>
 <body>
@@ -29,7 +24,7 @@ require_once("../../../public/partials/album_input_dialog.php");
       <div class="search-section">
         <input class="search-bar" type="text" placeholder="What do you want to listen to?">
         <div class="search-settings">
-          <button class=search-by-filter>
+          <button class=search-by-filter onclick="handler()">
             Artist
           </button>
           <button class=search-by-filter>
@@ -78,7 +73,7 @@ require_once("../../../public/partials/album_input_dialog.php");
       <div class="artists-section">
         <p class="section-title"> Artists </p>
         <hr>
-        <div class="artist-result">
+        <div class="artist-result" id="123">
           <div class="artist-card">
               <img src="Rb-music.jpg">
               <p class="artist-name">John Doe</p>
@@ -113,11 +108,44 @@ require_once("../../../public/partials/album_input_dialog.php");
     </div>
     <hr>
   </div>
+  <button id="xhr" style="background-color:yellow; width: 100px; height:100px;">
+  </button>
+  <p id="response" style="color: white;"> FOOBAR </p>
+
 </body>
 
 </html>
 <script>
+// document.getElementsByClassName("dialog-wrapper")[0].addEventListener(onclik)
+
   function closeDialog() {
     document.getElementsByClassName("dialog-wrapper")[0].style.display = "none";
   }
+
+
+  document.getElementById("xhr").addEventListener("click", function () {
+    loadAlbums();
+  });
+
+function loadAlbums() {
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "/api/albums", true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            var responseDiv = document.getElementById("response");
+            responseDiv.innerHTML = xhr.responseText;
+            console.log(xhr.responseText);
+            document.getElementById("123").innerHTML = '';
+
+        }
+    };
+
+    xhr.send();
+    
+}
+
+document.addEventListener("DOMContentLoaded", function(event) { 
+  loadAlbums();
+});
+
 </script>

@@ -1,0 +1,27 @@
+.play-song-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 20px;
+    background-color: black;
+    padding: 20px;
+    width: 70vw;
+}
+img{
+    width: 20vw;
+    height: 20vw;
+    object-fit: cover;
+    border-radius: 5px;
+}
+.play-song-detail{
+    margin-left: 20px;
+}
+.audio-player {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: black;
+    padding: 10px;
+    text-align: center;
+}
