@@ -83,6 +83,7 @@
     background: #282828;
     transition: all ease-in .3s;
   }
+
   .main-content .border{
     width: 106px;
     height: 106px;
@@ -122,14 +123,15 @@
   }
 
   .main-content .tombol-like{
+    background-color: none;
     color: #fff;
     display: flex;
     width: 24px;
     height: 24px;
     justify-content: center;
     align-items: center;
-    position: relative;
-    left: 28%;
+    position: fixed;
+    left: 47%;
     top: 23%;
 
   }
@@ -140,16 +142,17 @@
     
   }
 
-  .main-content .tombol-download {
-    color: #fff;
+  .main-content .tombol-download{
+    color: #000;
     display: flex;
     width: 24px;
     height: 24px;
     justify-content: center;
-    align-items: center;
-    position: relative;
-    right: -32%;
+    align-items: flex-start;
+    position: fixed;
+    left: 50%;
     top: 23%;
+    gap: 10px;
   }
 
   .main-content .bi.bi-download{
