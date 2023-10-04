@@ -73,7 +73,7 @@ require_once(__DIR__ . "/../../../public/partials/font.php");
       <div class="artists-section">
         <p class="section-title"> Artists </p>
         <hr>
-        <div class="artist-result">
+        <div class="artist-result" id="123">
           <div class="artist-card">
               <img src="Rb-music.jpg">
               <p class="artist-name">John Doe</p>
@@ -108,13 +108,44 @@ require_once(__DIR__ . "/../../../public/partials/font.php");
     </div>
     <hr>
   </div>
+  <button id="xhr" style="background-color:yellow; width: 100px; height:100px;">
+  </button>
+  <p id="response" style="color: white;"> FOOBAR </p>
+
 </body>
 
 </html>
 <script>
-document.getElementsByClassName("dialog-wrapper")[0].addEventListener(onclik)
+// document.getElementsByClassName("dialog-wrapper")[0].addEventListener(onclik)
 
   function closeDialog() {
     document.getElementsByClassName("dialog-wrapper")[0].style.display = "none";
   }
+
+
+  document.getElementById("xhr").addEventListener("click", function () {
+    loadAlbums();
+  });
+
+function loadAlbums() {
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "/api/albums", true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            var responseDiv = document.getElementById("response");
+            responseDiv.innerHTML = xhr.responseText;
+            console.log(xhr.responseText);
+            document.getElementById("123").innerHTML = '';
+
+        }
+    };
+
+    xhr.send();
+    
+}
+
+document.addEventListener("DOMContentLoaded", function(event) { 
+  loadAlbums();
+});
+
 </script>

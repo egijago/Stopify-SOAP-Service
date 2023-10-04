@@ -49,6 +49,7 @@ class PageRouter
         if ($this->isMatch($this->page)) {
             require_once "src/views/$this->page/index.php";
         } 
+        else if($this->page == "api") {
         else if($this->page == "api"){
 
             $this->router->get('/api/albums', function($params=null) {

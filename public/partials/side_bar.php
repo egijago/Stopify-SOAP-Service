@@ -3,11 +3,11 @@ function SideBar() {
     $html = <<<"EOT"
     <div class="sidebar">
         <p>Stopify</p>
-        <a class="active" href="">Home</a>
-        <a href="">Search</a>
-        <a href="">Album</a>
-        <a href="">Liked Song</a>
-        <a href="">Logout</a>
+        <a class="active" href="home">Home</a>
+        <a href="search">Search</a>
+        <a href="album">Album</a>
+        <a href="liked">Liked Song</a>
+        <a href="logout">Logout</a>
     </div>
     EOT;
 

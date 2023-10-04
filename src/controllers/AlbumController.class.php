@@ -1,29 +1,53 @@
 <?php 
 require_once(__DIR__ . "/BaseController.class.php");
-require_once(__DIR__ . "/../models/album.php");
+require_once(__DIR__ . "/../models/AlbumModel.class.php");
 
-class AlbumController extends BaseController {
-    protected function __construct() {
-        $this->model = new Album();
-    }
-    public function getAllAlbums($params)
+class AlbumController extends BaseController 
+{
+    protected function __construct() 
     {
-        self::toResponse(202, "", $this->model->getAllAlbums());
-    }
-  
-    public function getAlbumByAlbumId($params) {
-        return self::toResponse(201, "", $this->model->getAlbumByAlbumId($params));
+        $this->model = new AlbumModel();
     }
     
-    public function editAlbum($params) {
-        return self::toResponse(202, "", $this->model->editAlbum($params));
+    public static function getAllAlbum($path_params) 
+    {
+        $params = $path_params;
+        $result = self::getInstance()->model->getAllAlbum();
+
+        self::toResponse(200, "", $result);
     }
   
-    public function insertAlbum($params) {
-        return self::toResponse(203, "", $this->model->insertAlbum($params));
+    public static function getAlbumByAlbumId($path_params) 
+    {
+        $params = $path_params;
+        $result = self::getInstance()->model->getAlbumByAlbumId($params["id_album"]);
+
+        self::toResponse(200, "", $result);
+    }
+    
+    public static function editAlbum($path_params) 
+    {
+        $body_params = self::getBodyParams();
+        $params = array_merge($body_params, $path_params);
+        $result = self::getInstance()->model->editAlbum($params["id_album"],  $params["title"],  $params["id_artist"],  $params["image_url"]);
+     
+        self::toResponse(200, "", $result);
     }
   
-    public function deleteAlbum($params) {
-        return self::toResponse(204, "", $this->model->deleteAlbum($params));
+    public static function insertAlbum($path_params) 
+    {
+        $body_params = self::getBodyParams();
+        $params = array_merge($body_params, $path_params);
+        $result = self::getInstance()->model->insertAlbum( $params["title"],  $params["id_artist"],  $params["image_url"]);
+
+        self::toResponse(200, "", $result);
+    }
+  
+    public static function deleteAlbum($path_params) 
+    {
+        $params = $path_params;
+        $result = self::getInstance()->model->deleteAlbum($params["id_album"]);
+
+        self::toResponse(200, "", $result);
     }
 }
