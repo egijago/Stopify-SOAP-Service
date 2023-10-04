@@ -1,5 +1,5 @@
 <?php 
-require_once __DIR__ . '/../router/APIRouter.php';
+require_once __DIR__ . '/../router/APIRouter.class.php';
 require_once __DIR__ . '/../controllers/AlbumController.class.php';
 require_once __DIR__ . '/../controllers/ArtistController.class.php';
 require_once __DIR__ . '/../controllers/GenreController.class.php';
