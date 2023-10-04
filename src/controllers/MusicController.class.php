@@ -1,6 +1,6 @@
 <?php 
 require_once(__DIR__ . "/BaseController.class.php");
-require_once(__DIR__ . "/../models/ArtistModel.class.php");
+require_once(__DIR__ . "/../models/MusicModel.class.php");
 
 class MusicController extends BaseController {
     protected function __construct() 
@@ -8,26 +8,43 @@ class MusicController extends BaseController {
         $this->model = new MusicModel();
     }
 
-	public function getAllMusic($params)
-	{
-		self::toResponse(200, "", $this->model->getAllMusic());
+	public static function getAllMusic($path_params)
+	{	
+		$result = self::getInstance()->model->getAllMusic();
+
+		self::toResponse(200, "", $result);
 	}
 
-	public function getMusicByMusicId($params)
+	public static function getMusicByMusicId($path_params)
 	{
-		self::toResponse(200, "", $this->model->getMusicByMusicId($params["id"]));
+		$params = $path_params;
+		$result = self::getInstance()->model->getMusicByMusicId($params["id"]);
+
+		self::toResponse(200, "", $result);
 	}
-	public function editMusic($params){
-		self::toResponse(200, "", $this->model->editMusic($params["title"], $params["id_genre"], $params["audio_url"], $params["id_album"], $params["id_music"]));
+	public static function editMusic($path_params)
+	{
+		$body_params = self::getBodyParams();
+		$params = array_merge($path_params, $body_params);
+		$result =  self::getInstance()->model->editMusic($params["title"], $params["id_genre"], $params["audio_url"], $params["id_album"], $params["id_music"]);
+		
+		self::toResponse(200, "", $result);
 	}
 
-	public function insertMusic($params) 
+	public static function insertMusic($path_params) 
 	{
-		self::toResponse(200, "", $this->model->insertMusic($params["title"], $params["id_genre"], $params["audio_url"], $params["id_album"]));
+		$body_params = self::getBodyParams();
+		$params = array_merge($path_params, $body_params);
+		$result = self::getInstance()->model->insertMusic($params["title"], $params["id_genre"], $params["audio_url"], $params["id_album"]);
+
+		self::toResponse(200, "", $result);
 	}
 
-	public function deleteMusic($params)
+	public static function deleteMusic($path_params)
 	{
-		self::toResponse(200, "", $this->model->deleteMusic($params["id"]));
+		$params = $path_params;
+		$result = self::getInstance()->model->deleteMusic($params["id"]);
+
+		self::toResponse(200, "", $result);
 	}
 }

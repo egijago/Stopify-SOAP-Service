@@ -2,34 +2,51 @@
 require_once(__DIR__ . "/BaseController.class.php");
 require_once(__DIR__ . "/../models/ArtistModel.class.php");
 
-class ArtistController extends BaseController {
+class ArtistController extends BaseController 
+{
     protected function __construct() 
     {
         $this->model = new ArtistModel();
     }
 
-public function getAllArtist($params)
+    public static function getAllArtist($path_params)
     {
-        self::toResponse(200, "", $this->model->getAllArtist());
+        $result = self::getInstance()->model->getAllArtist();
+
+        self::toResponse(200, "", $result);
     }
   
-    public function getArtistByArtistID($params)
-    {
-        self::toResponse(200, "", $this->model->getArtistByArtistID($params["id_artist"]));
+    public static function getArtistByArtistID($path_params)
+    {   
+        $params = $path_params;
+        $result =  self::getInstance()->model->getArtistByArtistID($params["id_artist"]);
+
+        self::toResponse(200, "", $result);
     }
     
-    public function editArtist($params)
+    public static function editArtist($path_params)
     {
-        self::toResponse(200, "", $this->model->editArtist($params["id_artist"], $params["name"], $params["image_url"]));
+        $body_params = self::getBodyParams();
+        $params = array_merge($body_params, $path_params);
+        $result =  self::getInstance()->model->editArtist($params["id_artist"], $params["name"], $params["image_url"]);
+
+        self::toResponse(200, "", $result);
     }
   
-    public function insertArtist($params) 
+    public static function insertArtist($path_params) 
     {
-        self::toResponse(200, "", $this->model->insertArtist( $params["name"], $params["image_url"]));
+        $body_params = self::getBodyParams();
+        $params = array_merge($body_params, $path_params);
+        $result = self::getInstance()->model->insertArtist( $params["name"], $params["image_url"]);
+
+        self::toResponse(200, "", $result);
     }
   
-    public function deleteArtist($params)
+    public static function deleteArtist($path_params)
     {
-        self::toResponse(200, "", $this->model->deleteArtist($params["id_artist"]));
+        $params = $path_params;
+        $result = self::getInstance()->model->deleteArtist($params["id_artist"]);
+
+        self::toResponse(200, "", $result);
     }
 }

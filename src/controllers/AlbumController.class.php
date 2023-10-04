@@ -2,34 +2,52 @@
 require_once(__DIR__ . "/BaseController.class.php");
 require_once(__DIR__ . "/../models/AlbumModel.class.php");
 
-class AlbumController extends BaseController {
+class AlbumController extends BaseController 
+{
     protected function __construct() 
     {
         $this->model = new AlbumModel();
     }
     
-    public function getAllAlbums($params) 
+    public static function getAllAlbum($path_params) 
     {
-        self::toResponse(200, "", $this->model->getAllAlbums());
+        $params = $path_params;
+        $result = self::getInstance()->model->getAllAlbum();
+
+        self::toResponse(200, "", $result);
     }
   
-    public function getAlbumByAlbumId($params) 
+    public static function getAlbumByAlbumId($path_params) 
     {
-        return self::toResponse(200, "", $this->model->getAlbumByAlbumId($params["id_album"]));
+        $params = $path_params;
+        $result = self::getInstance()->model->getAlbumByAlbumId($params["id_album"]);
+
+        self::toResponse(200, "", $result);
     }
     
-    public function editAlbum($params) 
+    public static function editAlbum($path_params) 
     {
-        return self::toResponse(200, "", $this->model->editAlbum($params["id_album"],  $params["title"],  $params["id_artist"],  $params["image_url"]));
+        $body_params = self::getBodyParams();
+        $params = array_merge($body_params, $path_params);
+        $result = self::getInstance()->model->editAlbum($params["id_album"],  $params["title"],  $params["id_artist"],  $params["image_url"]);
+     
+        self::toResponse(200, "", $result);
     }
   
-    public function insertAlbum($params) 
+    public static function insertAlbum($path_params) 
     {
-        return self::toResponse(200, "", $this->model->insertAlbum( $params["title"],  $params["id_artist"],  $params["image_url"]));
+        $body_params = self::getBodyParams();
+        $params = array_merge($body_params, $path_params);
+        $result = self::getInstance()->model->insertAlbum( $params["title"],  $params["id_artist"],  $params["image_url"]);
+
+        self::toResponse(200, "", $result);
     }
   
-    public function deleteAlbum($params) 
+    public static function deleteAlbum($path_params) 
     {
-        return self::toResponse(200, "", $this->model->deleteAlbum($params["id_album"]));
+        $params = $path_params;
+        $result = self::getInstance()->model->deleteAlbum($params["id_album"]);
+
+        self::toResponse(200, "", $result);
     }
 }

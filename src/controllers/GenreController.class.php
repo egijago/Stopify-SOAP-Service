@@ -2,34 +2,52 @@
 require_once(__DIR__ . "/BaseController.class.php");
 require_once(__DIR__ . "/../models/GenreModel.class.php");
 
-class GenreController extends BaseController {
+class GenreController extends BaseController 
+{
     protected function __construct() 
     {
         $this->model = new GenreModel();
     }
   
-    public function getAllGenre($params)
+    public static function getAllGenre($path_params)
     {
-        self::toResponse(200, "", $this->model->getAllGenre());
+		$params = $path_params;
+		$result = self::getInstance()->model->getAllGenre();
+
+        self::toResponse(200, "", $result);
     }
   
-    public function getGenreByGenreID($params)
+    public static function getGenreByGenreId($path_params)
     {
-		self::toResponse(200, "", $this->model->getGenreByGenreID($params["id"]));
+		$params = $path_params;
+		$result = self::getInstance()->model->getGenreByGenreID($params["id"]);
+
+		self::toResponse(200, "", $result);
     }
     
-    public function editGenre($params) 
+    public static function editGenre($path_params) 
 	{
-		self::toResponse(200, "", $this->model->editGenre($params["id"], $params["name"], $params["image_url"], $params["color"]));
+		$body_params = self::getBodyParams();
+		$params = array_merge($path_params, $body_params);
+		$result = self::getInstance()->model->editGenre($params["id"], $params["name"], $params["image_url"], $params["color"]);
+
+		self::toResponse(200, "", $result);
     }
   
-    public function insertGenre($params) 
+    public static function insertGenre($path_params) 
 	{
-		self::toResponse(200, "", $this->model->insertGenre( $params["name"], $params["image_url"], $params["color"]));
+		$body_params = self::getBodyParams();
+		$params = array_merge($path_params, $body_params);
+		$result = self::getInstance()->model->insertGenre( $params["name"], $params["image_url"], $params["color"]);
+
+		self::toResponse(200, "", $result);
     }
   
-    public function deleteGenre($params)
+    public static function deleteGenre($path_params)
 	{
-		self::toResponse(200, "", $this->model->deleteGenre($params["id"]));
+		$params = $path_params;
+		$result = self::getInstance()->model->deleteGenre($params["id"]);
+
+		self::toResponse(200, "", $result);
     }
 }
