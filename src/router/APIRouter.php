@@ -42,7 +42,7 @@ class APIRouter
         $request_method = $_SERVER['REQUEST_METHOD'];
 
         $callback = null;
-        $params = array();
+        $path_params = array();
         foreach ($this->routes as $route) 
         {
             $pattern = str_replace('/', '\/', $route['path']);
@@ -52,12 +52,11 @@ class APIRouter
             if (preg_match($pattern, $request_path, $matches) && $route['method'] === $request_method) 
             {
                 $callback = $route['handler'];
-                $params = $matches;
-                array_shift($params);
+                $path_params = $matches;
+                array_shift($path_params);
                 break;
             }
         }
-
 
         if (!$callback) 
         {
@@ -65,15 +64,12 @@ class APIRouter
             return;
         }
 
-        if ($request_method === APIRouter::METHOD_POST) 
-        {
-            $params = array_merge($params, $_POST);
-        } 
-        else if ($request_method === APIRouter::METHOD_PUT) 
-        {
-            $params = array_merge(json_decode(file_get_contents('php://input')));
-        }
+        // /*DEBUG*/
+        // echo("PARAMS: " . json_encode($params) . "\n");
+        // echo("QUERY STRING: " . json_encode($_SERVER['QUERY_STRING']) . "\n");
+        // echo("_GET: " . json_encode($_GET) . "\n");
+        // echo("file_get_contents('php://input'): " . json_encode(json_decode(file_get_contents('php://input'))) . "\n");
 
-        call_user_func($callback, $params);
+        call_user_func($callback, $path_params);
     }
 }
