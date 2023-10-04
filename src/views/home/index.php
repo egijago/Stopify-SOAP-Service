@@ -7,6 +7,7 @@ require_once(__DIR__ . "/../../../public/partials/font.php");
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,34 +18,24 @@ require_once(__DIR__ . "/../../../public/partials/font.php");
     <link rel="stylesheet" href="../../../public/css/song.css">
 
     <?php echo Font(); ?>
-    <title>Document</title>
-</head>
+    <title>Home Page</title>
+    <script src="/public/js/home.js"></script>
 <body>
     <div class="whole-wrapper">
-        <?php echo SideBar();?>
+        <?php echo SideBar(); ?>
         <div class="page-wrapper">
             <?php echo icon("vieri"); ?>
             <h1 style="margin-top: 5vw;">Good morning, vieri</h1>
             <br>
             <h1>Recommended for you</h1>
             <div class="recommended-container">
-                <div class="top-song-first">
-                    <?php echo big("../../../public/image/senja.jpg", "Senja", "Maliq");?>
-                </div>
-                <div class="top-song-second">
-                    <?php echo long("../../../public/image/senja.jpg", "Senja", "Maliq");?>
-                    <?php echo long("../../../public/image/senja.jpg", "Senja", "Maliq");?>
-                    <?php echo long("../../../public/image/senja.jpg", "Senja", "Maliq");?>
-                    <?php echo long("../../../public/image/senja.jpg", "Senja", "Maliq");?>
-                </div>
+                <a href="albums">
+                    <div class="top-song-first"></div>
+                </a>
+                <div class="top-song-second"></div>
             </div>
-            <h3>New Realase Song</h3>
-            <div class="new-song">
-                <?php echo medium("../../../public/image/senja.jpg","Senja","Maliq") ?>
-                <?php echo medium("../../../public/image/senja.jpg","Senja","Maliq") ?>
-                <?php echo medium("../../../public/image/senja.jpg","Senja","Maliq") ?>
-                <?php echo medium("../../../public/image/senja.jpg","Senja","Maliq") ?>
-            </div>
+            <h3>New Release Song</h3>
+            <div class="new-song"></div>
         </div>
     </div>
 </body>

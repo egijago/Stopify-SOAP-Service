@@ -4,12 +4,23 @@ class PageRouter
 {
     private $page;
     private $router;
+    private $method;
+    private $params=[];
 
     public function __construct($page)
     {
         $parsedUrl = parse_url($page);
-        $pathSegments = explode('/', trim($parsedUrl['path'], '/'));
-        $this->page = $pathSegments[0];
+
+        // Extract page and method
+        $pathParts = explode('/', trim($parsedUrl['path'], '/'));
+        $this->page = $pathParts[0];
+        $this->method = $pathParts[1];
+
+        // Parse the query parameters
+        if(isset($parsedUrl['query'])){
+            parse_str($parsedUrl['query'], $this->params);
+        }
+        
         require_once __DIR__ . '/../router/APIRouter.php';
         require_once __DIR__ . '/../controllers/AlbumController.class.php';
 
@@ -18,11 +29,17 @@ class PageRouter
 
     public function isMatch($page)
     {
-        if (file_exists("src/views/$page/index.php")) {
+        if (file_exists("src/views/$page/index.php")) 
+        {
             return true;
         } else {
             return false;
         }
+    }
+
+    public function getParams()
+    {
+        return $this->params;
     }
 
     public function getPage()
