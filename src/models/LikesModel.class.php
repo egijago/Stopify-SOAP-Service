@@ -1,14 +1,12 @@
-<!-- getAlbumByID -->
 <?php
-include(__DIR__ ."/../db/Database.class.php");
-use Database;
-Class LikesModel {
-    private $table = 'likes';
-    private $db;
-  
+require_once(__DIR__ ."/BaseModel.class.php");
+
+class LikesModel extends BaseModel
+{
     public function __construct()
     {
-        $this->db = new Database();
+        parent::__construct();
+        $this->table = "likes";
     }
   
     public function likes($id_user, $id_music)

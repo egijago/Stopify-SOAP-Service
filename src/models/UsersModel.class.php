@@ -1,13 +1,12 @@
 <?php
-include(__DIR__ ."/../db/Database.class.php");
-use Database;
-class UsersModel {
-    private $table = 'users';
-    private $db;
+require_once(__DIR__ ."/BaseModel.class.php");
 
+class UsersModel extends BaseModel
+{
     public function __construct()
     {
-        $this->db = new Database();
+        parent::__construct();
+        $this->table = "users";
     }
 
     public function login($email, $password)

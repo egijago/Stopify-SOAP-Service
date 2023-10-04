@@ -1,26 +1,24 @@
-<!-- getAlbumByID -->
 <?php
-include(__DIR__ ."/../db/Database.class.php");
-use Database;
-Class AlbumModel {
-    private $table = 'album';
-    private $db;
-  
+require_once(__DIR__ ."/BaseModel.class.php");
+
+class AlbumModel extends BaseModel 
+{  
     public function __construct()
     {
-        $this->db = new Database();
+        parent::__construct();
+        $this->table = 'album';
     }
   
-    public function getAllAlbums()
+    public function getAllAlbum()
     {
         $this->db->query('SELECT * FROM ' . $this->table);
         return $this->db->resultSet();
     }
   
-    public function getAlbumByAlbumId($id)
+    public function getAlbumByAlbumId($id_album)
     {
-        $this->db->query('SELECT * FROM ' . $this->table . ' WHERE id_album = :id');
-        $this->db->bind(':id', $id);
+        $this->db->query('SELECT * FROM ' . $this->table . ' WHERE id_album = :id_album');
+        $this->db->bind(':id_album', $id_album);
         return $this->db->single();
     }
     
@@ -45,10 +43,10 @@ Class AlbumModel {
         return $this->db->rowCount();
     }
   
-    public function deleteAlbum($id)
+    public function deleteAlbum($id_album)
     {
-        $this->db->query('DELETE FROM ' . $this->table . ' WHERE id_album = :id');
-        $this->db->bind(':id', $id);
+        $this->db->query('DELETE FROM ' . $this->table . ' WHERE id_album = :id_album');
+        $this->db->bind(':id_album', $id_album);
         $this->db->execute();
         return $this->db->rowCount();
     }

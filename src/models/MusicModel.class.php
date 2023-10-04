@@ -1,14 +1,12 @@
-<!-- getAlbumByID -->
 <?php
-include(__DIR__ ."/../db/Database.class.php");
-use Database;
-Class MusicModel {
-	private $table = 'music';
-	private $db;
+require_once(__DIR__ ."/BaseModel.class.php");
 
+class MusicModel extends BaseModel
+{
 	public function __construct()
 	{
-		$this->db = new Database();
+		parent::__construct();
+		$this->table = "music";
 	}
 
 	public function getAllMusic()
@@ -17,10 +15,10 @@ Class MusicModel {
 		return $this->db->resultSet();
 	}
 
-	public function getMusicByMusicId($id)
+	public function getMusicByMusicId($id_music)
 	{
-		$this->db->query('SELECT * FROM ' . $this->table . ' WHERE id_music = :id');
-		$this->db->bind('id_music', $id);
+		$this->db->query('SELECT * FROM ' . $this->table . ' WHERE id_music = :id_music');
+		$this->db->bind('id_music', $id_music);
 		return $this->db->single();
 	}
 	public function editMusic($title, $id_genre, $audio_url, $id_album, $id_music){
@@ -45,10 +43,10 @@ Class MusicModel {
 		return $this->db->rowCount();
 	}
 
-	public function deleteMusic($id)
+	public function deleteMusic($id_music)
 	{
-		$this->db->query('DELETE FROM ' . $this->table . ' WHERE id_music = :id');
-		$this->db->bind('id', $id);
+		$this->db->query('DELETE FROM ' . $this->table . ' WHERE id_music = :id_music');
+		$this->db->bind('id_music', $id_music);
 		$this->db->execute();
 		return $this->db->rowCount();
 	}

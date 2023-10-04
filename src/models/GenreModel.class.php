@@ -1,15 +1,13 @@
-<!-- getAlbumByID -->
 <?php
-include(__DIR__ ."/../db/Database.class.php");
-use Database;
-Class GenreModel {
-    private $table = 'genre';
-    private $db;
-  
+require_once(__DIR__ ."/BaseModel.class.php");
+
+class GenreModel extends BaseModel
+{
     public function __construct()
     {
-		$this->db = new Database();
-    }
+		parent::__construct();
+		$this->table = 'genre';    
+	}
   
     public function getAllGenre()
     {
@@ -17,17 +15,17 @@ Class GenreModel {
 		return $this->db->resultSet();
     }
   
-    public function getGenreByGenreID($id)
+    public function getGenreByGenreId($id_genre)
     {
-		$this->db->query('SELECT * FROM ' . $this->table . ' WHERE id_genre = :id');
-		$this->db->bind('id_genre', $id);
+		$this->db->query('SELECT * FROM ' . $this->table . ' WHERE id_genre = :id_genre');
+		$this->db->bind('id_genre', $id_genre);
 		return $this->db->single();
     }
     
-    public function editGenre($id, $name, $image_url, $color) 
+    public function editGenre($id_genre, $name, $image_url, $color) 
 	{
-		$this->db->query('UPDATE ' . $this->table . ' SET name = :name, image_url = :image_url, color = :color WHERE id = :id');
-		$this->db->bind('id_genre', $id);
+		$this->db->query('UPDATE ' . $this->table . ' SET name = :name, image_url = :image_url, color = :color WHERE id_genre = :id_genre');
+		$this->db->bind('id_genre', $id_genre);
 		$this->db->bind('name', $name);
 		$this->db->bind('image_url', $image_url);
 		$this->db->bind('color', $color);
@@ -45,10 +43,10 @@ Class GenreModel {
 		return $this->db->rowCount();
     }
   
-    public function deleteGenre($id)
+    public function deleteGenre($id_genre)
 	{
-		$this->db->query('DELETE FROM ' . $this->table . ' WHERE id_genre = :id');
-		$this->db->bind('id', $id);
+		$this->db->query('DELETE FROM ' . $this->table . ' WHERE id_genre = :id_genre');
+		$this->db->bind('id_genre', $id_genre);
 		$this->db->execute();
 		return $this->db->rowCount();
     }

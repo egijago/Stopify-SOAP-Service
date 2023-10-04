@@ -1,15 +1,12 @@
-<!-- getAlbumByID -->
 <?php
-include(__DIR__ ."/../db/Database.class.php");
-use Database;
-Class ArtistModel 
+require_once(__DIR__ ."/BaseModel.class.php");
+
+class ArtistModel extends BaseModel
 {
-    private $table = 'artist';
-    private $db;
-  
     public function __construct()
     {
-		$this->db = new Database();
+		parent::__construct();
+		$this->table = "artist";
     }
   
     public function getAllArtist()
@@ -18,17 +15,17 @@ Class ArtistModel
 		return $this->db->resultSet();
     }
   
-    public function getArtistByArtistID($id)
+    public function getArtistByArtistID($id_artist)
     {
-		$this->db->query('SELECT * FROM ' . $this->table . ' WHERE id_artist = :id');
-		$this->db->bind('id_artist', $id);
+		$this->db->query('SELECT * FROM ' . $this->table . ' WHERE id_artist = :id_artist');
+		$this->db->bind('id_artist', $id_artist);
 		return $this->db->single();
     }
     
-    public function editArtist($id, $name, $image_url)
+    public function editArtist($id_artist, $name, $image_url)
     {
-		$this->db->query('UPDATE ' . $this->table . ' SET name = :name, image_url = :image_url WHERE id = :id');
-		$this->db->bind('id_artist', $id);
+		$this->db->query('UPDATE ' . $this->table . ' SET name = :name, image_url = :image_url WHERE id_artist = :id_artist');
+		$this->db->bind('id_artist', $id_artist);
 		$this->db->bind('name', $name);
 		$this->db->bind('image_url', $image_url);
 		$this->db->execute();
@@ -44,10 +41,10 @@ Class ArtistModel
 		return $this->db->rowCount();
     }
   
-    public function deleteArtist($id)
+    public function deleteArtist($id_artist)
     {
-		$this->db->query('DELETE FROM ' . $this->table . ' WHERE id_artist = :id');
-		$this->db->bind('id', $id);
+		$this->db->query('DELETE FROM ' . $this->table . ' WHERE id_artist = :id_artist');
+		$this->db->bind('id_artist', $id_artist);
 		$this->db->execute();
 		return $this->db->rowCount();
     }
