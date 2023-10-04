@@ -294,6 +294,12 @@ h1,h2,h3,h4,h5,h6,p{
 a {
     text-decoration: none;
 }
+th{
+    color: white;
+}
+td{
+    color: white;
+}
 /* h1{
     font-size: 40px;
     margin: 0;
