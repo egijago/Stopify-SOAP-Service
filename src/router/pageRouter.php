@@ -14,7 +14,9 @@ class PageRouter
         // Extract page and method
         $pathParts = explode('/', trim($parsedUrl['path'], '/'));
         $this->page = $pathParts[0];
-        $this->method = $pathParts[1];
+        if(isset($pathParts[1])){
+            $this->method = $pathParts[1];
+        }
 
         // Parse the query parameters
         if(isset($parsedUrl['query'])){
