@@ -4,7 +4,6 @@ require_once(__DIR__ . "/../../../public/partials/song_item.php");
 require_once(__DIR__ . "/../../../public/partials/icon.php");
 require_once(__DIR__ . "/../../../public/partials/font.php");
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +16,7 @@ require_once(__DIR__ . "/../../../public/partials/font.php");
 
     <?php echo Font(); ?>
 
-    <title>Document</title>
+    <title><?php echo $this->params["id"]?></title>
 </head>
 <body>
     <div class="whole-wrapper">
