@@ -25,7 +25,21 @@ require_once(__DIR__ . "/../../../public/partials/font.php");
             <?php echo icon("vieri"); ?>
             <h1 style="margin-top: 5vw;">Good morning, vieri</h1>
             <h3>Nama Album</h3>
+            <div class="limit-page">
+                <p>Limit: </p>
+                <select name="" id="">
+                    <?php
+                        for($i = 1; $i <= 10; $i++){
+                            $res= $i * 5;
+                            echo "<option value=''>$res</option>";
+                        }
+                    ?>
+                </select>
+            </div>
             <div class="new-song">
+                <?php echo medium("../../../public/image/senja.jpg","Senja","Maliq") ?>
+                <?php echo medium("../../../public/image/senja.jpg","Senja","Maliq") ?>
+                <?php echo medium("../../../public/image/senja.jpg","Senja","Maliq") ?>
                 <?php echo medium("../../../public/image/senja.jpg","Senja","Maliq") ?>
                 <?php echo medium("../../../public/image/senja.jpg","Senja","Maliq") ?>
                 <?php echo medium("../../../public/image/senja.jpg","Senja","Maliq") ?>

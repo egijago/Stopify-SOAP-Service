@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../../public/css/register.css">
     <title>Register</title>
+    <script src="/public/js/register.js"></script>
 </head>
 <body>
     <div class="container">
@@ -14,35 +15,34 @@
                 <h1>Sign up</h1>
             </div>
             <div class="form">
-                <form action="../../api/auth/register.php" method="post">
+                <form method="post" id="registrationForm" onsubmit="sendForm()">
                     <div class="form_input">
                         <label for="email">Email</label>
-                        <input type="text" name="email" id="email" placeholder="Enter your email ">
+                        <input type="text" name="email" id="email" placeholder="Enter your email">
                     </div>
+                    <p id="emailError" class="error-input" ></p>
+
                     <div class="form_input">
                         <label for="password">Password</label>
                         <input type="password" name="password" id="password" placeholder="Enter your password">
                     </div>
                     <div class="form_input">
-                        <label for="password">Confirm Password</label>
-                        <input type="password" name="confpassword" id="password" placeholder="Enter your confirm password">
+                        <label for="confpassword">Confirm Password</label>
+                        <input type="password" name="confpassword" id="confpassword" placeholder="Enter your confirm password">
                     </div>
-                    
+                    <p id="passwordError" class="error-input" ></p>
+
                     <div class="form_input">
                         <label for="profilname">What should we call you?</label>
                         <input type="text" name="name" id="name" placeholder="Enter a profile name">
                     </div>
-                    <div class="term_form">
-                        <input type="checkbox" name="checkbox" id="checkbox">
-                        <label for="checkbox">I accept Stopify terms and conditions.</label>
-                    </div>
+                    <p id="nameError" class="error-input"></p>
                     <div class="submit_form">
-                        <input type="submit" name="submit" value="Sign up" required>
+                        <input type="submit" name="submit" value="Sign up" id="submitButton" disabled>
                     </div>
-                    
                 </form>
             </div>
         </div>
     </div>
-    
 </body>
+</html>

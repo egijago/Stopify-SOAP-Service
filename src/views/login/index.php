@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../../public/css/register.css">
     <title>Register</title>
+    <script src="/public/js/login.js"></script>
 </head>
 <body>
     <div class="container">
@@ -14,21 +15,25 @@
                 <h1>Log in to Stopify</h1>
             </div>
             <div class="form">
-                <form action="../../api/auth/login.php" method="post">
+                <form action="" method="post">
                     <div class="form_input">
                         <label for="email">Email</label>
                         <input type="text" name="email" id="email" placeholder="Enter your email ">
                     </div>
+                    <p id="emailError" class="error-input" ></p>
+
                     <div class="form_input">
                         <label for="password">Password</label>
                         <input type="password" name="password" id="password" placeholder="Enter your password">
                     </div>
+                    <p id="passwordError" class="error-input" ></p>
+
                     
                     
                     <div class="submit_form">
-                        <input type="submit" name="submit" value="Log in">
+                        <input id="submitButton" type="submit" name="submit" value="Log in" onclick="sendForm()">
                     </div>
-                    <p>Don't have an account?<a href="login.php">Sign up for spotify</a></p>
+                    <p>Don't have an account?<a href="register">Sign up for spotify</a></p>
                     
                 </form>
             </div>

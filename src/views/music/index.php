@@ -17,22 +17,16 @@ require_once(__DIR__ . "/../../../public/partials/font.php");
     <?php echo Font(); ?>
 
     <title><?php echo $this->params["id"]?></title>
+    <div id="id-music" data-id="<?php echo $this->params["id"]; ?>"></div>
+    <script src="/public/js/music.js"></script>
 </head>
 <body>
     <div class="whole-wrapper">
          <?php echo SideBar();?>
         <div class="page-wrapper">
-            <?php echo icon("vieri"); ?>
-            <h1 style="margin-top: 5vw;">Good morning, vieri</h1>
+            <?php echo icon($_SESSION["username"]); ?>
+            <h1 style="margin-top: 5vw;">Good morning, <?php echo $_SESSION["username"]?></h1>
             <div class="play-song-container">
-                <img src="../../../public/image/senja.jpg" alt="">
-                <div class="play-song-detail">
-                    <h3>Album</h3>
-                    <h4>judul</h4>
-                    <br>
-                    <p>Genre</p>
-                    <p>Pencipta</p>
-                </div>
             </div>
             <div class="audio-player">
                 <audio controls>
