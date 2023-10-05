@@ -100,3 +100,8 @@ body{
     border-radius: 30px;
     color: black;
 }
+
+.error-input{
+    color: red;
+    margin: 5px;
+}

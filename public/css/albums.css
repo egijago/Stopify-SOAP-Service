@@ -4,3 +4,12 @@
     flex-wrap: wrap;
     margin-bottom: 20px;
 }
+
+.limit-page{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: left;
+    margin-bottom: 20px;
+
+}
