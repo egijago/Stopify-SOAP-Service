@@ -1,6 +1,6 @@
 <?php
 require_once(__DIR__ ."/../db/Database.class.php");
-use Database;
+// use Database;
 class BaseModel 
 {
     protected $table;

@@ -21,6 +21,25 @@ class AlbumModel extends BaseModel
         $this->db->bind(':id_album', $id_album);
         return $this->db->single();
     }
+
+    public function getAlbumRecords($current_page,$limit)
+    {
+        $offset = ($current_page - 1) * $limit;
+        $this->db->query(
+        'SELECT
+            album.title as album_title,
+            album.image_url as album_image_url,
+            artist.name as artist_name
+        FROM
+            album
+        INNER JOIN artist ON album.id_artist = artist.id_artist
+        LIMIT :limit OFFSET :offset
+        ');
+        $this->db->bind(':limit', $limit);
+        $this->db->bind(':offset', $offset);
+        return $this->db->resultSet();
+
+    }
     
     public function editAlbum($id_album, $title, $id_artist, $image_url)
     {

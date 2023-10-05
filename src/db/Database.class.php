@@ -6,7 +6,7 @@
 class Database{
     private $host = "localhost";
     private $user = "postgres";
-    private $pass = "root";
+    private $pass = "user";
     private $name = "stopify";
   
     private $db_handler;

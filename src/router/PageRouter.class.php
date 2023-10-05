@@ -35,22 +35,46 @@ class PageRouter
 
     public function getPage()
     {
+        if(isset($_SESSION["username"])){
+            if ($this->isMatch($this->page) && $this->page != "register" && $this->page != "login") 
+            {
+                // echo base_page
+                // diisi berdasarkan response dari controller
+
+                require_once "src/views/$this->page/index.php" ;
+                // music(params)
+            } 
+            else if ($this->page == "") 
+            {
+                require_once "src/views/home/index.php";
+            }
+            else if ($this->page == "api")
+            {
+                require_once "src/api/index.php";
+            }
+            else 
+            {
+                require_once "src/views/404/index.php";
+            }
+        }
+        else
+        {
+            if ($this->page == "api")
+            {
+                require_once "src/api/index.php";
+            }
+            else if($this->page == "register")
+            {
+                require_once "src/views/register/index.php";
+            }
+            else if($this->page == "login")
+            {
+                require_once "src/views/login/index.php";
+            }
+            else{
+                header("Location: /login");
+            }
+        }
         
-        if ($this->isMatch($this->page)) 
-        {
-            require_once "src/views/$this->page/index.php";
-        } 
-        else if ($this->page == "") 
-        {
-            require_once "src/views/home/index.php";
-        }
-        else if ($this->page == "api")
-        {
-            require_once "src/api/index.php";
-        }
-        else 
-        {
-            require_once "src/views/404/index.php";
-        }
     }
 }

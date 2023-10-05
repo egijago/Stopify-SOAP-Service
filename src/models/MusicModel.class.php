@@ -21,6 +21,30 @@ class MusicModel extends BaseModel
 		$this->db->bind('id_music', $id_music);
 		return $this->db->single();
 	}
+
+	public function getDetailMusic($id_music)
+	{
+		$this->db->query(
+			'SELECT 
+				album.image_url AS image_url,
+				album.title AS album_title,
+				music.title AS music_title,
+				genre.name AS genre_name,
+				artist.name AS artist_name
+			FROM 
+				music
+			JOIN 
+				album ON music.id_album = album.id_album
+			JOIN 
+				genre ON music.id_genre = genre.id_genre
+			JOIN 
+				artist ON album.id_artist = artist.id_artist
+			WHERE 
+				music.id_music = :id_music;
+		');
+		$this->db->bind('id_music', $id_music);
+		return $this->db->single();
+	}
 	public function editMusic($title, $id_genre, $audio_url, $id_album, $id_music){
 		$this->db->query('UPDATE ' . $this->table . ' SET title = :title, id_genre = :id_genre, audio_url = :audio_url, id_album = :id_album WHERE id_music = :id_music');
 		$this->db->bind('title', $title);
