@@ -26,4 +26,12 @@ class LikesController extends BaseController
 
         self::toResponse(200, "", $result);
     }
+    public static function getDetailLikesById($path_params)
+    {
+        $query_params = self::getQueryParams();
+        $params = array_merge($path_params, $query_params);
+        $result = self::getInstance()->model->getDetailLikesById($params["id_user"]);
+
+        self::toResponse(200, "", $result);
+    }
 }

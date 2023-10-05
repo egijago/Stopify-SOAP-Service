@@ -18,7 +18,14 @@ class MusicController extends BaseController {
 	public static function getMusicByMusicId($path_params)
 	{
 		$params = $path_params;
-		$result = self::getInstance()->model->getMusicByMusicId($params["id"]);
+		$result = self::getInstance()->model->getMusicByMusicId($params["id_music"]);
+
+		self::toResponse(200, "", $result);
+	}
+	public static function getDetailMusic($path_params)
+	{
+		$params = $path_params;
+		$result = self::getInstance()->model->getDetailMusic($params["id_music"]);
 
 		self::toResponse(200, "", $result);
 	}

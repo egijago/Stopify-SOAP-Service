@@ -24,6 +24,14 @@ class AlbumController extends BaseController
 
         self::toResponse(200, "", $result);
     }
+
+    public static function getAlbumRecords($path_params) 
+    {
+        $params = $path_params;
+        $result = self::getInstance()->model->getAlbumRecords($params["current_page"], $params["limit"]);
+
+        self::toResponse(200, "", $result);
+    }
     
     public static function editAlbum($path_params) 
     {
