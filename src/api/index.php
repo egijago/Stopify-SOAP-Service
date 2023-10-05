@@ -9,30 +9,28 @@ require_once __DIR__ . '/../controllers/UsersController.class.php';
 
 $router = new APIRouter();
 
-
-$router->put('/api/test', function($params) {
-    echo("FOOBAR");
-    echo(json_encode($params));
+$router->get('/api/test', function($params) {
+    echo("HOST: " . $_SERVER['HTTP_HOST']);   
 });
 
 /* Album API */
 $router->get('/api/albums', AlbumController::class .'::getAllAlbum');
-$router->get('/api/album/{id_album}' ,AlbumController::class . '::getAlbumByAlbumId');
-$router->put('/api/album/{id_album}', AlbumController::class . '::editAlbum');
-$router->post('/api/album', AlbumController::class . '::insertAlbum');
-$router->delete('/api/album/{id_album}', AlbumController::class . '::deleteAlbum');
+$router->get('/api/albums/{id_album}' ,AlbumController::class . '::getAlbumByAlbumId');
+$router->post('/api/albums/{id_album}', AlbumController::class . '::editAlbum'); // TODO: PARSE INPUT MANUALLY FOR PUT METHOD
+$router->post('/api/albums', AlbumController::class . '::insertAlbum');
+$router->delete('/api/albums/{id_album}', AlbumController::class . '::deleteAlbum');
 
-/* Astist API */
+/* Artist API */
 $router->get('/api/artists', ArtistController::class .'::getAllArtist');
 $router->get('/api/artists/{id_artist}' ,ArtistController::class . '::getArtistbyArtistId');
-$router->put('/api/artists', ArtistController::class . '::editArtist');
+$router->post('/api/artists/{id_artist}', ArtistController::class . '::editArtist'); // TODO: PARSE INPUT MANUALLY FOR PUT METHOD
 $router->post('/api/artists', ArtistController::class . '::insertArtist');
 $router->delete('/api/artists/{id_artist}', ArtistController::class . '::deleteArtist');
 
 /* Genre API */
 $router->get('/api/genres', GenreController::class .'::getAllGenre');
 $router->get('/api/genres/{id_genre}' ,GenreController::class . '::getGenreByGenreId');
-$router->put('/api/genres', GenreController::class . '::editGenre');
+$router->post('/api/genres/{id_genre}', GenreController::class . '::editGenre'); // TODO: PARSE INPUT MANUALLY FOR PUT METHOD
 $router->post('/api/genres', GenreController::class . '::insertGenre');
 $router->delete('/api/genres/{id_genre}', GenreController::class . '::deleteGenre');
 
@@ -42,14 +40,15 @@ $router->delete('/api/users/{id_user}/likes/{id_music}', LikesController::class 
 
 /* Music API */
 $router->get('/api/musics', MusicController::class .'::getAllMusic');
-$router->get('/api/musics/{id_genre}' ,MusicController::class . '::getMusicByMusicId');
-$router->put('/api/musics', MusicController::class . '::editMusic');
+$router->get('/api/musics/{id_music}' ,MusicController::class . '::getMusicByMusicId');
+$router->post('/api/musics/{id_music}', MusicController::class . '::editMusic'); // TODO: PARSE INPUT MANUALLY FOR PUT METHOD
 $router->post('/api/musics', MusicController::class . '::insertMusic');
-$router->delete('/api/musics/{id_genre}', MusicController::class . '::deleteMusic');
+$router->delete('/api/musics/{id_music}', MusicController::class . '::deleteMusic');
 
 /* Users API */
 
 /* Other API  */
+
 
 
 

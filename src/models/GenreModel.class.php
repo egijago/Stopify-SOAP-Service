@@ -9,6 +9,12 @@ class GenreModel extends BaseModel
 		$this->table = 'genre';    
 	}
   
+	public function getMaxIdGenre()
+    {
+		$this->db->query('SELECT id_genre FROM ' . $this->table . ' ORDER BY id_genre DESC LIMIT 1');
+		return $this->db->single()->id_genre;
+    }
+
     public function getAllGenre()
     {
 		$this->db->query('SELECT * FROM ' . $this->table);
@@ -22,8 +28,14 @@ class GenreModel extends BaseModel
 		return $this->db->single();
     }
     
-    public function editGenre($id_genre, $name, $image_url, $color) 
+    public function editGenre($id_genre, $name, $image, $color) 
 	{
+		$upload_dir = "storage/album_image/"; 
+		$id_genre = $this->getMaxIdGenre() + 1;
+        $upload_path = $upload_dir . $id_genre. "_" . $name . ".jpg";
+        $image_url = $upload_path;
+		move_uploaded_file($image["tmp_name"], $upload_path);
+
 		$this->db->query('UPDATE ' . $this->table . ' SET name = :name, image_url = :image_url, color = :color WHERE id_genre = :id_genre');
 		$this->db->bind('id_genre', $id_genre);
 		$this->db->bind('name', $name);
@@ -33,8 +45,14 @@ class GenreModel extends BaseModel
 		return $this->db->rowCount();
     }
   
-    public function insertGenre($name, $image_url, $color) 
+    public function insertGenre($name, $image, $color) 
 	{
+		$upload_dir = "storage/album_image/"; 
+		$id_genre = $this->getMaxIdGenre() + 1;
+        $upload_path = $upload_dir . $id_genre. "_" . $name . ".jpg";
+        $image_url = $upload_path;
+		move_uploaded_file($image["tmp_name"], $upload_path);
+		
 		$this->db->query('INSERT INTO ' . $this->table . ' (name, image_url, color) VALUES (:name, :image_url, :color)');
 		$this->db->bind('name', $name);
 		$this->db->bind('image_url', $image_url);
@@ -45,9 +63,13 @@ class GenreModel extends BaseModel
   
     public function deleteGenre($id_genre)
 	{
+		$delete_tuple = $this->getGenreByGenreId($id_genre);
+
 		$this->db->query('DELETE FROM ' . $this->table . ' WHERE id_genre = :id_genre');
 		$this->db->bind('id_genre', $id_genre);
 		$this->db->execute();
+
+		unlink($delete_tuple->image_url);
 		return $this->db->rowCount();
     }
 }

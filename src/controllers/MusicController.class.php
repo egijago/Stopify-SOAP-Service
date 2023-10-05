@@ -26,7 +26,7 @@ class MusicController extends BaseController {
 	{
 		$body_params = self::getBodyParams();
 		$params = array_merge($path_params, $body_params);
-		$result =  self::getInstance()->model->editMusic($params["title"], $params["id_genre"], $params["audio_url"], $params["id_album"], $params["id_music"]);
+		$result =  self::getInstance()->model->editMusic($params["title"], $params["id_genre"], $params["audio"], $params["id_album"], $params["id_music"]);
 		
 		self::toResponse(200, "", $result);
 	}
@@ -35,7 +35,7 @@ class MusicController extends BaseController {
 	{
 		$body_params = self::getBodyParams();
 		$params = array_merge($path_params, $body_params);
-		$result = self::getInstance()->model->insertMusic($params["title"], $params["id_genre"], $params["audio_url"], $params["id_album"]);
+		$result = self::getInstance()->model->insertMusic($params["title"], $params["id_genre"], $params["audio"], $params["id_album"]);
 
 		self::toResponse(200, "", $result);
 	}

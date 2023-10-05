@@ -1,5 +1,14 @@
 <?php
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+// Log a message to a file
+$message = "Something happened!";
+error_log($message, 3, "error.log");
+
+
 abstract class BaseController 
 {
     protected static $instance = null;
@@ -24,16 +33,29 @@ abstract class BaseController
 
     public static function getBodyParams() 
     {
-        $content_type = $_SERVER['HTTP_CONTENT_TYPE'];
-        switch ($content_type) {
-            case 'application/json':
-                return json_decode(file_get_contents('php://input'), true);
-            case 'application/x-www-form-urlencoded':
-                return $_POST;
-            default: 
-                throw new Exception();
-        }
+        // echo($_SERVER['CONTENT_TYPE'] . "\n");
+        // echo("FILES:". json_encode($_FILES) . "\n");
+        // echo("POST:". json_encode($_POST). "\n" );
+        // echo("SERVER:". json_encode($_SERVER). "\n");
+        // echo("JSON: " . file_get_contents('php://input'));
 
+        $content_type = $_SERVER['CONTENT_TYPE'];
+        if ($content_type === 'application/json') 
+        {
+            return json_decode(file_get_contents('php://input'), true);
+        }
+        else if ($content_type === 'application/x-www-form-urlencoded')
+        {
+            return $_POST;
+        }
+        else if (preg_match('/multipart\/form-data(.*)$/', $content_type, $matches)) 
+        {
+            return array_merge($_POST, $_FILES);            
+        }
+        else 
+        {
+            throw new Exception(json_encode($_SERVER));
+        }
     }
 
     public static function toResponse($response_code, $message, $payload) 

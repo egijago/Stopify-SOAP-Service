@@ -29,7 +29,7 @@ class AlbumController extends BaseController
     {
         $body_params = self::getBodyParams();
         $params = array_merge($body_params, $path_params);
-        $result = self::getInstance()->model->editAlbum($params["id_album"],  $params["title"],  $params["id_artist"],  $params["image_url"]);
+        $result = self::getInstance()->model->editAlbum($params["id_album"],  $params["title"],  $params["id_artist"],  $params["image"]);
      
         self::toResponse(200, "", $result);
     }
@@ -38,7 +38,7 @@ class AlbumController extends BaseController
     {
         $body_params = self::getBodyParams();
         $params = array_merge($body_params, $path_params);
-        $result = self::getInstance()->model->insertAlbum( $params["title"],  $params["id_artist"],  $params["image_url"]);
+        $result = self::getInstance()->model->insertAlbum( $params["title"],  $params["id_artist"],  $params["image"]);
 
         self::toResponse(200, "", $result);
     }
