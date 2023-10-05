@@ -1,14 +1,15 @@
 document.addEventListener('DOMContentLoaded', async function () {
     try {
         const xhr = new XMLHttpRequest();
-        xhr.open('GET', 'http://localhost:8000/api/albums', true);
+        const id_music = document.getElementById('id-music').getAttribute('data-id');
+        xhr.open('GET', 'http://localhost:8000/api/musics/detail/'+id_music, true);
     
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
                     console.log(xhr.responseText)
                     const data = JSON.parse(xhr.responseText);
-                    displaySongs(data.data);
+                    fillSong(data.data);
                 } else {
                     console.error('HTTP error! Status: ', xhr.status);
                 }
@@ -21,47 +22,29 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
     
 
-    function displaySongs(songs) {
-        document.querySelector('.top-song-first').innerHTML = bigFormat("senja", songs[0].title, songs[0].title);
+    function fillSong(song) {
+        document.querySelector('.play-song-container').innerHTML = songDetail(song.image_url, song.album_title, song.music_title, song.genre_name, song.artist_name);
 
-        var longSongsContainer = document.querySelector('.top-song-second');
-        for (var i = 1; i < Math.min(5, songs.length); i++) {
-            longSongsContainer.innerHTML += longFormat("senja", songs[i].title, songs[i].title);
-        }
-
-        var newSongsContainer = document.querySelector('.new-song');
-        for (var j = 5; j < Math.min(9, songs.length); j++) {
-            newSongsContainer.innerHTML += mediumFormat("senja", songs[j].title, songs[j].title);
-        }
+        document.querySelector('.top-song-second').innerHTML= songPlayer(song.audio_url);
     }
 
-    function bigFormat(img_url, song_title, artist) {
+    function songDetail(img_url, album, title, genre, artist){
         return `
-            <img class="first" src="public/image/${img_url}.jpg" />
-            <h2>${song_title}</h2>
-            <p>${artist}</p>
-        `;
-    }
-
-    function longFormat(img_url, song_title, artist) {
-        return `
-        <div class="song-item-long">
-            <img class="second" src="public/image/${img_url}.jpg"/>
-            <div class="song-item-container">
-                <h4>${song_title}</h4>
-                <p>${artist}</p>
-            </div>
-        </div>
-        `;
-    }
-
-    function mediumFormat(img_url, song_title, artist) {
-        return `
-        <div class="song-item-medium">
-            <img class="new-song" src="public/image/${img_url}.jpg" />
-            <h3>${song_title}</h3>
+        <img src="${'public/image/'+ img_url}" alt="">
+        <div class="play-song-detail">
+            <h3>${album}</h3>
+            <h4>${title}</h4>
+            <br>
+            <p>${genre}</p>
             <p>${artist}</p>
         </div>
-        `;
+        `
+    }
+    function songPlayer(audio_url){
+        return `
+        <audio controls>
+            <source src=${audio_url} type="audio/mpeg">
+        </audio>
+        `
     }
 });

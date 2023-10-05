@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', async function () {
     try {
         const xhr = new XMLHttpRequest();
-        xhr.open('GET', 'http://localhost:8000/api/albums', true);
+        xhr.open('GET', 'http://localhost:8000/public/', true);
     
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     function bigFormat(img_url, song_title, artist) {
         return `
             <img class="first" src="public/image/${img_url}.jpg" />
-            <h2>${song_title}</h2>
+                <h2>${song_title}</h2>
             <p>${artist}</p>
         `;
     }
