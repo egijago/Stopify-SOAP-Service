@@ -29,6 +29,13 @@ class MusicController extends BaseController {
 
 		self::toResponse(200, "", $result);
 	}
+	public static function searchMusic($path_params)
+	{
+		$params = $path_params;
+		$result = self::getInstance()->model->searchMusic($params["title"],$params["genre"],$params["artist"],$params["current_page"],$params["limit"]);
+
+		self::toResponse(200, "", $result);
+	}
 	public static function editMusic($path_params)
 	{
 		$body_params = self::getBodyParams();

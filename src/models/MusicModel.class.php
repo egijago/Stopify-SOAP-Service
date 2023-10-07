@@ -87,6 +87,50 @@ class MusicModel extends BaseModel
 		return $this->db->rowCount();
 	}
 
+	public function searchMusic($title, $genre, $artist, $album, $current_page, $limit) {
+		if ($title == "null") {
+			$title = "%";
+		}
+		if ($genre == "null") {
+			$genre = "%";
+		}
+		if ($artist == "null") {
+			$artist = "%";
+		}
+	
+		$offset = ($current_page - 1) * $limit;
+	
+		$this->db->query(
+			'SELECT 
+				album.image_url AS image_url,
+				album.title AS album_title,
+				music.title AS music_title,
+				genre.name AS genre_name,
+				artist.name AS artist_name,
+				music.audio_url AS audio_url
+			FROM 
+				music
+			JOIN 
+				album ON music.id_album = album.id_album
+			JOIN 
+				genre ON music.id_genre = genre.id_genre
+			JOIN 
+				artist ON album.id_artist = artist.id_artist
+			WHERE 
+				music.title LIKE :title AND genre.name LIKE :genre AND artist.name LIKE :artist
+			LIMIT :limit OFFSET :offset;'
+		);
+	
+		// Using "%" around the values for LIKE
+		$this->db->bind(':title', '%' . $title . '%');
+		$this->db->bind(':genre', '%' . $genre . '%');
+		$this->db->bind(':artist', '%' . $artist . '%');
+		$this->db->bind(':limit', $limit);
+		$this->db->bind(':offset', $offset);
+	
+		return $this->db->resultSet();
+	}	
+
 	public function deleteMusic($id_music)
 	{
 		$this->db->query('DELETE FROM ' . $this->table . ' WHERE id_music = :id_music');
