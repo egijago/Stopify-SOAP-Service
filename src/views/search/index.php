@@ -1,21 +1,20 @@
 <?php
-require_once(__DIR__ . "/../../../public/partials/side_bar.php");
-require_once(__DIR__ . "/../../../public/partials/album_input_dialog.php");
-require_once(__DIR__ . "/../../../public/partials/font.php");
+    require_once(__DIR__ . "/../../../public/partials/side_bar.php");
+    require_once(__DIR__ . "/../../../public/partials/album_input.php");
+    require_once(__DIR__ . "/../../../public/partials/font.php");
+    
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <?php echo Font(); ?>
   <title>Search - Stopify</title>
+  <script src="../../../public/js/music_input.js"></script>
 </head>
 <body>
-  <?php echo AlbumInputDialog();?>
   <div class="whole-wrapper">
     <?php echo SideBar(); ?>
     <div class="page-wrapper">
@@ -24,7 +23,7 @@ require_once(__DIR__ . "/../../../public/partials/font.php");
       <div class="search-section">
         <input class="search-bar" type="text" placeholder="What do you want to listen to?">
         <div class="search-settings">
-          <button class=search-by-filter onclick="handler()">
+          <button id="foo" class="search-by-filter">
             Artist
           </button>
           <button class=search-by-filter>
@@ -110,42 +109,23 @@ require_once(__DIR__ . "/../../../public/partials/font.php");
   </div>
   <button id="xhr" style="background-color:yellow; width: 100px; height:100px;">
   </button>
-  <p id="response" style="color: white;"> FOOBAR </p>
-
 </body>
-
 </html>
 <script>
-// document.getElementsByClassName("dialog-wrapper")[0].addEventListener(onclik)
-
-  function closeDialog() {
-    document.getElementsByClassName("dialog-wrapper")[0].style.display = "none";
-  }
-
-
-  document.getElementById("xhr").addEventListener("click", function () {
-    loadAlbums();
-  });
-
-function loadAlbums() {
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", "/api/albums", true);
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            var responseDiv = document.getElementById("response");
-            responseDiv.innerHTML = xhr.responseText;
-            console.log(xhr.responseText);
-            document.getElementById("123").innerHTML = '';
-
-        }
-    };
-
+  document.getElementById("foo").addEventListener("click", function() {
+      xhr = new XMLHttpRequest();
+      const method = "GET";
+      const url = "/element/music-input";
+      xhr.open(method, url, false);
+      xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            let div = document.createElement("div");
+            div.innerHTML = xhr.responseText;
+            document.body.prepend(div);
+          } else {
+            console.error("Request failed with response:", xhr.responseText);
+          }
+      };
     xhr.send();
-    
-}
-
-document.addEventListener("DOMContentLoaded", function(event) { 
-  loadAlbums();
-});
-
+  });
 </script>
