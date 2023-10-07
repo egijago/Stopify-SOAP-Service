@@ -25,7 +25,7 @@ class PageRouter
 
     public function isMatch($page)
     {
-        return (file_exists("src/views/$page/index.php"));
+        return (file_exists(__DIR__ . "/../views/$page/index.php"));
     }
 
     public function getParams()
@@ -35,26 +35,27 @@ class PageRouter
 
     public function getPage()
     {
-        if(isset($_SESSION["username"])){
+        if(isset($_SESSION["username"]))
+        {
             if ($this->isMatch($this->page) && $this->page != "register" && $this->page != "login") 
             {
                 // echo base_page
                 // diisi berdasarkan response dari controller
 
-                require_once "src/views/$this->page/index.php" ;
+                require_once __DIR__ . "/../views/$this->page/index.php" ;
                 // music(params)
             } 
             else if ($this->page == "") 
             {
-                require_once "src/views/home/index.php";
+                require_once __DIR__ . "/../views/home/index.php";
             }
             else if ($this->page == "api")
             {
-                require_once "src/api/index.php";
+                require_once __DIR__ . "/../api/index.php";
             }
             else 
             {
-                require_once "src/views/404/index.php";
+                require_once __DIR__ . "/../views/404/index.php";
             }
         }
         else
@@ -71,10 +72,10 @@ class PageRouter
             {
                 require_once "src/views/login/index.php";
             }
-            else{
-                header("Location: /login");
+            else 
+            {
+                require_once "src/views/404/index.php";
             }
         }
-        
     }
 }
