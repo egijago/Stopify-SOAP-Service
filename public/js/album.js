@@ -33,7 +33,7 @@ async function getMaxPage(limit){
         var currentUrl = window.location.href;
         var urlAPI = new URL(currentUrl);
         var idValue = urlAPI.searchParams.get("id");
-        const url = 'http://localhost:8000/api/album/'+idValue+'/musics';
+        const url = '/album/'+idValue+'/musics';
         xhr.open('GET', url, true);
 
         xhr.onreadystatechange = function () {
@@ -62,7 +62,7 @@ async function fillData(limit,page) {
         var urlAPI = new URL(currentUrl);
         var idValue = urlAPI.searchParams.get("id");
         // /api/albums/{id_album}/records/{current_page}/{limit}
-        const url = 'http://localhost:8000/api/album/'+idValue+'/records/' + page + '/' + limit;
+        const url = '/api/album/'+idValue+'/records/' + page + '/' + limit;
         xhr.open('GET', url, true);
 
         xhr.onreadystatechange = function () {

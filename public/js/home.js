@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', async function () {
     try {
         const xhr = new XMLHttpRequest();
-        xhr.open('GET', 'http://localhost:8000/public/', true);
+        xhr.open('GET', '/public/', true);
     
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {

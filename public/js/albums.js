@@ -27,7 +27,7 @@ function changeLimit() {
 async function getMaxPage(limit){
     try {
         const xhr = new XMLHttpRequest();
-        const url = 'http://localhost:8000/api/albums';
+        const url = '/api/albums';
         xhr.open('GET', url, true);
 
         xhr.onreadystatechange = function () {
@@ -50,7 +50,7 @@ async function getMaxPage(limit){
 async function fillData(limit,page) {
     try {
         const xhr = new XMLHttpRequest();
-        const url = 'http://localhost:8000/api/albums/records/' + page + '/' + limit;
+        const url = '/api/albums/records/' + page + '/' + limit;
         xhr.open('GET', url, true);
 
         xhr.onreadystatechange = function () {

@@ -34,7 +34,7 @@ async function sendForm(){
     var password = document.getElementById('password').value;
 
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://localhost:8000/api/login", true);
+    xhr.open("POST", "/api/login", true);
 
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     

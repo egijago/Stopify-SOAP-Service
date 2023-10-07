@@ -46,14 +46,14 @@ async function sendForm(){
     var name = document.getElementById('name').value;
 
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://localhost:8000/api/register", true);
+    xhr.open("POST", "/api/register", true);
 
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     xhr.onreadystatechange = () => {
         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
             console.log(xhr.responseText)
-            window.location.href = "http://localhost:8000/login";
+            window.location.href = "/login";
         }
     };
     
