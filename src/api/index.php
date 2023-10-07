@@ -68,6 +68,8 @@ $router->delete('/api/genres/{id_genre}', GenreController::class . '::deleteGenr
 
 /* Likes API */
 $router->get('/api/likes/{id_user}', LikesController::class .'::getDetailLikesById');
+$router->get('/api/users/{id_user}/likes/{id_music}', LikesController::class .'::checkLikes');
+$router->get('/api/likes/{id_user}/records/{current_page}/{limit}', LikesController::class .'::getRecordDetailsLikes');
 $router->post('/api/users/{id_user}/likes/{id_music}', LikesController::class .'::likes');
 $router->delete('/api/users/{id_user}/likes/{id_music}', LikesController::class .'::unlikes');
 
@@ -75,7 +77,7 @@ $router->delete('/api/users/{id_user}/likes/{id_music}', LikesController::class 
 $router->get('/api/musics', MusicController::class .'::getAllMusic');
 $router->get('/api/musics/{id_music}' ,MusicController::class . '::getMusicByMusicId');
 $router->get('/api/musics/detail/{id_music}' ,MusicController::class . '::getDetailMusic');
-$router->get('/api/musics/search/{title}/{genre}/{artist}/{current_page}/{limit}' ,MusicController::class . '::searchMusic');
+$router->get('/api/musics/search/{title}/{genre}/{artist}/{album}/{current_page}/{limit}' ,MusicController::class . '::searchMusic');
 $router->put('/api/musics', MusicController::class . '::editMusic');
 $router->post('/api/musics/{id_music}', MusicController::class . '::editMusic'); // TODO: PARSE INPUT MANUALLY FOR PUT METHOD
 $router->post('/api/musics', MusicController::class . '::insertMusic');
