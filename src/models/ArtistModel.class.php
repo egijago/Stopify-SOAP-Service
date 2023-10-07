@@ -21,7 +21,7 @@ class ArtistModel extends BaseModel
 		return $this->db->resultSet();
     }
   
-    public function getArtistByArtistID($id_artist)
+    public function getArtistByArtistId($id_artist)
     {
 		$this->db->query('SELECT * FROM ' . $this->table . ' WHERE id_artist = :id_artist');
 		$this->db->bind('id_artist', $id_artist);

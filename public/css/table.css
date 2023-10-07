@@ -1,16 +1,7 @@
-.table-container{
-    /* width: 70%; */
-    color: #FFF;
-    font-family: DM Sans;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    letter-spacing: 2px;
-    margin-top: 20px;
-  }
 
- .table-container .header_songlist{
+
+
+.table-container .header_songlist{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -18,27 +9,25 @@
     background-color: #101010;
 }
 
-.table-section .table-section .table{
-    color: #101010;
-    width: 70%;
-    table-layout: fixed;
-    min-width: 1000px;
-    border-collapse: collapse;
+
+.search-result table, .table-container table{
+    width: 100%;
 }
-.table-section .table-section .table .thead th{
+
+.search-result th, .table-container th{
+    font-family: DM Sans !important;  
     position: sticky;
     top: 0;
-    background-color: #878787;
+    background-color: #3c3c3c28;
     stroke-width: 2px;
     font-style: 15px;
+    border-radius: 500px;
+
 }
 
-.table-section .table-section .table .th, td{
-    padding: 2px 50px;
+.search-result td, table{
+    padding: 2px 20px;
     word-break: break-all;
-    text-align: center;
-}
-
-.table-section{
-    font: 20px;
+    text-align: left;
+    font-family: DM Sans;
 }

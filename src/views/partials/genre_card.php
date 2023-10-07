@@ -12,6 +12,7 @@ function genreCard($id)
         <div class="genre-card" value="$value" style="background-color:$color;">
             <p>$genre_name</p>
             <img src="$image_url">
+            <div class="edit-genre edit-btn"></div>
         </div>
     EOT;
 

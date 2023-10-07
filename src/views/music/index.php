@@ -26,14 +26,7 @@ require_once(PROJECT_ROOT_PATH . "/src/views/partials/font.php");
 <body>
     <div class="whole-wrapper">
          <?php echo SideBar();?>
-        <div class="page-wrapper">
-            <?php echo icon($_SESSION["username"]); ?>
-            <h1 style="margin-top: 5vw;">Good morning, <?php echo $_SESSION["username"]?></h1>
-            <input type="hidden" id="id_user" value="<?php echo $_SESSION["id_user"] ?>">
-            <div class="play-song-container">
-            </div>
-            <div class="audio-player">
-            </div>
+        <div class="page-wrapper" id="page-wrapper">
         </div>
     </div>
 </body>

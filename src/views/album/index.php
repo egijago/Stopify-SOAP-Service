@@ -3,6 +3,7 @@ require_once(PROJECT_ROOT_PATH . "/src/views/partials/side_bar.php");
 require_once(PROJECT_ROOT_PATH . "/src/views/partials/icon.php");
 require_once(PROJECT_ROOT_PATH . "/src/views/partials/album_container.php");
 require_once(PROJECT_ROOT_PATH . "/src/views/partials/font.php");
+require_once(PROJECT_ROOT_PATH . "/src/views/partials/album.php");
 ?>
 
 <!DOCTYPE html>
@@ -25,28 +26,8 @@ require_once(PROJECT_ROOT_PATH . "/src/views/partials/font.php");
 <body>
     <div class="whole-wrapper">
         <?php echo SideBar();?>
-        <div class="page-wrapper">
-            <?php echo icon($_SESSION["username"]); ?>
-            <h1 style="margin-top: 5vw;">Good morning, <?php echo ($_SESSION["username"]) ?></h1>
-            <div class="album-container" id="album-container"></div>
-            <div class="limit-page">
-                <p>Limit: </p>
-                <select name="limit_page" id="limit">
-                    <?php
-                        for($i = 1; $i <= 10; $i++){
-                            $res= $i * 5;
-                            echo "<option value=$res>$res</option>";
-                        }
-                    ?>
-                </select>
-            </div>
-            <div class="table-container" id="container-pagination"></div>
+        <div class="page-wrapper" id="page-wrapper">
             
-            <div class="pagination-item">
-                <p>Page <span id="current-page">1</span> of <span id="max-page"></span></p>
-                <img src="assets/icon_pagination/left.png" alt="left" id="left">
-                <img src="assets/icon_pagination/right.png" alt="right" id="right">
-            </div>
         </div>
     </div>
 </body>

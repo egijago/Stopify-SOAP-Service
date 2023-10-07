@@ -52,6 +52,7 @@ class MusicModel extends BaseModel
 		$this->db->bind('id_music', $id_music);
 		return $this->db->single();
 	}
+
 	public function editMusic($title, $id_genre, $audio, $id_album, $id_music)
 	{
 		$upload_dir = PROJECT_ROOT_PATH . "/public/storage/music_audio/"; 
@@ -87,30 +88,23 @@ class MusicModel extends BaseModel
 		return $this->db->rowCount();
 	}
 
-	public function searchMusic($title, $genre, $artist, $album, $current_page, $limit) {
-		if ($title = null) {
-			$title = "%";
-		}
-		if ($genre == "null") {
-			$genre = "%";
-		}
-		if ($artist == "null") {
-			$artist = "%";
-		}
-		if($album == "null") {
-			$album = "%";
-		}
-	
+	public function searchMusic($sub_str, $sub_str_param, $year, $genre, $sort_by, $current_page, $limit) {
+		
+		$sub_str_filter = "UPPER($sub_str_param) LIKE UPPER('$sub_str%')";
+		$genre_filter = ($genre == "all") ? "TRUE" : "genre.name = '$genre'";
+		$year_filter = ($year == "all") ? "TRUE" : "EXTRACT(YEAR FROM music.release_date) = '$year'";
+		$order = $sort_by ? "ORDER BY $sort_by ASC" : null; 
 		$offset = ($current_page - 1) * $limit;
 	
 		$this->db->query(
-			'SELECT 
+			"SELECT 
 				album.image_url AS image_url,
 				album.title AS album_title,
 				music.title AS music_title,
 				genre.name AS genre_name,
 				artist.name AS artist_name,
-				music.audio_url AS audio_url
+				music.audio_url AS audio_url,
+				EXTRACT(YEAR FROM music.release_date) AS release_year
 			FROM 
 				music
 			JOIN 
@@ -120,15 +114,12 @@ class MusicModel extends BaseModel
 			JOIN 
 				artist ON album.id_artist = artist.id_artist
 			WHERE 
-				music.title LIKE :title AND genre.name LIKE :genre AND artist.name LIKE :artist AND album.title LIKE :album
-			LIMIT :limit OFFSET :offset;'
+				$sub_str_filter AND
+				$genre_filter AND
+				$year_filter
+			$order
+			LIMIT :limit OFFSET :offset;"
 		);
-	
-		// Using "%" around the values for LIKE
-		$this->db->bind(':title', '%' . $title . '%');
-		$this->db->bind(':genre', '%' . $genre . '%');
-		$this->db->bind(':artist', '%' . $artist . '%');
-		$this->db->bind(':album', '%' . $album . '%');
 		$this->db->bind(':limit', $limit);
 		$this->db->bind(':offset', $offset);
 	

@@ -21,13 +21,19 @@
   <?php echo Font(); ?>
   <title>Search - Stopify</title>
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/table.css">
   <script src="js/music_input.js"></script>
+  <script src="js/album_input.js"></script>
+  <script src="js/artist_input.js"></script>
+  <script src="js/genre_input.js"></script>
+
   <script src="js/search.js"></script>
+  
 
 </head>
 <body>
-  <div class="whole-wrapper">
-    <?php albumInput([]);?>
+  <div class="dialog-section"></div>
+  <div class="whole-wrapper"> 
     <?php echo SideBar(); ?>
     <div class="page-wrapper">
       <div class="padding" style="height:10px;">
@@ -35,119 +41,42 @@
       <div class="search-section">
         <input class="search-bar" type="text" placeholder="What do you want to listen to?">
         <div class="search-settings">
-          <select id="search-by" class="search-by-filter">
-            <option value="title" selected>Search-by: title</option>
-            <option value="artist">Search-by: artist</option>
-          </select>
+          <?php searchBy();?>
           <?php yearFilter();?>
           <?php genreFilter();?>
           <?php sortBy();?>
         </div>
       </div>
 
-
-      <div class="browse-section">
-        <p class="section-title"> Browse All </p>
+      <div class="search-result">
+      </div>
+      <div class="genre-section">
+        <div class="section-header">
+          <p class="section-title">Genres</p>        
+          <div class="add-genre add-btn"></div>
+        </div>
         <hr>
         <div class="genres">
-        <?php genreCard(65); ?>
-        <?php genreCard(66); ?>
-        <?php genreCard(67); ?>
-        <?php genreCard(68); ?>
-        <?php genreCard(69); ?>
-          <!-- <div class="genre-card">
-              <p>RnB</p>
-              <img src="Rb-music.jpg">
-          </div>
-          <div class="genre-card">
-              <p>RnB</p>
-              <img src="Rb-music.jpg">
-          </div>
-          <div class="genre-card">
-              <p>RnB</p>
-              <img src="Rb-music.jpg">
-          </div>          
-          <div class="genre-card">
-              <p>RnB</p>
-              <img src="Rb-music.jpg">
-          </div>  
-          <div class="genre-card">
-              <p>RnB</p>
-              <img src="Rb-music.jpg">
-          </div>  
-          <div class="genre-card">
-              <p>RnB</p>
-              <img src="Rb-music.jpg">
-          </div>  
-          <div class="genre-card">
-              <p>RnB</p>
-              <img src="Rb-music.jpg">
-          </div>     -->
-    
+        <?php genreCard(1); ?>
+        <?php genreCard(2); ?>
+        <?php genreCard(3); ?>
+        <?php genreCard(4); ?>
+        <?php genreCard(5); ?>
       </div>
       <div class="artists-section">
-        <p class="section-title"> Artists </p>
+        <div class="section-header">
+          <p class="section-title"> Artists </p>  
+          <div class="add-artist add-btn"></div>
+        </div>
         <hr>
         <div class="artist-result" id="123">
-            <?php artistCard(41); ?>
-            <?php artistCard(42); ?>
-            <?php artistCard(43); ?>
-            <?php artistCard(44); ?>
-            <?php artistCard(45); ?>
-    
-          <!--<div class="artist-card">
-              <img src="Rb-music.jpg">
-              <p class="artist-name">John Doe</p>
-              <p class="card-type">Artist</p>
-          </div> 
-          <div class="artist-card">
-              <img src="Rb-music.jpg">
-              <p class="artist-name">John Doe</p>
-              <p class="card-type">Artist</p>
-          </div> 
-          <div class="artist-card">
-              <img src="Rb-music.jpg">
-              <p class="artist-name">John Doe</p>
-              <p class="card-type">Artist</p>
-          </div> 
-          <div class="artist-card">
-              <img src="Rb-music.jpg">
-              <p class="artist-name">John Doe</p>
-              <p class="card-type">Artist</p>
-          </div> 
-          <div class="artist-card">
-              <img src="Rb-music.jpg">
-              <p class="artist-name">John Doe</p>
-              <p class="card-type">Artist</p>
-          </div> 
-          <div class="artist-card">
-              <img src="Rb-music.jpg">
-              <p class="artist-name">John Doe</p>
-              <p class="card-type">Artist</p>
-          </div> -->
+            <?php artistCard(1); ?>
+            <?php artistCard(2); ?>
+            <?php artistCard(3); ?>
+            <?php artistCard(4); ?>
+            <?php artistCard(5); ?>
       </div>
     </div>
-    <hr>
   </div>
-  <button id="xhr" style="background-color:yellow; width: 100px; height:100px;">
-  </button>
 </body>
 </html>
-<script>
-  document.getElementById("foo").addEventListener("click", function() {
-      xhr = new XMLHttpRequest();
-      const method = "GET";
-      const url = "/element/music-input";
-      xhr.open(method, url, false);
-      xhr.onreadystatechange = function () {
-          if (xhr.readyState === 4 && xhr.status === 200) {
-            let div = document.createElement("div");
-            div.innerHTML = xhr.responseText;
-            document.body.prepend(div);
-          } else {
-            console.error("Request failed with response:", xhr.responseText);
-          }
-      };
-    xhr.send();
-  });
-</script>

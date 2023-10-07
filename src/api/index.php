@@ -1,5 +1,6 @@
 <?php 
 require_once PROJECT_ROOT_PATH . '/src/router/APIRouter.class.php';
+
 require_once PROJECT_ROOT_PATH . '/src/controllers/AlbumController.class.php';
 require_once PROJECT_ROOT_PATH . '/src/controllers/ArtistController.class.php';
 require_once PROJECT_ROOT_PATH . '/src/controllers/GenreController.class.php';
@@ -7,18 +8,21 @@ require_once PROJECT_ROOT_PATH . '/src/controllers/LikesController.class.php';
 require_once PROJECT_ROOT_PATH . '/src/controllers/MusicController.class.php';
 require_once PROJECT_ROOT_PATH . '/src/controllers/UsersController.class.php';
 
+require_once PROJECT_ROOT_PATH . '/src/middlewares/Utils.class.php';
+
+
 $router = new APIRouter();
 
 
 /* Album API */
 $router->get('/api/albums', AlbumController::class .'::getAllAlbum');
-$router->get('/api/album/{id_album}' ,AlbumController::class . '::getAlbumByAlbumId');
+$router->get('/api/albums/{id_album}' ,AlbumController::class . '::getAlbumByAlbumId');
 $router->get('/api/albums/records/{current_page}/{limit}' ,AlbumController::class . '::getAlbumRecords');
-$router->get('/api/album/{id_album}/records/{current_page}/{limit}' ,AlbumController::class . '::getMusicRecords');
-$router->get('/api/album/{id_album}/musics' ,AlbumController::class . '::getMusicByAlbumId');
-$router->put('/api/album/{id_album}', AlbumController::class . '::editAlbum');
-$router->post('/api/album', AlbumController::class . '::insertAlbum');
-$router->delete('/api/album/{id_album}', AlbumController::class . '::deleteAlbum');
+$router->get('/api/albums/{id_album}/records/{current_page}/{limit}' ,AlbumController::class . '::getMusicRecords');
+$router->get('/api/albums/{id_album}/musics' ,AlbumController::class . '::getMusicByAlbumId');
+$router->put('/api/albums/{id_album}', AlbumController::class . '::editAlbum');
+$router->post('/api/albums', AlbumController::class . '::insertAlbum');
+$router->delete('/api/albums/{id_album}', AlbumController::class . '::deleteAlbum');
 
 /* Artist API */
 $router->get('/api/artists', ArtistController::class .'::getAllArtist');
@@ -47,7 +51,7 @@ $router->delete('/api/users/{id_user}/likes/{id_music}', LikesController::class 
 $router->get('/api/musics', MusicController::class .'::getAllMusic');
 $router->get('/api/musics/{id_music}' ,MusicController::class . '::getMusicByMusicId');
 $router->get('/api/musics/detail/{id_music}' ,MusicController::class . '::getDetailMusic');
-$router->get('/api/musics/search/{title}/{genre}/{artist}/{album}/{current_page}/{limit}' ,MusicController::class . '::searchMusic');
+$router->get('/api/musics/search/' ,MusicController::class . '::searchMusic');
 $router->put('/api/musics', MusicController::class . '::editMusic');
 $router->post('/api/musics/{id_music}', MusicController::class . '::editMusic'); // TODO: PARSE INPUT MANUALLY FOR PUT METHOD
 $router->post('/api/musics', MusicController::class . '::insertMusic');

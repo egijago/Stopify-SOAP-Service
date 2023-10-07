@@ -57,6 +57,6 @@ document.addEventListener("change", function(event) {
         }
         
         var label = document.getElementById("file-input-label");
-        label.innerHTML = this.value;    
+        label.innerHTML = event.target.value;    
     }
 });

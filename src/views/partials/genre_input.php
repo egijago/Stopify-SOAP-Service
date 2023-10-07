@@ -15,8 +15,8 @@ function genreInput($params=null)
         $html = <<< "EOT"
         <div class="dialog-wrapper" >
             <div class="dialog" id="dialog-genre" id-genre="$id">
-                <div class="genre-card" id="genre-card-preview">
-                <p id="genre-name-preview" style="background-color: #$color;"></p>
+                <div class="genre-card" id="genre-card-preview" style="background-color:$color;">
+                <p id="genre-name-preview">$genre_name</p>
                 <img id="genre-image-preview" src="$image_url"/><br>
                 </div>
                 <label for="genre-name">Genre name</label><br>
@@ -27,7 +27,7 @@ function genreInput($params=null)
                 <p id="file-input-label">Select genre image</p>
                 </div>
                 <label for="genre-color">Color</label><br>
-                <input type="color" id="genre-color" value="#$color" /><br>
+                <input type="color" id="genre-color" value="$color" /><br>
                 <button class="dialog-button dialog-submit" id="dialog-genre-submit-button">Update</button>
                 <button class="dialog-button" id="dialog-cancel-button">Cancel</button>
                 <button class="dialog-button dialog-delete" id="dialog-genre-delete-button">Delete</button>

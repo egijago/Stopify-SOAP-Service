@@ -31,8 +31,9 @@ class MusicController extends BaseController {
 	}
 	public static function searchMusic($path_params)
 	{
-		$params = $path_params;
-		$result = self::getInstance()->model->searchMusic($params["title"],$params["genre"],$params["artist"],$params["album"],$params["current_page"],$params["limit"]);
+		$params = array_merge($path_params, self::getQueryParams());
+
+		$result = self::getInstance()->model->searchMusic($params["sub_str"],$params["sub_str_param"],$params["year"],$params["genre"],$params["sort_by"],$params["current_page"],$params["limit"]);
 
 		self::toResponse(200, "", $result);
 	}

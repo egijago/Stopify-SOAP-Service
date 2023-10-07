@@ -3,15 +3,100 @@ document.addEventListener("change", function(event) {
         event.target.matches("#year-filter") ||
         event.target.matches("#genre-filter") ||
         event.target.matches("#sort-by")) {
-            processChange()
+            executeSearch()
 
     }
+});
+
+document.addEventListener("click", function(event) {
+    if (event.target.matches(".add-genre")) {
+        const xhr = new XMLHttpRequest();
+        const method = "GET";
+        const url = "/element/genre-input";
+        xhr.open(method, url);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+              if (xhr.status === 200) {
+                const response = xhr.responseText;
+                document.querySelector(".dialog-section").innerHTML = xhr.responseText;
+            } else {
+                console.error("Request failed with response:", xhr.responseText);
+              }
+            }
+          };
+        xhr.send();
+       
+    }
+
+    if (event.target.matches(".edit-genre")) {
+        const xhr = new XMLHttpRequest();
+        const method = "GET";
+        const id = event.target.parentElement.getAttribute("value");
+        const url = "/element/genre-input/" + id;
+        xhr.open(method, url);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+              if (xhr.status === 200) {
+                const response = xhr.responseText;
+                document.querySelector(".dialog-section").innerHTML = xhr.responseText;
+            } else {
+                console.error("Request failed with response:", xhr.responseText);
+              }
+            }
+          };
+        xhr.send();
+       
+    }
+
+    if (event.target.matches(".edit-artist")) {
+        const xhr = new XMLHttpRequest();
+        const method = "GET";
+        const id = event.target.parentElement.getAttribute("value");
+        console.log(id);
+        const url = "/element/artist-input/"+id;
+        xhr.open(method, url);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+              if (xhr.status === 200) {
+                const response = xhr.responseText;
+                document.querySelector(".dialog-section").innerHTML = xhr.responseText;
+            } else {
+                console.error("Request failed with response:", xhr.responseText);
+              }
+            }
+          };
+        xhr.send();
+    }
+
+    if (event.target.matches(".add-artist")) {
+        const xhr = new XMLHttpRequest();
+        const method = "GET";
+        const id = event.target.parentElement.getAttribute("value");
+        console.log(id);
+        const url = "/element/artist-input";
+        xhr.open(method, url);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+              if (xhr.status === 200) {
+                const response = xhr.responseText;
+                document.querySelector(".dialog-section").innerHTML = xhr.responseText;
+            } else {
+                console.error("Request failed with response:", xhr.responseText);
+              }
+            }
+          };
+        xhr.send();
+    }
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    callSearch();
 });
 
 document.addEventListener("keyup", function(event) {
     if (event.target.matches(".search-bar")) {
 
-        processChange()
+        executeSearch()
     }
 });
 
@@ -23,19 +108,127 @@ function debounce(func, timeout = 300) {
     };
 }
 
-function saveInput() {
+function callSearch() {
     const searchQuery = document.querySelector(".search-bar").value;
     const searchBy = document.querySelector("#search-by").value;
     const yearFilter = document.querySelector("#year-filter").value;
     const genreFilter = document.querySelector("#genre-filter").value;
     const sortBy = document.querySelector("#sort-by").value;
 
-    console.log(
-        searchQuery,
-        searchBy,
-        yearFilter, 
-        genreFilter,
-        sortBy
-    )
+    
+
+    const method = "GET";
+    const url = "/element/search-table/"
+    const queryParams = {
+        "sub_str": searchQuery,
+        "sub_str_param": searchBy,
+        "year": yearFilter, 
+        "genre": genreFilter,
+        "sort_by": sortBy,
+        "current_page": 1,
+        "limit": 10
+    };
+    const queryString = Object.keys(queryParams)
+        .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(queryParams[key])}`)
+        .join('&');
+    const urlWithParams = `${url}?${queryString}`;
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", urlWithParams, true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            const response = xhr.responseText;
+            document.querySelector(".search-result").innerHTML = response;
+          } else {
+            console.error("Request failed with response:", xhr.responseText);
+          }
+        }
+      };
+    xhr.send();
 }
-  const processChange = debounce(() => saveInput());
+
+
+document.addEventListener("click", function(event) {
+  if (event.target.matches("#left")) {
+      prevPage();
+  }
+
+  if (event.target.matches("#right")) {
+      nextPage();
+  }
+
+})
+
+
+function nextPage() {
+  var limit = 5;
+  var currentPageElement = document.getElementById("current-page");
+  var page = parseInt(currentPageElement.innerHTML) + 1;
+
+  console.log(document.getElementById("max-page").innerHTML);
+  if(page > parseInt(document.getElementById("max-page").innerHTML)) {
+    page = parseInt(document.getElementById("max-page").innerHTML);
+    return;
+  }
+  fillData(limit, page);
+
+  currentPageElement.innerHTML = page;
+
+  // history.pushState(null, null, "?limit=" + limit + "&page=" + page);
+
+}
+
+function prevPage() {
+  var limit = 5;
+  var currentPageElement = document.getElementById("current-page");
+  var page = parseInt(currentPageElement.innerHTML) - 1;
+
+  if(page < 1){
+    page=1;
+    return;
+    
+  }
+
+  fillData(limit, page);
+
+  currentPageElement.innerHTML = page;
+
+  // history.pushState(null, null, "?limit=" + limit + "&page=" + page);
+}
+
+async function fillData() {
+  try {
+    const method = "GET";
+    const url = "/element/search-table/"
+    const queryParams = {
+        "sub_str": searchQuery,
+        "sub_str_param": searchBy,
+        "year": yearFilter, 
+        "genre": genreFilter,
+        "sort_by": sortBy,
+        "current_page": document.getElementById("current-page").innerHTML,
+        "limit": 5
+    };
+    const queryString = Object.keys(queryParams)
+        .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(queryParams[key])}`)
+        .join('&');
+    const urlWithParams = `${url}?${queryString}`;
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", urlWithParams, true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            const response = xhr.responseText;
+            document.querySelector(".search-result").innerHTML = response;
+          } else {
+            console.error("Request failed with response:", xhr.responseText);
+          }
+        }
+      };
+    xhr.send();
+  } catch (error) {
+      console.error('Error fetching data:', error.message);
+  }
+}
+
+const executeSearch = debounce(() => callSearch());

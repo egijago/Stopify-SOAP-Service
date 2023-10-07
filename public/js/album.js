@@ -1,111 +1,92 @@
 document.addEventListener("DOMContentLoaded", initial);
 
-document.getElementById("limit").addEventListener("change", changeLimit);
+// document.getElementById("limit").addEventListener("change", changeLimit);
 
-document.getElementById("right").addEventListener("click", nextPage);
+// document.getElementById("right").addEventListener("click", nextPage);
 
-document.getElementById("left").addEventListener("click",prevPage);
+// document.getElementById("left").addEventListener("click",prevPage);
 
-function initial(){
-    var limit = document.getElementById("limit").value;
-    var page = document.getElementById("current-page").innerHTML;
-
-    var currentUrl = window.location.href;
-    var urlAPI = new URL(currentUrl);
-    var idValue = urlAPI.searchParams.get("id");
-
-    try{
-        const xhr = new XMLHttpRequest();
-        var currentUrl = window.location.href;
-        var urlAPI = new URL(currentUrl);
-        var idValue = urlAPI.searchParams.get("id");
-
-        const url = '/api/album/'+idValue;
-        xhr.open('GET', url, true);
-
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
-                    const data = JSON.parse(xhr.responseText);
-                    console.log(data.data.album_title, data.data.artist_name, data.data.album_image_url)
-                    document.getElementById("album-container").innerHTML = albumContainer(data.data.album_title, data.data.artist_name, data.data.album_image_url);
-                } else {
-                    console.error('HTTP error! Status: ', xhr.status);
-                }
-            }
-        };
-
-        xhr.send();
-    } catch (error) {
-        console.error('Error fetching data:', error.message);
+document.addEventListener("click", function(event) {
+    if (event.target.matches("#left")) {
+        prevPage();
     }
 
-    getMaxPage(limit);
-    fillData(limit,page);
+    if (event.target.matches("#right")) {
+        nextPage();
+    }
+
+})
+
+document.addEventListener("change", function(event) {
+    if (event.target.matches("#limit")) {
+        changeLimit();
+    }
+
+})
+
+
+function initial(){
+    
+    var currentUrl = window.location.href;
+    var url = new URL(currentUrl);
+    var limitValue = url.searchParams.get("limit");
+    var pageValue = url.searchParams.get("page");
+
+    
+    if(limitValue==null){
+        limitValue = 5;
+    }
+    
+    if(pageValue==null){
+        pageValue = 1;
+    }
+    
+    console.log("limit ",limitValue)
+    console.log("page " ,pageValue)
+
+    fillData(limitValue,pageValue);
 }
 
 function changeLimit() {
+    var currentUrl = window.location.href;
+    var url = new URL(currentUrl);
+    var limit = url.searchParams.get("limit");
+    if(limit==null){
+        limit=document.getElementById("limit").value;
+    }
     var limit = document.getElementById("limit").value;
 
-    id=window.location.href.split("?id")[1].split("&")[0]
-
-    history.pushState(null, null,"?id" + id + "&limit=" + limit);
+    history.pushState(null, null, "?limit=" + limit+"&page"+1+"&id="+url.searchParams.get("id"));
     document.getElementById("current-page").innerHTML = 1;
 
-    getMaxPage(limit);
+    console.log("id",document.getElementById("limit").value)
+    document.getElementById("limit").innerHTML = limit;
     fillData(limit,1);
 }
 
-async function getMaxPage(limit){
-    try {
-        const xhr = new XMLHttpRequest();
-        // /api/album/{id_album}
-        var currentUrl = window.location.href;
-        var urlAPI = new URL(currentUrl);
-        var idValue = urlAPI.searchParams.get("id");
-        const url = '/api/album/'+idValue+'/musics';
-        xhr.open('GET', url, true);
-
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
-                    const data = JSON.parse(xhr.responseText);
-                    document.getElementById("max-page").innerHTML = Math.ceil(data.data.length / limit);
-                } else {
-                    console.error('HTTP error! Status: ', xhr.status);
-                }
-            }
-        };
-
-        xhr.send();
-    } catch (error) {
-        console.error('Error fetching data:', error.message);
-    }
-}
 
 async function fillData(limit,page) {
+    // const id_album = document.getElementById("id_album").value;
+    // const url = 'element/music_pagination/'+id_album+'/'+page+'/'+limit;
+    // console.log(url);
     try {
         const xhr = new XMLHttpRequest();
+        
         var currentUrl = window.location.href;
-        var urlAPI = new URL(currentUrl);
-        var idValue = urlAPI.searchParams.get("id");
-        // /api/albums/{id_album}/records/{current_page}/{limit}
-        const url = '/api/album/'+idValue+'/records/' + page + '/' + limit;
-        console.log(url)
+        var urlnew = new URL(currentUrl);
+
+        var id_album = urlnew.searchParams.get("id");
+
+        const url = 'element/music_pagination/'+id_album+'/'+page+'/'+limit;
+        console.log(url);
         xhr.open('GET', url, true);
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
-                    const data = JSON.parse(xhr.responseText);
-                    console.log(data.data)
-                    heading=["Title Song","Genre ","Realease Year"]
-                    dataTalbe=[]
-                    for(let i=0;i<data.data.length;i++){
-                        const hrefSong= "<a href='/music?id="+data.data[i].id_music+"'>"+data.data[i].music_title+"</a>"
-                        dataTalbe[i]=[hrefSong,data.data[i].genre_name,data.data[i].release_date.substring(0, 4)]
-                    }
-                    document.getElementById("container-pagination").innerHTML = table(heading,dataTalbe);
+                    const data = xhr.responseText;
+                    console.log(data)
+                    document.getElementById("page-wrapper").innerHTML = data
 
                 } else {
                     console.error('HTTP error! Status: ', xhr.status);
@@ -117,76 +98,53 @@ async function fillData(limit,page) {
     } catch (error) {
         console.error('Error fetching data:', error.message);
     }
-}
-
-function table(heading, data) {
-    let heading_html = "";
-    for (let head of heading) {
-        heading_html += `<th>${head}</th>`;
-    }
-
-    let data_html = "";
-    for (let row of data) {
-        data_html += "<tr>";
-        for (let col of row) {
-            data_html += `<td>${col}</td>`;
-        }
-        data_html += "</a></tr>";
-    }
-
-    let html = `
-    <table>
-        <thead>
-            <tr>
-                ${heading_html}
-            </tr>
-        </thead>
-        <tbody>
-            ${data_html}
-        </tbody>
-    </table>`;
-
-    return html
-}
-
-function albumContainer(album_title, artist, img_url){
-    html=
-    `<div class="img-album">
-        <img src=${img_url} alt="">
-    </div>
-    <div class="album-detail">
-        <h3>${album_title}</h3>
-        <p>${artist}</p>
-    </div>`
-    return html;
 }
 
 
 function nextPage() {
-    var limit = document.getElementById("limit").value;
-    var currentPageElement = document.getElementById("current-page");
-    var page = parseInt(currentPageElement.innerHTML) + 1;
+    var currentUrl = window.location.href;
+    var url = new URL(currentUrl);
 
+    var limit = url.searchParams.get("limit");
+    var pageValue = url.searchParams.get("page");
+    if(limit==null){
+        limit=document.getElementById("limit").value;
+    }
+    if(pageValue==null){
+        pageValue = 1;
+    }
+    var page = pageValue + 1;
+
+    console.log(page);
+    console.log(document.getElementById("max-page").innerHTML);
     if(page > parseInt(document.getElementById("max-page").innerHTML)) page = parseInt(document.getElementById("max-page").innerHTML);
 
     fillData(limit, page);
 
-    currentPageElement.innerHTML = page;
-    id=window.location.href.split("?id")[1].split("&")[0]
-    history.pushState(null, null, "?id" + id + "&limit=" + limit + "&page=" + page);
+    document.getElementById("current-page").innerHTML = page;
+
+    history.pushState(null, null, "?limit=" + limit + "&page=" + page+"&id="+url.searchParams.get("id"));
 }
 
 function prevPage() {
-    var limit = document.getElementById("limit").value;
-    var currentPageElement = document.getElementById("current-page");
-    var page = parseInt(currentPageElement.innerHTML) - 1;
+    var currentUrl = window.location.href;
+    var url = new URL(currentUrl);
+
+    var limit = url.searchParams.get("limit");
+    var pageValue = url.searchParams.get("page");
+    if(limit==null){
+        limit=document.getElementById("limit").value;
+    }
+    if(pageValue==null){
+        pageValue = 1;
+    }
+    var page = pageValue - 1;
 
     if(page < 1) page = 1;
 
     fillData(limit, page);
 
-    currentPageElement.innerHTML = page;
+    document.getElementById("current-page").innerHTML = page;
 
-    id=window.location.href.split("?id")[1].split("&")[0]
-    history.pushState(null, null, "?id" + id + "&limit=" + limit + "&page=" + page);
+    history.pushState(null, null, "?limit=" + limit + "&page=" + page+"&id="+url.searchParams.get("id"));
 }

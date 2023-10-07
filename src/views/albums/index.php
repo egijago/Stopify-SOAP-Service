@@ -3,6 +3,9 @@ require_once(PROJECT_ROOT_PATH . "/src/views/partials/side_bar.php");
 require_once(PROJECT_ROOT_PATH . "/src/views/partials/song_item.php");
 require_once(PROJECT_ROOT_PATH . "/src/views/partials/icon.php");
 require_once(PROJECT_ROOT_PATH . "/src/views/partials/font.php");
+require_once(PROJECT_ROOT_PATH . "/src/views/partials/limit_page.php");
+require_once(PROJECT_ROOT_PATH . "/src/views/partials/pagination_item.php");
+require_once(PROJECT_ROOT_PATH . "/src/views/partials/albums.php");
 ?>
 
 <!DOCTYPE html>
@@ -15,36 +18,18 @@ require_once(PROJECT_ROOT_PATH . "/src/views/partials/font.php");
     <link rel="stylesheet" href="css/pagination.css">
     <link rel="stylesheet" href="css/song.css">
     <link rel="stylesheet" href="css/icon.css">
+    <script src="js/album_input.js"></script>
     <?php echo Font(); ?>
     <title>Document</title>
 </head>
 <body>
+    <div class="dialog-section"></div>
     <div class="whole-wrapper">
          <?php echo SideBar();?>
-        <div class="page-wrapper">
-            <?php echo icon($_SESSION["username"]); ?>
-            <h1 style="margin-top: 5vw;">Good morning, <?php echo $_SESSION["username"] ?></h1>
-            <h3>Nama Album</h3>
-            <div class="limit-page">
-                <p>Limit: </p>
-                <select name="limit_page" id="limit">
-                    <?php
-                        for($i = 1; $i <= 10; $i++){
-                            $res= $i * 5;
-                            echo "<option value=$res>$res</option>";
-                        }
-                    ?>
-                </select>
-            </div>
-            <div class="container-pagination" id="container-pagination">
-            </div>
-            <p>Page <span id="current-page">1</span> of <span id="max-page"></span></p>
-            <div class="pagination-item">
-                <img src="assets/icon_pagination/left.png" alt="left" id="left">
-                <img src="assets/icon_pagination/right.png" alt="right" id="right">
-            </div>
+        <div class="page-wrapper" id="page-wrapper">
+
         </div>
     </div>
 </body>
-</html>
 <script src="js/albums.js"></script>
+</html>

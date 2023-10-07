@@ -9,6 +9,7 @@ function albumInput($params)
     {
         $album_model = new AlbumModel();
         $album = $album_model->getAlbumByAlbumId($id);
+        $name = $album->name;
         $image_url = $album->image_url;
 
         $artist_model = new ArtistModel();
@@ -27,7 +28,7 @@ function albumInput($params)
             <div class="dialog" id="dialog-album" id-album="$id">
             <img id="album-image-preview" src="$image_url"/><br>
             <label for="album-title">Album title</label><br>
-            <input type="text" id="album-title"><br>
+            <input type="text" value="$name" id="album-title"><br>
             <label for="image">Album cover</label><br>
             <div class="file-input">
                 <input type="file" id="input-album-image-url" name="image" accept="image/*">
@@ -79,18 +80,5 @@ function albumInput($params)
     }
 
     echo($html);
-
-    // if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    //     $title = $_POST["title"];
-    //     $id_artist = $_POST["id_artist"];
-    //     $image_url = $_POST["image_url"];
-
-        
-    //     if (empty($title) || empty($id_artist) || empty($image_url)) {
-    //         echo "Semua bidang harus diisi.";
-    //     } else {
-    //         echo "Data album berhasil disimpan.";
-    //     }
-    // }
 
 }

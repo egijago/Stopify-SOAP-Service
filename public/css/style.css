@@ -84,13 +84,19 @@ html, body{
     color: #121212;
     width: 75%;
     height: 2.9375rem; 
+
+    display: flex;
+
+    justify-content: center; /* Horizontal centering */
+    align-items: center; /* Vertical centering */
+    text-align: center; /* Center text horizontally (optional) */
 }
 
 .file-input p {
+    
     color: black;
-    top: 50%;
-    left: 0;
-    transform: translateY(50%);
+    font-size: 80%;
+    font-family: Arial, Helvetica, sans-serif;
 }
 .dialog .dialog-button {
     margin: 40px 0px 10px 0px;
@@ -183,12 +189,16 @@ html, body{
     gap: 0.625rem;
 }
 
+.genre-section .add-btn {
+    background-color: red;
+    aspect-ratio: 1/1;
+    width: 10%;
+}
+
 
 .genre-card {
-    flex: 25%;
-    max-width: 16.125rem;
-    min-width: 9rem;
-    position:relative;
+    width: 12rem;
+    position:   relative;
     aspect-ratio: 1/1;
     border-radius: 16.7%;
     background: #3e9453;
@@ -217,10 +227,21 @@ html, body{
 
 
 .artist-card {
-    max-width: 12.9375rem;
+    position: relative;
+    width: 10rem;
     aspect-ratio: 206/297;
     background: #000; 
     border-radius: 5%;
+}
+
+.edit-btn {
+    background-color: red;
+    position: absolute;
+    right: left;
+    bottom: 0;
+    width: 20%;
+    aspect-ratio: 1/1;
+    z-index: 3;
 }
 
 .artist-card img {
@@ -253,8 +274,8 @@ html, body{
 }
 
 .artist-result {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    display: flex;
+    flex-wrap: wrap;
     gap: 7px;
 }
 
@@ -313,6 +334,10 @@ html, body{
     gap: 5px
 }
 
+.section-header {
+    display: flex;
+    align-items: center;
+}
 
 .section-title {
     color: #FFF;
@@ -323,8 +348,9 @@ html, body{
     font-weight: 700;
     line-height: normal;
     letter-spacing: -0.12rem;
-    margin: 0 0 0 0;
+    margin: 0 3% 0 0;
 }
+
 h1,h2,h3,h4,h5,h6,p{
     color: white;
     font-family: DM Sans;

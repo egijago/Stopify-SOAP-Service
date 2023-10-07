@@ -1,5 +1,6 @@
 <?php
-function table(){
+function table($params=[]){
+    
     $html=<<<EOT
     <table>
         <thead>

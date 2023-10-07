@@ -123,8 +123,6 @@ class AlbumModel extends BaseModel
   
     public function insertAlbum($title, $id_artist, $image) 
     {
-
-        
         $upload_dir = PROJECT_ROOT_PATH . "/public/storage/album_image/"; 
         $id_album = $this->getMaxIdAlbum() + 1;
         $upload_path = $upload_dir . $id_album . "_" . $title . ".jpg";

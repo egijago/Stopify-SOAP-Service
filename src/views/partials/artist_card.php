@@ -13,6 +13,7 @@ function artistCard ($id)
         <img src="$image_url">
         <p class="artist-name">$artist_name</p>
         <p class="card-type">Artist</p>
+        <div class="edit-artist edit-btn"></div>
     </div> 
     EOT;
 

@@ -19,20 +19,24 @@ img.second{
     padding-left: 20px;
 }
 
-.song-item-medium{
+.song-item-medium {
+    position: relative;
     background-color: black;
-    width: 10vw;
-    min-width: 200px;
-    padding: 20px;
-    margin-right: 20px;
-    margin-top: 20px;
+    border-radius: 10%;
+    width: 200px;
+    padding: 15px;
+    margin-right: 10px;
+    margin-top: 10px;
+    aspect-ratio: 2/3;
 }
+
 .song-item-medium img{
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 5px;
+    width: 75%;
+    aspect-ratio: 1/1;
+    border-radius: 10%;
+    left: 50%;
 }
+
 img.first {
     width: 200px;
     height: 200px;

@@ -9,8 +9,8 @@ function searchBy()
 
     $html = <<< "EOT"
         <select id="search-by" class="search-by-filter">
-            <option value="title" selected>Search-by: title</option>
-            <option value="artist">Search-by: artist</option>
+            <option value="music.title" selected>Search-by: title</option>
+            <option value="artist.name">Search-by: artist</option>
         </select>
     EOT;
     echo($html);
@@ -57,7 +57,7 @@ function sortBy()
 {
     $html = <<< "EOT"
         <select id="sort-by" class="search-by-filter">
-            <option value="title" selected>Sort-by: title</option>
+            <option value="music.title" selected>Sort-by: title</option>
             <option value="release_date">Sort-by: release date</option>
         </select>
     EOT;

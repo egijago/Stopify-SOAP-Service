@@ -1,15 +1,21 @@
 <?php 
+
+include_once(PROJECT_ROOT_PATH . "/src/models/ArtistModel.class.php");
 function artistInput($params)
 {
     $id = $params["id_artist"];
     if ($id)
     {
+        $model = new ArtistModel();
+        $artist = $model->getArtistByArtistId($id);
+        $name = $artist->name;
+        $image_url = $artist->image_url;
         $html = <<< "EOT"
         <div class="dialog-wrapper" >
             <div class="dialog" id="dialog-artist" id-artist="$id">
-            <img id="artist-image-preview"/><br>
+            <img id="artist-image-preview" src="$image_url"/><br>
             <label for="artist-name">Artist name</label><br>
-            <input type="text" id="artist-name"><br>
+            <input type="text" id="artist-name" value="$name"><br>
             <label for="image">Artist picture</label><br>
             <div class="file-input">
                 <input type="file" id="input-artist-image-url" name="image" accept="image/*">
