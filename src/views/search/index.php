@@ -1,12 +1,12 @@
 <?php
-    require_once(__DIR__ . "/../../../src/views/partials/side_bar.php");
-    require_once(__DIR__ . "/../../../src/views/partials/album_input.php");
-    require_once(__DIR__ . "/../../../src/views/partials/font.php");
-    require_once(__DIR__ . "/../../../src/views/partials/genre_card.php");
-    require_once(__DIR__ . "/../../../src/views/partials/artist_card.php");
-    require_once(__DIR__ . "/../../../src/views/partials/search_util.php");
+    require_once(PROJECT_ROOT_PATH . "/src/views/partials/side_bar.php");
+    require_once(PROJECT_ROOT_PATH . "/src/views/partials/album_input.php");
+    require_once(PROJECT_ROOT_PATH . "/src/views/partials/font.php");
+    require_once(PROJECT_ROOT_PATH . "/src/views/partials/genre_card.php");
+    require_once(PROJECT_ROOT_PATH . "/src/views/partials/artist_card.php");
+    require_once(PROJECT_ROOT_PATH . "/src/views/partials/search_util.php");
 
-    require_once(__DIR__ . "/../../../src/views/partials/album_input.php");
+    require_once(PROJECT_ROOT_PATH . "/src/views/partials/album_input.php");
 
 
 
