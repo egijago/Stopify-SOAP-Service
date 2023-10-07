@@ -1,6 +1,7 @@
 import psycopg2
 from faker import Faker
 import random
+import os
 
 
 conn = psycopg2.connect(
@@ -14,6 +15,10 @@ cur = conn.cursor()
 
 fake = Faker()
 
+
+
+
+
 def insert_fake_users(num_users):
     for _ in range(num_users):
         username = fake.user_name()
@@ -25,19 +30,26 @@ def insert_fake_users(num_users):
             (username, email, password, role)
         )
         
+        
+
 def insert_fake_artists(num_artists):
-    for _ in range(num_artists):
+    folder_path = os.getcwd() + '/../public/storage/artist_image/'
+    artist_images = os.listdir(folder_path)
+    for i in range(num_artists):
         name = fake.name()
+        image_url = "/storage/artist_image/" + artist_images[i]
         cur.execute(
-            "INSERT INTO artist (name) VALUES (%s)",
-            (name,)
+            "INSERT INTO artist (name, image_url) VALUES (%s, %s)",
+            (name, image_url)
         )
 
 
 def insert_fake_genres(num_genres):
-    for _ in range(num_genres):
-        name = fake.word()
-        image_url = "1.jpg"
+    folder_path = os.getcwd() + '/../public/storage/genre_image/'
+    genre_images = os.listdir(folder_path)
+    for i in range(len(genre_images)):
+        name = genre_images[i][:-4]
+        image_url = "/storage/genre_image/" +genre_images[i]
         color = fake.hex_color()
         cur.execute(
             "INSERT INTO genre (name, image_url, color) VALUES (%s, %s, %s)",
@@ -50,10 +62,13 @@ def insert_fake_albums(num_albums):
     cur.execute(query)
     ids = cur.fetchall()
     
-    for _ in range(num_albums):
+    folder_path = os.getcwd() + '/../public/storage/album_image/'
+    album_images = os.listdir(folder_path)
+    
+    for i in range(num_albums):
         title = fake.sentence()
         id_artist = random.choice(ids)
-        image_url = "1.png"
+        image_url = "/storage/album_image/" +  album_images[i]
         cur.execute(
             "INSERT INTO album (title, id_artist, image_url) VALUES (%s, %s, %s)",
             (title, id_artist, image_url)
@@ -120,9 +135,13 @@ insert_fake_albums(num_fake_albums)
 insert_fake_music(num_fake_music)
 insert_fake_likes(num_fake_likes)
 
+
+
 conn.commit()
 cur.close()
 conn.close()
+
+
 
 
 print ("DB seeded successfuly!")
