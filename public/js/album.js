@@ -33,15 +33,13 @@ async function getMaxPage(limit){
         var currentUrl = window.location.href;
         var urlAPI = new URL(currentUrl);
         var idValue = urlAPI.searchParams.get("id");
-        const url = '/album/'+idValue+'/musics';
+        const url = '/api/album/'+idValue+'/musics';
         xhr.open('GET', url, true);
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
                     const data = JSON.parse(xhr.responseText);
-                    console.log("max page")
-                    console.log(data.data)
                     document.getElementById("max-page").innerHTML = Math.ceil(data.data.length / limit);
                 } else {
                     console.error('HTTP error! Status: ', xhr.status);
@@ -69,7 +67,7 @@ async function fillData(limit,page) {
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
                     const data = JSON.parse(xhr.responseText);
-                    console.log(data.data)
+                    // console.log(data.data)
                     heading=["id music","music title","genre"]
                     dataTalbe=[]
                     for(let i=0;i<data.data.length;i++){
@@ -125,8 +123,6 @@ function nextPage() {
     var currentPageElement = document.getElementById("current-page");
     var page = parseInt(currentPageElement.innerHTML) + 1;
 
-    console.log(page);
-    console.log(document.getElementById("max-page").innerHTML);
     if(page > parseInt(document.getElementById("max-page").innerHTML)) page = parseInt(document.getElementById("max-page").innerHTML);
 
     fillData(limit, page);

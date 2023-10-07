@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     function songDetail(img_url, album, title, genre, artist) {
         return `
-            <img src="${'public/image/' + img_url}" alt="">
+            <img src="${img_url}" alt="">
             <div class="play-song-detail">
                 <h3>${album}</h3>
                 <h4>${title}</h4>

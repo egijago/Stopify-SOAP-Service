@@ -101,7 +101,7 @@ function albumDisplay(id_album,album_image, album_title, artist){
     return `
     <a href="album?id=${id_album}">
         <div class="song-item-medium">
-            <img class="container-pagination" src="public/image/${album_image}" />
+            <img class="container-pagination" src="${album_image}" />
             <h3>${album_title}</h3>
             <p>${artist}</p>
         </div>
