@@ -4,10 +4,10 @@
 // use \PDO;
 
 class Database{
-    private $host = "localhost";
-    private $user = "postgres";
-    private $pass = "user";
-    private $name = "stopify";
+    private $host = DB_HOST;
+    private $user = DB_USER;
+    private $pass = DB_PASSWORD;
+    private $name = DB_NAME;
   
     private $db_handler;
     private $stmt;

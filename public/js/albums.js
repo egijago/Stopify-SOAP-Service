@@ -7,14 +7,37 @@ document.getElementById("right").addEventListener("click", nextPage);
 document.getElementById("left").addEventListener("click",prevPage);
 
 function initial(){
-    var limit = document.getElementById("limit").value;
-    var page = document.getElementById("current-page").innerHTML;
+    
+    var currentUrl = window.location.href;
+    var url = new URL(currentUrl);
+    var limitValue = url.searchParams.get("limit");
+    var pageValue = url.searchParams.get("page");
 
-    getMaxPage(limit);
-    fillData(limit,page);
+    
+    if(limitValue==null){
+        limitValue = document.getElementById("limit").value;
+    }
+    
+    if(pageValue==null){
+        pageValue = document.getElementById("current-page").innerHTML;
+    }
+    
+    console.log("limit ",limitValue)
+    console.log("page " ,pageValue)
+    // var limit = document.getElementById("limit").value;
+    // var page = document.getElementById("current-page").innerHTML;
+
+    getMaxPage(limitValue);
+    fillData(limitValue,pageValue);
 }
 
 function changeLimit() {
+    var currentUrl = window.location.href;
+    var url = new URL(currentUrl);
+    var limit = url.searchParams.get("limit");
+    if(limit==null){
+        limit=document.getElementById("limit").value;
+    }
     var limit = document.getElementById("limit").value;
 
     history.pushState(null, null, "?limit=" + limit);
@@ -51,6 +74,7 @@ async function fillData(limit,page) {
     try {
         const xhr = new XMLHttpRequest();
         const url = 'http://localhost:8000/api/albums/records/' + page + '/' + limit;
+        console.log(url)
         xhr.open('GET', url, true);
 
         xhr.onreadystatechange = function () {
