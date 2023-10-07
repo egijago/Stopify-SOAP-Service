@@ -19,8 +19,8 @@ class ArtistController extends BaseController
     public static function getArtistByArtistID($path_params)
     {   
         $params = $path_params;
+        
         $result =  self::getInstance()->model->getArtistByArtistID($params["id_artist"]);
-
         self::toResponse(200, "", $result);
     }
     
@@ -28,8 +28,8 @@ class ArtistController extends BaseController
     {
         $body_params = self::getBodyParams();
         $params = array_merge($body_params, $path_params);
-        $result =  self::getInstance()->model->editArtist($params["id_artist"], $params["name"], $params["image_url"]);
 
+        $result =  self::getInstance()->model->editArtist($params["id_artist"], $params["artist_name"], $params["image"]);
         self::toResponse(200, "", $result);
     }
   
@@ -37,8 +37,8 @@ class ArtistController extends BaseController
     {
         $body_params = self::getBodyParams();
         $params = array_merge($body_params, $path_params);
-        $result = self::getInstance()->model->insertArtist( $params["name"], $params["image_url"]);
 
+        $result = self::getInstance()->model->insertArtist($params["artist_name"], $params["image"]);
         self::toResponse(200, "", $result);
     }
   

@@ -49,7 +49,7 @@ class PageRouter
             {
                 require_once __DIR__ . "/../views/home/index.php";
             }
-            else if ($this->page == "api")
+            else if ($this->page == "api" || $this->page = "element")
             {
                 require_once __DIR__ . "/../api/index.php";
             }

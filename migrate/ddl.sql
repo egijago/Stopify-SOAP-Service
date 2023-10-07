@@ -7,6 +7,7 @@ CREATE TABLE users(
     password VARCHAR(255) NOT NULL,
     role VARCHAR(255) NOT NULL
 );
+
 CREATE TABLE genre(
     id_genre SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
@@ -17,7 +18,8 @@ CREATE TABLE genre(
 
 CREATE TABLE artist(
     id_artist SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL
+    name VARCHAR(255) NOT NULL,
+    image_url VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE album(
