@@ -51,6 +51,7 @@ $router->delete('/api/users/{id_user}/likes/{id_music}', LikesController::class 
 $router->get('/api/musics', MusicController::class .'::getAllMusic');
 $router->get('/api/musics/{id_music}' ,MusicController::class . '::getMusicByMusicId');
 $router->get('/api/musics/detail/{id_music}' ,MusicController::class . '::getDetailMusic');
+$router->get('/api/musics/search/{title}/{genre}/{artist}/{current_page}/{limit}' ,MusicController::class . '::searchMusic');
 $router->put('/api/musics', MusicController::class . '::editMusic');
 $router->post('/api/musics', MusicController::class . '::insertMusic');
 $router->delete('/api/musics/{id_genre}', MusicController::class . '::deleteMusic');
