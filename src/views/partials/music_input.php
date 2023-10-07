@@ -23,9 +23,9 @@ function musicInput($params)
         {
             
             $selected = ($album->id_album == $id_album) ? 'selected': null;
-            echo($selected);
             $value = $album->id_album;
-            $album_options .= "<option value='$value' $selected>$album->title</option>"; 
+            $image_url = $album->image_url;
+            $album_options .= "<option value='$value' image_url='$image_url' $selected>$album->title</option>"; 
         }
 
         $genre_model = new GenreModel();
@@ -79,7 +79,8 @@ function musicInput($params)
         foreach($albums as $album)
         {
             $value = $album->id_album;
-            $album_options .= "<option value='$value'>$album->title</option>"; 
+            $image_url = $album->image_url;
+            $album_options .= "<option value='$value' image_url='$image_url'>$album->title</option>"; 
         }
 
         $genre_model = new GenreModel();

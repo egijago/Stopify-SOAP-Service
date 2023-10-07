@@ -1,5 +1,5 @@
 <?php
-require_once(__DIR__ ."/BaseModel.class.php");
+require_once(PROJECT_ROOT_PATH ."/src/models/BaseModel.class.php");
 
 class ArtistModel extends BaseModel
 {

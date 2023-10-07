@@ -1,5 +1,5 @@
 <?php
-require_once(__DIR__ ."/BaseModel.class.php");
+require_once(PROJECT_ROOT_PATH ."/src/models/BaseModel.class.php");
 
 class MusicModel extends BaseModel
 {
@@ -138,4 +138,16 @@ class MusicModel extends BaseModel
 		$this->db->execute();
 		return $this->db->rowCount();
 	}
+
+	public function getAllYear() 
+	{
+		$this->db->query('
+		SELECT DISTINCT 
+			EXTRACT(YEAR FROM release_date) as release_year
+		FROM music;
+		');
+		
+		return $this->db->resultSet();
+	}
 }
+

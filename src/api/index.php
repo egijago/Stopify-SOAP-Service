@@ -1,45 +1,15 @@
 <?php 
-require_once __DIR__ . '/../router/APIRouter.class.php';
-require_once __DIR__ . '/../controllers/AlbumController.class.php';
-require_once __DIR__ . '/../controllers/ArtistController.class.php';
-require_once __DIR__ . '/../controllers/GenreController.class.php';
-require_once __DIR__ . '/../controllers/LikesController.class.php';
-require_once __DIR__ . '/../controllers/MusicController.class.php';
-require_once __DIR__ . '/../controllers/UsersController.class.php';
-require_once __DIR__ . '/../../public/partials/table.php';
-
-// $partials = glob(__DIR__ . '/../views/partials/*.php');
-// foreach($partials as $partial) {
-//     require_once $partial;
-// }
-
-require_once __DIR__ . '/../../public/partials/genre_input.php';
-require_once __DIR__ . '/../../public/partials/music_input.php';
-require_once __DIR__ . '/../../public/partials/album_input.php';
-require_once __DIR__ . '/../../public/partials/artist_input.php';
+require_once PROJECT_ROOT_PATH . '/src/router/APIRouter.class.php';
+require_once PROJECT_ROOT_PATH . '/src/controllers/AlbumController.class.php';
+require_once PROJECT_ROOT_PATH . '/src/controllers/ArtistController.class.php';
+require_once PROJECT_ROOT_PATH . '/src/controllers/GenreController.class.php';
+require_once PROJECT_ROOT_PATH . '/src/controllers/LikesController.class.php';
+require_once PROJECT_ROOT_PATH . '/src/controllers/MusicController.class.php';
+require_once PROJECT_ROOT_PATH . '/src/controllers/UsersController.class.php';
 
 $router = new APIRouter();
 
 
-$router->get('/api/partials/table', 'table');
-
-
-
-$router->get('/element/genre-input', 'genreInput');
-$router->get('/element/genre-input/{id_genre}', 'genreInput');
-$router->get('/element/music-input', 'musicInput');
-$router->get('/element/music-input/{id_music}', 'musicInput');
-$router->get('/element/album-input', 'albumInput');
-$router->get('/element/album-input/{id_album}', 'albumInput');
-$router->get('/element/artist-input', 'artistInput');
-$router->get('/element/artist-input/{id_artist}', 'artistInput');
-
-
-
-
-// $router->get('/api/test', function($params) {
-//     echo("HOST: " . $_SERVER['HTTP_HOST']);   
-// });
 /* Album API */
 $router->get('/api/albums', AlbumController::class .'::getAllAlbum');
 $router->get('/api/album/{id_album}' ,AlbumController::class . '::getAlbumByAlbumId');

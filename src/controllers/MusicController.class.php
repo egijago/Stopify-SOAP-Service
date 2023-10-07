@@ -1,6 +1,6 @@
 <?php 
-require_once(__DIR__ . "/BaseController.class.php");
-require_once(__DIR__ . "/../models/MusicModel.class.php");
+require_once(PROJECT_ROOT_PATH . "/src/controllers/BaseController.class.php");
+require_once(PROJECT_ROOT_PATH . "/src/models/MusicModel.class.php");
 
 class MusicController extends BaseController {
     protected function __construct() 

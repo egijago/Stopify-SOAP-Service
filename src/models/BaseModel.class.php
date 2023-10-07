@@ -1,5 +1,5 @@
 <?php
-require_once(__DIR__ ."/../db/Database.class.php");
+require_once(PROJECT_ROOT_PATH ."/src/db/Database.class.php");
 // use Database;
 class BaseModel 
 {

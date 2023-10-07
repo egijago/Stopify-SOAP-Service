@@ -1,6 +1,6 @@
 <?php 
-require_once(__DIR__ . "/BaseController.class.php");
-require_once(__DIR__ . "/../models/LikesModel.class.php");
+require_once(PROJECT_ROOT_PATH . "/src/controllers/BaseController.class.php");
+require_once(PROJECT_ROOT_PATH . "/src/models/LikesModel.class.php");
 
 class LikesController extends BaseController 
 {

@@ -68,6 +68,18 @@ document.addEventListener("change", function(event) {
         label.innerHTML = event.target.value;
     }
 
+function validateAlbum() {
+    var title = document.getElementById("title").value;
+    var id_artist = document.getElementById("id_artist").value;
+    var image_url = document.getElementById("image_url").value;
+  
+    if (title === "" || id_artist === "" || image_url === "") {
+      alert("Semua bidang harus diisi.");
+        return false;
+      }
+        return true; 
+    }
+
 });
 
 

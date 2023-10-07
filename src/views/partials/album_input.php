@@ -46,7 +46,7 @@ function albumInput($params)
     }
     else 
     {
-    $artist_model = new ArtistModel();
+        $artist_model = new ArtistModel();
         $artists = $artist_model->getAllArtist();
         $artist_options = "";
         foreach($artists as $artist)
@@ -79,5 +79,18 @@ function albumInput($params)
     }
 
     echo($html);
+
+    // if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    //     $title = $_POST["title"];
+    //     $id_artist = $_POST["id_artist"];
+    //     $image_url = $_POST["image_url"];
+
+        
+    //     if (empty($title) || empty($id_artist) || empty($image_url)) {
+    //         echo "Semua bidang harus diisi.";
+    //     } else {
+    //         echo "Data album berhasil disimpan.";
+    //     }
+    // }
 
 }

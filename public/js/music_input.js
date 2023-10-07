@@ -52,6 +52,13 @@ document.addEventListener("click", function(event) {
     }
 });
 
+document.addEventListener("change", function(event) {
+  if (event.target.matches("#album-option")) {
+    const image_url = (event.target.options[event.target.selectedIndex].getAttribute("image_url"));
+    document.getElementById("album-image-preview").src = image_url;
+  }
+});
+
 // function loadAlbumOption() {
 //     let xhr =  new XMLHttpRequest();
 //     let method = "GET";

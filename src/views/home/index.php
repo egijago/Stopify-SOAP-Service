@@ -1,8 +1,8 @@
 <?php
-require_once(__DIR__ . "/../../../public/partials/side_bar.php");
-require_once(__DIR__ . "/../../../public/partials/song_item.php");
-require_once(__DIR__ . "/../../../public/partials/icon.php");
-require_once(__DIR__ . "/../../../public/partials/font.php");
+require_once(PROJECT_ROOT_PATH . "/src/views/partials/side_bar.php");
+require_once(PROJECT_ROOT_PATH . "/src/views/partials/song_item.php");
+require_once(PROJECT_ROOT_PATH . "/src/views/partials/icon.php");
+require_once(PROJECT_ROOT_PATH . "/src/views/partials/font.php");
 ?>
 
 <!DOCTYPE html>

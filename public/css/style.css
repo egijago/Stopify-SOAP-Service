@@ -277,8 +277,7 @@ html, body{
 }
 
 .search-by-filter {
-    width: 3.25rem;
-    height: 1.25rem;
+    padding: 5px 5px 5px 5px;
     border-radius: 0.9375rem;
     background: #303030;
     color: #FFF;

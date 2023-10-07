@@ -25,7 +25,7 @@ class PageRouter
 
     public function isMatch($page)
     {
-        return (file_exists(__DIR__ . "/../views/$page/index.php"));
+        return (file_exists(PROJECT_ROOT_PATH . "/src/views/$page/index.php"));
     }
 
     public function getParams()
@@ -42,39 +42,43 @@ class PageRouter
                 // echo base_page
                 // diisi berdasarkan response dari controller
 
-                require_once __DIR__ . "/../views/$this->page/index.php" ;
+                require_once PROJECT_ROOT_PATH . "/src/views/$this->page/index.php" ;
                 // music(params)
             } 
             else if ($this->page == "") 
             {
-                require_once __DIR__ . "/../views/home/index.php";
+                require_once PROJECT_ROOT_PATH . "/src/views/home/index.php";
             }
-            else if ($this->page == "api" || $this->page = "element")
+            else if ($this->page == "api")
             {
-                require_once __DIR__ . "/../api/index.php";
+                require_once PROJECT_ROOT_PATH . "/src/api/index.php";
+            }
+            else if ($this->page = "element")
+            {
+                require_once PROJECT_ROOT_PATH . "/src/views/partials/index.php";
             }
             else 
             {
-                require_once __DIR__ . "/../views/404/index.php";
+                require_once PROJECT_ROOT_PATH . "/src/views/404/index.php";
             }
         }
         else
         {
             if ($this->page == "api")
             {
-                require_once __DIR__ . "/../api/index.php";
+                require_once PROJECT_ROOT_PATH . "/src/api/index.php";
             }
             else if($this->page == "register")
             {
-                require_once __DIR__ . "/../views/register/index.php";
+                require_once PROJECT_ROOT_PATH . "/src/views/register/index.php";
             }
             else if($this->page == "login")
             {
-                require_once __DIR__ . "/../views/login/index.php";
+                require_once PROJECT_ROOT_PATH . "/src/views/login/index.php";
             }
             else 
             {
-                require_once __DIR__ . "/../views/404/index.php";
+                require_once PROJECT_ROOT_PATH . "/src/views/404/index.php";
             }
         }
     }
