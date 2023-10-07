@@ -22,8 +22,8 @@ require_once(__DIR__ . "/../../../public/partials/font.php");
     <div class="whole-wrapper">
          <?php echo SideBar();?>
         <div class="page-wrapper">
-            <?php echo icon("vieri"); ?>
-            <h1 style="margin-top: 5vw;">Good morning, vieri</h1>
+            <?php echo icon($_SESSION["username"]); ?>
+            <h1 style="margin-top: 5vw;">Good morning, <?php echo $_SESSION["username"] ?></h1>
             <h3>Nama Album</h3>
             <div class="limit-page">
                 <p>Limit: </p>

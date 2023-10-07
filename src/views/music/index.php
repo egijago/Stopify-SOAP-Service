@@ -14,9 +14,9 @@ require_once(__DIR__ . "/../../../public/partials/font.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="../../../public/css/style.css">
-    <link rel="stylesheet" href="../../../public/css/music.css">
-    <link rel="stylesheet" href="../../../public/css/icon.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/music.css">
+    <link rel="stylesheet" href="css/icon.css">
 
     <?php echo Font(); ?>
 
@@ -29,6 +29,7 @@ require_once(__DIR__ . "/../../../public/partials/font.php");
         <div class="page-wrapper">
             <?php echo icon($_SESSION["username"]); ?>
             <h1 style="margin-top: 5vw;">Good morning, <?php echo $_SESSION["username"]?></h1>
+            <input type="hidden" id="id_user" value="<?php echo $_SESSION["id_user"] ?>">
             <div class="play-song-container">
             </div>
             <div class="audio-player">
@@ -37,4 +38,4 @@ require_once(__DIR__ . "/../../../public/partials/font.php");
     </div>
 </body>
 </html>
-<script src="/public/js/music.js"></script>
+<script src="js/music.js"></script>

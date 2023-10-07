@@ -12,7 +12,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <?php echo Font(); ?>
   <title>Search - Stopify</title>
-  <script src="../../../public/js/music_input.js"></script>
+  <script src="js/music_input.js"></script>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <div class="whole-wrapper">

@@ -11,10 +11,11 @@ require_once(__DIR__ . "/../../../public/partials/table.php");
     <head>
         <meta charset="UFT-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="css/stylee.css">
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/icon.css">
         <link rel="stylesheet" href="css/liked.css">
+        <link rel="stylesheet" href="css/table.css">
+        <link rel="stylesheet" href="css/pagination.css">
 
         <?php echo Font(); ?>
         <title>Stopify</title>
@@ -23,7 +24,8 @@ require_once(__DIR__ . "/../../../public/partials/table.php");
         <div class="whole-wrapper">
             <?php echo SideBar(); ?>
             <div class="page-wrapper">
-                <?php echo icon("vieri"); ?>
+                <?php echo icon($_SESSION["username"]); ?>
+                <input type="hidden" id="id_user" value="<?php echo $_SESSION["id_user"] ?>">
                 <div class="liked-detail">
                     <img src="image/senja.jpg">
                     <div class="liked-detail-text">
@@ -31,16 +33,28 @@ require_once(__DIR__ . "/../../../public/partials/table.php");
                         <h2>Liked Songs</h1>
                     </div>
                 </div>
-                <div class="songlist">
-                    <div class="header_songlist">
-                        <h2>Song List</h2>
-                    </div>
-                    <div class="song_section">
-                        <?php echo table() ?>
-                    </div>
+                <div class="limit-page">
+                    <p>Limit: </p>
+                    <select name="limit_page" id="limit">
+                        <?php
+                            for($i = 1; $i <= 10; $i++){
+                                $res= $i * 5;
+                                echo "<option value=$res>$res</option>";
+                            }
+                        ?>
+                    </select>
                 </div>
+                <div class="table-container" id="container-pagination"></div>
+                
+                <div class="pagination-item">
+                    <p>Page <span id="current-page">1</span> of <span id="max-page"></span></p>
+                    <img src="assets/icon_pagination/left.png" alt="left" id="left">
+                    <img src="assets/icon_pagination/right.png" alt="right" id="right">
+                </div>
+
             </div>
         </div>
     </div>
     </body>
 </html>
+<script src="js/liked.js"></script>
