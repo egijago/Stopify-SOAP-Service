@@ -26,7 +26,8 @@ class AlbumModel extends BaseModel
     {
         $offset = ($current_page - 1) * $limit;
         $this->db->query(
-        'SELECT
+        'SELECT DISTINCT
+            album.id_album as id_album,
             album.title as album_title,
             album.image_url as album_image_url,
             artist.name as artist_name
@@ -40,7 +41,36 @@ class AlbumModel extends BaseModel
         return $this->db->resultSet();
 
     }
+
+    public function getMusicRecords($current_page,$limit,$id_album)
+    {
+        $offset = ($current_page - 1) * $limit;
+        $this->db->query(
+        'SELECT DISTINCT
+            music.id_music as id_music,
+            music.title as music_title,
+            album.title as album_title,
+            genre.name as genre_name
+        FROM
+            music
+        INNER JOIN album ON music.id_album = album.id_album
+        INNER JOIN genre ON music.id_genre = genre.id_genre
+        WHERE music.id_album = :id_album
+        LIMIT :limit OFFSET :offset
+        ');
+        $this->db->bind(':limit', $limit);
+        $this->db->bind(':offset', $offset);
+        $this->db->bind(':id_album', $id_album);
+        return $this->db->resultSet();
+
+    }
     
+    public function getMusicByAlbumId($id_album)
+    {
+        $this->db->query('SELECT * FROM music WHERE id_album = :id_album');
+        $this->db->bind(':id_album', $id_album);
+        return $this->db->resultSet();
+    }
     public function editAlbum($id_album, $title, $id_artist, $image_url)
     {
         $this->db->query('UPDATE ' . $this->table . ' SET title = :title, id_artist = :id_artist, image_url = :image_url WHERE id_album = :id_album');

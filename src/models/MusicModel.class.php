@@ -30,7 +30,8 @@ class MusicModel extends BaseModel
 				album.title AS album_title,
 				music.title AS music_title,
 				genre.name AS genre_name,
-				artist.name AS artist_name
+				artist.name AS artist_name,
+				music.audio_url AS audio_url
 			FROM 
 				music
 			JOIN 
