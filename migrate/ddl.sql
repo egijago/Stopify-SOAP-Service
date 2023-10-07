@@ -1,5 +1,3 @@
-CREATE DATABASE stopify;
-\c stopify
 CREATE TABLE users(
     id_user SERIAL PRIMARY KEY,
     username VARCHAR(255) NOT NULL,
@@ -38,6 +36,7 @@ CREATE TABLE music(
     id_genre INT NOT NULL,
     audio_url VARCHAR(255) NOT NULL,
     id_album INT NOT NULL,
+    release_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT fk_id_genre FOREIGN KEY (id_genre) REFERENCES genre(id_genre) ON DELETE CASCADE,
     CONSTRAINT fk_id_album FOREIGN KEY (id_album) REFERENCES album(id_album) ON DELETE CASCADE
