@@ -11,10 +11,10 @@ require_once(__DIR__ . "/../../../public/partials/font.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="../../../public/css/style.css">
-    <link rel="stylesheet" href="../../../public/css/pagination.css">
-    <link rel="stylesheet" href="../../../public/css/song.css">
-    <link rel="stylesheet" href="../../../public/css/icon.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pagination.css">
+    <link rel="stylesheet" href="css/song.css">
+    <link rel="stylesheet" href="css/icon.css">
     <?php echo Font(); ?>
     <title>Document</title>
 </head>
@@ -40,11 +40,11 @@ require_once(__DIR__ . "/../../../public/partials/font.php");
             </div>
             <p>Page <span id="current-page">1</span> of <span id="max-page"></span></p>
             <div class="pagination-item">
-                <img src="../../../public/assets/icon_pagination/left.png" alt="left" id="left">
-                <img src="../../../public/assets/icon_pagination/right.png" alt="right" id="right">
+                <img src="assets/icon_pagination/left.png" alt="left" id="left">
+                <img src="assets/icon_pagination/right.png" alt="right" id="right">
             </div>
         </div>
     </div>
 </body>
 </html>
-<script src="/public/js/albums.js"></script>
+<script src="js/albums.js"></script>

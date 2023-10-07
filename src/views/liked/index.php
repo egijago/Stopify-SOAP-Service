@@ -11,10 +11,10 @@ require_once(__DIR__ . "/../../../public/partials/table.php");
     <head>
         <meta charset="UFT-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../../../public/css/stylee.css">
-        <link rel="stylesheet" href="../../../public/css/style.css">
-        <link rel="stylesheet" href="../../../public/css/icon.css">
-        <link rel="stylesheet" href="../../../public/css/liked.css">
+        <link rel="stylesheet" href="css/stylee.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/icon.css">
+        <link rel="stylesheet" href="css/liked.css">
 
         <?php echo Font(); ?>
         <title>Stopify</title>
@@ -25,7 +25,7 @@ require_once(__DIR__ . "/../../../public/partials/table.php");
             <div class="page-wrapper">
                 <?php echo icon("vieri"); ?>
                 <div class="liked-detail">
-                    <img src="../../../public/image/senja.jpg">
+                    <img src="image/senja.jpg">
                     <div class="liked-detail-text">
                         <h1>PLAYLIST</h1>
                         <h2>Liked Songs</h1>

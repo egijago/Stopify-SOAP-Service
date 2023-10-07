@@ -40,7 +40,7 @@ async function sendForm(){
     
     xhr.onreadystatechange = () => {
         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-            window.location.href = "http://localhost:8000/home";
+            window.location.href = "home";
         }
     };
     

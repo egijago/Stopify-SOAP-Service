@@ -62,19 +62,19 @@ class PageRouter
         {
             if ($this->page == "api")
             {
-                require_once "src/api/index.php";
+                require_once __DIR__ . "/../api/index.php";
             }
             else if($this->page == "register")
             {
-                require_once "src/views/register/index.php";
+                require_once __DIR__ . "/../views/register/index.php";
             }
             else if($this->page == "login")
             {
-                require_once "src/views/login/index.php";
+                require_once __DIR__ . "/../views/login/index.php";
             }
             else 
             {
-                require_once "src/views/404/index.php";
+                require_once __DIR__ . "/../views/404/index.php";
             }
         }
     }
