@@ -7,49 +7,42 @@ document.getElementById("right").addEventListener("click", nextPage);
 document.getElementById("left").addEventListener("click",prevPage);
 
 function initial(){
-    var limit = document.getElementById("limit").value;
-    var page = document.getElementById("current-page").innerHTML;
 
+    console.log("id",document.getElementById("id_user").value)
+    
     var currentUrl = window.location.href;
-    var urlAPI = new URL(currentUrl);
-    var idValue = urlAPI.searchParams.get("id");
+    var url = new URL(currentUrl);
+    var limitValue = url.searchParams.get("limit");
+    var pageValue = url.searchParams.get("page");
 
-    try{
-        const xhr = new XMLHttpRequest();
-        var currentUrl = window.location.href;
-        var urlAPI = new URL(currentUrl);
-        var idValue = urlAPI.searchParams.get("id");
-
-        const url = '/api/album/'+idValue;
-        xhr.open('GET', url, true);
-
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
-                    const data = JSON.parse(xhr.responseText);
-                    console.log(data.data.album_title, data.data.artist_name, data.data.album_image_url)
-                    document.getElementById("album-container").innerHTML = albumContainer(data.data.album_title, data.data.artist_name, data.data.album_image_url);
-                } else {
-                    console.error('HTTP error! Status: ', xhr.status);
-                }
-            }
-        };
-
-        xhr.send();
-    } catch (error) {
-        console.error('Error fetching data:', error.message);
+    
+    if(limitValue==null){
+        limitValue = document.getElementById("limit").value;
     }
+    
+    if(pageValue==null){
+        pageValue = document.getElementById("current-page").innerHTML;
+    }
+    
+    console.log("limit ",limitValue)
+    console.log("page " ,pageValue)
+    // var limit = document.getElementById("limit").value;
+    // var page = document.getElementById("current-page").innerHTML;
 
-    getMaxPage(limit);
-    fillData(limit,page);
+    getMaxPage(limitValue);
+    fillData(limitValue,pageValue);
 }
 
 function changeLimit() {
+    var currentUrl = window.location.href;
+    var url = new URL(currentUrl);
+    var limit = url.searchParams.get("limit");
+    if(limit==null){
+        limit=document.getElementById("limit").value;
+    }
     var limit = document.getElementById("limit").value;
 
-    id=window.location.href.split("?id")[1].split("&")[0]
-
-    history.pushState(null, null,"?id" + id + "&limit=" + limit);
+    history.pushState(null, null, "?limit=" + limit);
     document.getElementById("current-page").innerHTML = 1;
 
     getMaxPage(limit);
@@ -58,12 +51,11 @@ function changeLimit() {
 
 async function getMaxPage(limit){
     try {
+        const id_user = document.getElementById("id_user").value;
+        console.log(id_user)
+
         const xhr = new XMLHttpRequest();
-        // /api/album/{id_album}
-        var currentUrl = window.location.href;
-        var urlAPI = new URL(currentUrl);
-        var idValue = urlAPI.searchParams.get("id");
-        const url = '/api/album/'+idValue+'/musics';
+        const url = '/api/likes/'+id_user;
         xhr.open('GET', url, true);
 
         xhr.onreadystatechange = function () {
@@ -85,25 +77,26 @@ async function getMaxPage(limit){
 
 async function fillData(limit,page) {
     try {
+        const id_user = document.getElementById("id_user").value;
+        console.log(id_user)
+
         const xhr = new XMLHttpRequest();
-        var currentUrl = window.location.href;
-        var urlAPI = new URL(currentUrl);
-        var idValue = urlAPI.searchParams.get("id");
-        // /api/albums/{id_album}/records/{current_page}/{limit}
-        const url = '/api/album/'+idValue+'/records/' + page + '/' + limit;
+        const url = 'api/likes/'+id_user+'/records/'+page+'/'+limit;
         console.log(url)
         xhr.open('GET', url, true);
+
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
+                    console.log(xhr.responseText)
                     const data = JSON.parse(xhr.responseText);
                     console.log(data.data)
-                    heading=["Title Song","Genre ","Realease Year"]
+                    heading=["Title Song","Genre ","Album","Artist","Realease Year"]
                     dataTalbe=[]
                     for(let i=0;i<data.data.length;i++){
                         const hrefSong= "<a href='/music?id="+data.data[i].id_music+"'>"+data.data[i].music_title+"</a>"
-                        dataTalbe[i]=[hrefSong,data.data[i].genre_name,data.data[i].release_date.substring(0, 4)]
+                        dataTalbe[i]=[hrefSong,data.data[i].genre_name,data.data[i].album_title,data.data[i].artist_name,data.data[i].release_date.substring(0, 4)]
                     }
                     document.getElementById("container-pagination").innerHTML = table(heading,dataTalbe);
 
@@ -127,11 +120,14 @@ function table(heading, data) {
 
     let data_html = "";
     for (let row of data) {
+        let i=0;
+        
         data_html += "<tr>";
         for (let col of row) {
             data_html += `<td>${col}</td>`;
         }
         data_html += "</a></tr>";
+        i++;
     }
 
     let html = `
@@ -149,31 +145,20 @@ function table(heading, data) {
     return html
 }
 
-function albumContainer(album_title, artist, img_url){
-    html=
-    `<div class="img-album">
-        <img src=${img_url} alt="">
-    </div>
-    <div class="album-detail">
-        <h3>${album_title}</h3>
-        <p>${artist}</p>
-    </div>`
-    return html;
-}
-
-
 function nextPage() {
     var limit = document.getElementById("limit").value;
     var currentPageElement = document.getElementById("current-page");
     var page = parseInt(currentPageElement.innerHTML) + 1;
 
+    console.log(page);
+    console.log(document.getElementById("max-page").innerHTML);
     if(page > parseInt(document.getElementById("max-page").innerHTML)) page = parseInt(document.getElementById("max-page").innerHTML);
 
     fillData(limit, page);
 
     currentPageElement.innerHTML = page;
-    id=window.location.href.split("?id")[1].split("&")[0]
-    history.pushState(null, null, "?id" + id + "&limit=" + limit + "&page=" + page);
+
+    history.pushState(null, null, "?limit=" + limit + "&page=" + page);
 }
 
 function prevPage() {
@@ -187,6 +172,5 @@ function prevPage() {
 
     currentPageElement.innerHTML = page;
 
-    id=window.location.href.split("?id")[1].split("&")[0]
-    history.pushState(null, null, "?id" + id + "&limit=" + limit + "&page=" + page);
+    history.pushState(null, null, "?limit=" + limit + "&page=" + page);
 }

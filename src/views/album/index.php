@@ -28,7 +28,7 @@ require_once(PROJECT_ROOT_PATH . "/src/views/partials/font.php");
         <div class="page-wrapper">
             <?php echo icon($_SESSION["username"]); ?>
             <h1 style="margin-top: 5vw;">Good morning, <?php echo ($_SESSION["username"]) ?></h1>
-            <?php echo AlbumContainer("image/senja.jpg", "Senja", "Maliq");?>
+            <div class="album-container" id="album-container"></div>
             <div class="limit-page">
                 <p>Limit: </p>
                 <select name="limit_page" id="limit">
@@ -40,9 +40,10 @@ require_once(PROJECT_ROOT_PATH . "/src/views/partials/font.php");
                     ?>
                 </select>
             </div>
-            <div class="container-pagination table-section" id="container-pagination"></div>
-            <p>Page <span id="current-page">1</span> of <span id="max-page"></span></p>
+            <div class="table-container" id="container-pagination"></div>
+            
             <div class="pagination-item">
+                <p>Page <span id="current-page">1</span> of <span id="max-page"></span></p>
                 <img src="assets/icon_pagination/left.png" alt="left" id="left">
                 <img src="assets/icon_pagination/right.png" alt="right" id="right">
             </div>

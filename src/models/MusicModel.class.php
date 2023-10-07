@@ -88,7 +88,7 @@ class MusicModel extends BaseModel
 	}
 
 	public function searchMusic($title, $genre, $artist, $album, $current_page, $limit) {
-		if ($title == "null") {
+		if ($title = null) {
 			$title = "%";
 		}
 		if ($genre == "null") {
@@ -96,6 +96,9 @@ class MusicModel extends BaseModel
 		}
 		if ($artist == "null") {
 			$artist = "%";
+		}
+		if($album == "null") {
+			$album = "%";
 		}
 	
 		$offset = ($current_page - 1) * $limit;
@@ -117,7 +120,7 @@ class MusicModel extends BaseModel
 			JOIN 
 				artist ON album.id_artist = artist.id_artist
 			WHERE 
-				music.title LIKE :title AND genre.name LIKE :genre AND artist.name LIKE :artist
+				music.title LIKE :title AND genre.name LIKE :genre AND artist.name LIKE :artist AND album.title LIKE :album
 			LIMIT :limit OFFSET :offset;'
 		);
 	
@@ -125,6 +128,7 @@ class MusicModel extends BaseModel
 		$this->db->bind(':title', '%' . $title . '%');
 		$this->db->bind(':genre', '%' . $genre . '%');
 		$this->db->bind(':artist', '%' . $artist . '%');
+		$this->db->bind(':album', '%' . $album . '%');
 		$this->db->bind(':limit', $limit);
 		$this->db->bind(':offset', $offset);
 	
