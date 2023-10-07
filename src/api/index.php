@@ -6,19 +6,24 @@ require_once __DIR__ . '/../controllers/GenreController.class.php';
 require_once __DIR__ . '/../controllers/LikesController.class.php';
 require_once __DIR__ . '/../controllers/MusicController.class.php';
 require_once __DIR__ . '/../controllers/UsersController.class.php';
+require_once __DIR__ . '/../../public/partials/table.php';
+
+// $partials = glob(__DIR__ . '/../views/partials/*.php');
+// foreach($partials as $partial) {
+//     require_once $partial;
+// }
 
 $router = new APIRouter();
 
 
-$router->put('/api/test', function($params) {
-    echo("FOOBAR");
-    echo(json_encode($params));
-});
+$router->get('/api/partials/table', 'table');
 
 /* Album API */
 $router->get('/api/albums', AlbumController::class .'::getAllAlbum');
 $router->get('/api/album/{id_album}' ,AlbumController::class . '::getAlbumByAlbumId');
 $router->get('/api/albums/records/{current_page}/{limit}' ,AlbumController::class . '::getAlbumRecords');
+$router->get('/api/album/{id_album}/records/{current_page}/{limit}' ,AlbumController::class . '::getMusicRecords');
+$router->get('/api/album/{id_album}/musics' ,AlbumController::class . '::getMusicByAlbumId');
 $router->put('/api/album/{id_album}', AlbumController::class . '::editAlbum');
 $router->post('/api/album', AlbumController::class . '::insertAlbum');
 $router->delete('/api/album/{id_album}', AlbumController::class . '::deleteAlbum');
