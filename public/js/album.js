@@ -10,6 +10,36 @@ function initial(){
     var limit = document.getElementById("limit").value;
     var page = document.getElementById("current-page").innerHTML;
 
+    var currentUrl = window.location.href;
+    var urlAPI = new URL(currentUrl);
+    var idValue = urlAPI.searchParams.get("id");
+
+    try{
+        const xhr = new XMLHttpRequest();
+        var currentUrl = window.location.href;
+        var urlAPI = new URL(currentUrl);
+        var idValue = urlAPI.searchParams.get("id");
+
+        const url = '/api/album/'+idValue;
+        xhr.open('GET', url, true);
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    const data = JSON.parse(xhr.responseText);
+                    console.log(data.data.album_title, data.data.artist_name, data.data.album_image_url)
+                    document.getElementById("album-container").innerHTML = albumContainer(data.data.album_title, data.data.artist_name, data.data.album_image_url);
+                } else {
+                    console.error('HTTP error! Status: ', xhr.status);
+                }
+            }
+        };
+
+        xhr.send();
+    } catch (error) {
+        console.error('Error fetching data:', error.message);
+    }
+
     getMaxPage(limit);
     fillData(limit,page);
 }
@@ -61,17 +91,19 @@ async function fillData(limit,page) {
         var idValue = urlAPI.searchParams.get("id");
         // /api/albums/{id_album}/records/{current_page}/{limit}
         const url = '/api/album/'+idValue+'/records/' + page + '/' + limit;
+        console.log(url)
         xhr.open('GET', url, true);
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
                     const data = JSON.parse(xhr.responseText);
-                    // console.log(data.data)
-                    heading=["id music","music title","genre"]
+                    console.log(data.data)
+                    heading=["Title Song","Genre ","Realease Year"]
                     dataTalbe=[]
                     for(let i=0;i<data.data.length;i++){
-                        dataTalbe[i]=[data.data[i].id_music,data.data[i].music_title,data.data[i].genre_name]
+                        const hrefSong= "<a href='/music?id="+data.data[i].id_music+"'>"+data.data[i].music_title+"</a>"
+                        dataTalbe[i]=[hrefSong,data.data[i].genre_name,data.data[i].release_date.substring(0, 4)]
                     }
                     document.getElementById("container-pagination").innerHTML = table(heading,dataTalbe);
 
@@ -115,6 +147,18 @@ function table(heading, data) {
     </table>`;
 
     return html
+}
+
+function albumContainer(album_title, artist, img_url){
+    html=
+    `<div class="img-album">
+        <img src=${img_url} alt="">
+    </div>
+    <div class="album-detail">
+        <h3>${album_title}</h3>
+        <p>${artist}</p>
+    </div>`
+    return html;
 }
 
 
