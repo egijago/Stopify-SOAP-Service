@@ -4,6 +4,10 @@ require_once(__DIR__ . "/../../../public/partials/song_item.php");
 require_once(__DIR__ . "/../../../public/partials/icon.php");
 require_once(__DIR__ . "/../../../public/partials/font.php");
 ?>
+
+<?php
+    if(isset($_SESSION))
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,8 +21,7 @@ require_once(__DIR__ . "/../../../public/partials/font.php");
     <?php echo Font(); ?>
 
     <title><?php echo $this->params["id"]?></title>
-    <div id="id-music" data-id="<?php echo $this->params["id"]; ?>"></div>
-    <script src="/public/js/music.js"></script>
+    
 </head>
 <body>
     <div class="whole-wrapper">
@@ -29,12 +32,9 @@ require_once(__DIR__ . "/../../../public/partials/font.php");
             <div class="play-song-container">
             </div>
             <div class="audio-player">
-                <audio controls>
-                    <source src="../../../public/song/1.mp3" type="audio/mpeg">
-                </audio>
-                
             </div>
         </div>
     </div>
 </body>
 </html>
+<script src="/public/js/music.js"></script>
