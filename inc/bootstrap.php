@@ -1,5 +1,5 @@
 <?php
-
+require_once("dotenv.php");
 
 define("PROJECT_ROOT_PATH", __DIR__ . "/..");
 error_reporting(null);

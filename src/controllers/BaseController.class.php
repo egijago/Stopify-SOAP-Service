@@ -1,11 +1,4 @@
 <?php
-
-
-// Log a message to a file
-$message = "Something happened!";
-error_log($message, 3, "error.log");
-
-
 abstract class BaseController 
 {
     protected static $instance = null;
