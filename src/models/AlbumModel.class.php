@@ -23,7 +23,17 @@ class AlbumModel extends BaseModel
   
     public function getAlbumByAlbumId($id_album)
     {
-        $this->db->query('SELECT * FROM ' . $this->table . ' WHERE id_album = :id_album');
+        $this->db->query(
+        'SELECT 
+            album.id_album as id_album,
+            album.title as album_title,
+            album.image_url as album_image_url,
+            artist.name as artist_name
+        FROM
+            album
+        INNER JOIN artist ON album.id_artist = artist.id_artist
+        WHERE album.id_album = :id_album
+        ');
         $this->db->bind(':id_album', $id_album);
         return $this->db->single();
     }
@@ -54,13 +64,16 @@ class AlbumModel extends BaseModel
         $this->db->query(
         'SELECT DISTINCT
             music.id_music as id_music,
-            music.title as music_title,
-            album.title as album_title,
-            genre.name as genre_name
+            music.title as music_title, 
+            genre.name as genre_name, 
+            album.title as album_title, 
+            artist.name as artist_name,
+            music.release_date as release_date
         FROM
             music
         INNER JOIN album ON music.id_album = album.id_album
         INNER JOIN genre ON music.id_genre = genre.id_genre
+        INNER JOIN artist on artist.id_artist = album.id_artist
         WHERE music.id_album = :id_album
         LIMIT :limit OFFSET :offset
         ');
@@ -73,7 +86,20 @@ class AlbumModel extends BaseModel
     
     public function getMusicByAlbumId($id_album)
     {
-        $this->db->query('SELECT * FROM music WHERE id_album = :id_album');
+        $this->db->query(
+            'SELECT 
+                music.title as music_title, 
+                genre.name as genre_name, 
+                album.title as album_title, 
+                artist.name as artist_name,
+                music.release_date as release_date
+            FROM
+                music
+            INNER JOIN album ON music.id_album = album.id_album
+            INNER JOIN genre ON music.id_genre = genre.id_genre
+            INNER JOIN artist on artist.id_artist = album.id_artist
+            WHERE music.id_album = :id_album
+        ');
         $this->db->bind(':id_album', $id_album);
         return $this->db->resultSet();
     }

@@ -19,6 +19,7 @@ class UsersModel extends BaseModel
         {
             $_SESSION["username"] = $result->username;
             $_SESSION["role"] = $result->role;    
+            $_SESSION["id_user"] = $result->id_user;
         }
         
         return $result;
