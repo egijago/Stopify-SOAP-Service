@@ -30,7 +30,7 @@ class ArtistModel extends BaseModel
     
     public function editArtist($id_artist, $name, $image)
     {
-		$upload_dir = "storage/artist_image/"; 
+		$upload_dir = PROJECT_ROOT_PATH . "/public/storage/artist_image/"; 
         $upload_path = $upload_dir . $id_artist . "_" . $name . ".jpg";
 		$image_url = $upload_path;
         move_uploaded_file($image["tmp_name"], $upload_path);
@@ -46,7 +46,7 @@ class ArtistModel extends BaseModel
     public function insertArtist($name, $image) 
     {
 		$id_artist = $this->getMaxId() + 1;
-		$upload_dir = "storage/artist_image/"; 
+		$upload_dir = PROJECT_ROOT_PATH . "/public/storage/artist_image/"; 
         $upload_path = $upload_dir . $id_artist . "_" . $name . ".jpg";
 		$image_url = $upload_path;
         move_uploaded_file($image["tmp_name"], $upload_path);
@@ -71,5 +71,5 @@ class ArtistModel extends BaseModel
     }
 }
 
-$model = new ArtistModel();
-var_dump($model->getMaxId());
+// $model = new ArtistModel();
+// var_dump($model->getMaxId());

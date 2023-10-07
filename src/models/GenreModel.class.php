@@ -30,7 +30,7 @@ class GenreModel extends BaseModel
     
     public function editGenre($id_genre, $name, $image, $color) 
 	{
-		$upload_dir = "storage/album_image/"; 
+		$upload_dir = PROJECT_ROOT_PATH . "/public/storage/album_image/"; 
 		$id_genre = $this->getMaxIdGenre() + 1;
         $upload_path = $upload_dir . $id_genre. "_" . $name . ".jpg";
         $image_url = $upload_path;
@@ -47,7 +47,7 @@ class GenreModel extends BaseModel
   
     public function insertGenre($name, $image, $color) 
 	{
-		$upload_dir = "storage/album_image/"; 
+		$upload_dir = PROJECT_ROOT_PATH . "/public/storage/album_image/"; 
 		$id_genre = $this->getMaxIdGenre() + 1;
         $upload_path = $upload_dir . $id_genre. "_" . $name . ".jpg";
         $image_url = $upload_path;

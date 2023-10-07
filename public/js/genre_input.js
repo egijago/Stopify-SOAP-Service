@@ -1,7 +1,7 @@
 
 document.addEventListener("click", function(event) {
 if (event.target.matches("#dialog-cancel-button")) {
-    document.getElementsByClassName("dialog-wrapper")[0].style.display = "none";
+    document.getElementsByClassName("dialog-wrapper")[0].remove();;
 }
 if (event.target.matches("#dialog-genre-submit-button")) {
     let xhr = new XMLHttpRequest();

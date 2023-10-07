@@ -46,7 +46,7 @@ function albumInput($params)
     }
     else 
     {
-        $artist_model = new ArtistModel();
+    $artist_model = new ArtistModel();
         $artists = $artist_model->getAllArtist();
         $artist_options = "";
         foreach($artists as $artist)

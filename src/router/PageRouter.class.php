@@ -44,7 +44,7 @@ class PageRouter
         {
             require_once "src/views/home/index.php";
         }
-        else if ($this->page == "api")
+        else if ($this->page == "api" || $this->page = "element")
         {
             require_once "src/api/index.php";
         }

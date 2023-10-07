@@ -29,7 +29,7 @@ class MusicModel extends BaseModel
 	}
 	public function editMusic($title, $id_genre, $audio, $id_album, $id_music)
 	{
-		$upload_dir = "storage/music_audio/"; 
+		$upload_dir = PROJECT_ROOT_PATH . "/public/storage/music_audio/"; 
 		$id_music = $this->getMaxIdMusic() + 1;
         $upload_path = $upload_dir . $id_music. "_" . $title . ".jpg";
         $audio_url = $upload_path;
@@ -47,7 +47,7 @@ class MusicModel extends BaseModel
 
 	public function insertMusic($title, $id_genre, $audio, $id_album) 
 	{
-		$upload_dir = "storage/music_audio/"; 
+		$upload_dir = PROJECT_ROOT_PATH . "/public/storage/music_audio/"; 
 		$id_music = $this->getMaxIdMusic() + 1;
         $upload_path = $upload_dir . $id_music. "_" . $title . ".jpg";
         $audio_url = $upload_path;
