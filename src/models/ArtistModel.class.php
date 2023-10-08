@@ -30,6 +30,11 @@ class ArtistModel extends BaseModel
     
     public function editArtist($id_artist, $name, $image)
     {
+        if (!$image)
+        {
+            throw new BadRequestException("Image cannot be empty!");
+        }
+
 		$upload_dir = "storage/artist_image/"; 
         $upload_path = $upload_dir . $id_artist . "_" . $name . "." . self::getExt($image);
 		$image_url = $upload_path;
@@ -45,6 +50,11 @@ class ArtistModel extends BaseModel
   
     public function insertArtist($name, $image) 
     {
+        if (!$image)
+        {
+            throw new BadRequestException("Image cannot be empty!");
+        }
+
 		$id_artist = $this->getMaxId() + 1;
 		$upload_dir = "storage/artist_image/"; 
         $upload_path = $upload_dir . $id_artist . "_" . $name . "." . self::getExt($image);

@@ -105,6 +105,11 @@ class AlbumModel extends BaseModel
     }
     public function editAlbum($id_album, $title, $id_artist, $image)
     {
+        if (!$image)
+        {
+            throw new BadRequestException("Image cannot be empty!");
+        }
+
         $upload_dir = "storage/album_image/"; 
         $upload_path = $upload_dir . $id_album . "_" . $title . "." . self::getExt($image);
         $image_url = $upload_path;
@@ -122,6 +127,11 @@ class AlbumModel extends BaseModel
   
     public function insertAlbum($title, $id_artist, $image) 
     {
+        if (!$image)
+        {
+            throw new BadRequestException("Image cannot be empty!");
+        }
+
         $upload_dir = "storage/album_image/"; 
         $id_album = $this->getMaxIdAlbum() + 1;
         $upload_path = $upload_dir . $id_album . "_" . $title . "." . self::getExt($image);

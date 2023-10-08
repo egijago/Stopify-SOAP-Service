@@ -1,4 +1,5 @@
 <?php
+include_once(PROJECT_ROOT_PATH . "/src/controllers/BaseController.class.php");
 class APIRouter 
 {
     private array $routes;
@@ -67,10 +68,23 @@ class APIRouter
             return;
         }
 
-        foreach($middlewares as $middleware)
+
+        try  
         {
-            $parameters = array(&$path_params);
-            call_user_func_array($middleware, $parameters);
+            foreach($middlewares as $middleware)
+            {
+                $parameters = array(&$path_params);
+                call_user_func_array($middleware, $parameters);
+            }
+            call_user_func($callback, $path_params);
+        }
+        catch (ClientErrorException $cee)
+        {
+            BaseController::toResponse($cee->getResponseCode(),$cee->getMessage(), "", false);
+        }
+        catch (Exception $e)
+        {
+            BaseController::toResponse(500,"Something went wrong!", "", false);
         }
 
         // /*DEBUG*/
@@ -79,8 +93,5 @@ class APIRouter
         // echo("_GET: " . json_encode($_GET) . "\n");
         // echo("file_get_contents('php://input'): " . json_encode(json_decode(file_get_contents('php://input'))) . "\n");
 
-        
-
-        call_user_func($callback, $path_params);
     }
 }
