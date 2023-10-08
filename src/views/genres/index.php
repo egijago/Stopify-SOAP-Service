@@ -22,13 +22,14 @@ require_once(PROJECT_ROOT_PATH . "/src/views/partials/font.php");
     <div class="whole-wrapper">
          <?php echo SideBar("Genres");?>
         <div class="page-wrapper" id="page-wrapper">
-                <div class="genre-section">
+            <div class="genre-section">
                 <div class="section-header">
-                <p class="section-title">Genres</p>        
-                <div class="add-genre add-btn"></div>
+                    <p class="section-title">Genres</p>        
+                        <div class="add-genre add-btn"></div>
                 </div>
-                <hr>
-                <div class="genres">
+            <hr>
+            <?php echo GenreInput(); ?>
+            <div class="genres">
                 <?php genreCard(1); ?>
                 <?php genreCard(2); ?>
                 <?php genreCard(3); ?>

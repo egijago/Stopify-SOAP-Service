@@ -20,13 +20,13 @@ require_once(PROJECT_ROOT_PATH . "/src/views/partials/albums.php");
     <link rel="stylesheet" href="css/icon.css">
     <script src="js/album_input.js"></script>
     <?php echo Font(); ?>
-    <title>Document</title>
+    <title>All Album</title>
 </head>
 <body>
     <div class="dialog-section"></div>
     <div class="whole-wrapper">
          <?php echo SideBar("Albums");?>
-        <div class="page-wrapper" id="page-wrapper">
+         <div class="page-wrapper" id="page-wrapper">
         </div>
     </div>
 </body>
