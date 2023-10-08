@@ -190,9 +190,17 @@ html, body{
 }
 
 .add-btn {
-    background-color: red;
+    background-image: url("../assets/logo/add_button.svg");
+    background-size: cover;
+    padding: 5px;
+    border-radius: 10%;
     aspect-ratio: 1/1;
-    width: 10%;
+    width: 2rem;
+}
+
+.add-btn img {
+    rotate: 20;
+    width: 100%;
 }
 
 
@@ -234,15 +242,25 @@ html, body{
     border-radius: 5%;
 }
 
+.artist-card .edit-btn{
+    right: 0;
+}
+
 .edit-btn {
-    background-color: red;
+    background-image: url("../assets/logo/edit_button.svg");
+    background-color: rgb(57, 49, 49);
+    border-radius: 20%;
     position: absolute;
+    background-size: cover;
     right: left;
     bottom: 0;
     width: 20%;
     aspect-ratio: 1/1;
     z-index: 3;
+
+    margin: 5% 5% 5% 5%;
 }
+
 
 .artist-card .img-container {
     width: 75%;

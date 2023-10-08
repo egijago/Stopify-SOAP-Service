@@ -1,5 +1,6 @@
 
 .user-info {
+    position: sticky;
     float: right;
     display: flex;
     align-items: center;
