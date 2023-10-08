@@ -55,7 +55,7 @@ class AlbumController extends BaseController
         $params = array_merge($body_params, $path_params);
         $result = self::getInstance()->model->editAlbum($params["id_album"],  $params["title"],  $params["id_artist"],  $params["image"]);
      
-        self::toResponse(200, "", $result);
+        self::toResponse(200, "Album edited successfully!", $result);
     }
   
     public static function insertAlbum($path_params) 
@@ -64,7 +64,7 @@ class AlbumController extends BaseController
         $params = array_merge($body_params, $path_params);
         $result = self::getInstance()->model->insertAlbum( $params["title"],  $params["id_artist"],  $params["image"]);
 
-        self::toResponse(200, "", $result);
+        self::toResponse(200, "Album added successffuly!", $result);
     }
   
     public static function deleteAlbum($path_params) 
@@ -72,6 +72,6 @@ class AlbumController extends BaseController
         $params = $path_params;
         $result = self::getInstance()->model->deleteAlbum($params["id_album"]);
 
-        self::toResponse(200, "", $result);
+        self::toResponse(200, "Album deleted successfully!", $result);
     }
 }

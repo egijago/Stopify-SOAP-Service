@@ -30,7 +30,7 @@ class ArtistController extends BaseController
         $params = array_merge($body_params, $path_params);
 
         $result =  self::getInstance()->model->editArtist($params["id_artist"], $params["artist_name"], $params["image"]);
-        self::toResponse(200, "", $result);
+        self::toResponse(200, "Artist edited successfully!", $result);
     }
   
     public static function insertArtist($path_params) 
@@ -39,7 +39,7 @@ class ArtistController extends BaseController
         $params = array_merge($body_params, $path_params);
 
         $result = self::getInstance()->model->insertArtist($params["artist_name"], $params["image"]);
-        self::toResponse(200, "", $result);
+        self::toResponse(200, "Artist added successfully!", $result);
     }
   
     public static function deleteArtist($path_params)
@@ -47,6 +47,6 @@ class ArtistController extends BaseController
         $params = $path_params;
         $result = self::getInstance()->model->deleteArtist($params["id_artist"]);
 
-        self::toResponse(200, "", $result);
+        self::toResponse(200, "Artist deleted successfully!", $result);
     }
 }

@@ -43,7 +43,7 @@ class MusicController extends BaseController {
 		$params = array_merge($path_params, $body_params);
 		$result =  self::getInstance()->model->editMusic($params["title"], $params["id_genre"], $params["audio"], $params["id_album"], $params["id_music"]);
 		
-		self::toResponse(200, "", $result);
+		self::toResponse(200, "Music edited successfully!", $result);
 	}
 
 	public static function insertMusic($path_params) 
@@ -52,14 +52,14 @@ class MusicController extends BaseController {
 		$params = array_merge($path_params, $body_params);
 		$result = self::getInstance()->model->insertMusic($params["title"], $params["id_genre"], $params["audio"], $params["id_album"]);
 
-		self::toResponse(200, "", $result);
+		self::toResponse(200, "Music added successfully!", $result);
 	}
 
 	public static function deleteMusic($path_params)
 	{
 		$params = $path_params;
-		$result = self::getInstance()->model->deleteMusic($params["id"]);
+		$result = self::getInstance()->model->deleteMusic($params["id_music"]);
 
-		self::toResponse(200, "", $result);
+		self::toResponse(200, "Music deleted successfully!", $result);
 	}
 }
