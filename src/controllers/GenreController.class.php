@@ -31,7 +31,7 @@ class GenreController extends BaseController
 		$params = array_merge($path_params, $body_params);
 		$result = self::getInstance()->model->editGenre($params["id_genre"], $params["name"], $params["image"], $params["color"]);
 
-		self::toResponse(200, "", $result);
+		self::toResponse(200, "Genre edited successfully!", $result);
     }
   
     public static function insertGenre($path_params) 
@@ -40,14 +40,14 @@ class GenreController extends BaseController
 		$params = array_merge($path_params, $body_params);
 		$result = self::getInstance()->model->insertGenre($params["name"], $params["image"], $params["color"]);
 
-		self::toResponse(200, "", $result);
+		self::toResponse(200, "Genre added successfully!", $result);
     }
   
     public static function deleteGenre($path_params)
 	{
 		$params = $path_params;
-		$result = self::getInstance()->model->deleteGenre($params["id"]);
+		$result = self::getInstance()->model->deleteGenre($params["id_genre"]);
 
-		self::toResponse(200, "", $result);
+		self::toResponse(200, "Genre deleted successfully!", $result);
     }
 }

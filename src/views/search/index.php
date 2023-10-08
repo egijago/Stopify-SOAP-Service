@@ -23,10 +23,6 @@
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/table.css">
   <script src="js/music_input.js"></script>
-  <script src="js/album_input.js"></script>
-  <script src="js/artist_input.js"></script>
-  <script src="js/genre_input.js"></script>
-
   <script src="js/search.js"></script>
   
 
@@ -46,22 +42,12 @@
           <?php genreFilter();?>
           <?php sortBy();?>
         </div>
-      </div>
-
-      <div class="search-result">
-      </div>
-      <div class="genre-section">
         <div class="section-header">
-          <p class="section-title">Genres</p>        
-          <div class="add-genre add-btn"></div>
-        </div>
-        <hr>
-        <div class="genres">
-        <?php genreCard(1); ?>
-        <?php genreCard(2); ?>
-        <?php genreCard(3); ?>
-        <?php genreCard(4); ?>
-        <?php genreCard(5); ?>
+            <p class="section-title"> Musics </p>  
+            <?php if ($_SESSION["role"] == "admin") { echo "<div class='add-music add-btn'></div>";};?>
+        </div><br>
+      </div>
+      <div class="search-result">
       </div>
     </div>
   </div>

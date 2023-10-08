@@ -55,7 +55,12 @@ class MusicModel extends BaseModel
 
 	public function editMusic($title, $id_genre, $audio, $id_album, $id_music)
 	{
-		$upload_dir = "/storage/music_audio/"; 
+        if (!$audio)
+        {
+            throw new BadRequestException("Audio cannot be empty!");
+        }
+
+		$upload_dir = "storage/music_audio/"; 
         $upload_path = $upload_dir . $id_music. "_" . $title . "." . self::getExt($audio);
         $audio_url = $upload_path;
 		self::uploadFile($upload_path, $audio);
@@ -72,7 +77,13 @@ class MusicModel extends BaseModel
 
 	public function insertMusic($title, $id_genre, $audio, $id_album) 
 	{
-		$upload_dir = "/storage/music_audio/"; 
+        if (!$audio)
+        {
+            throw new BadRequestException("Audio cannot be empty!");
+        }
+
+
+		$upload_dir = "storage/music_audio/"; 
 		$id_music = $this->getMaxIdMusic() + 1;
         $upload_path = $upload_dir . $id_music. "_" . $title . "." . self::getExt($audio);
         $audio_url = $upload_path;

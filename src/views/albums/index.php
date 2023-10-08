@@ -27,6 +27,13 @@ require_once(PROJECT_ROOT_PATH . "/src/views/partials/albums.php");
     <div class="whole-wrapper">
          <?php echo SideBar("Albums");?>
          <div class="page-wrapper" id="page-wrapper">
+            <div class="section-header">
+                <p class="section-title"> Albums </p>  
+                <?php if ($_SESSION["role"] == "admin") { echo "<div class='add-album add-btn'></div>";};?>
+            </div><hr>
+            <div id="album-items">
+
+            </div>
         </div>
     </div>
 </body>

@@ -22,8 +22,9 @@ class BaseModel
     {
         if ($file["error"] !== UPLOAD_ERR_OK)
         {
-            throw new Exception();
+            throw new UnprocessableContentException("File error when received!");
         }
+
 		if (file_exists($upload_path)) 
         {
 			unlink($upload_path);

@@ -73,7 +73,7 @@ async function fillData(limit,page) {
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
                     const data = xhr.responseText;
-                    document.getElementById("page-wrapper").innerHTML = data
+                    document.getElementById("album-items").innerHTML = data
 
                 } else {
                     console.error('HTTP error! Status: ', xhr.status);

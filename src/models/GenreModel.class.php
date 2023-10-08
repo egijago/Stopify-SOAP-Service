@@ -30,6 +30,11 @@ class GenreModel extends BaseModel
     
     public function editGenre($id_genre, $name, $image, $color) 
 	{
+        if (!$image)
+        {
+            throw new BadRequestException("Image cannot be empty!");
+        }
+
 		$upload_dir = "storage/album_image/"; 
         $upload_path = $upload_dir . $id_genre. "_" . $name . "." . self::getExt($image);
         $image_url = $upload_path;
@@ -46,6 +51,11 @@ class GenreModel extends BaseModel
   
     public function insertGenre($name, $image, $color) 
 	{
+        if (!$image)
+        {
+            throw new BadRequestException("Image cannot be empty!");
+        }
+
 		$upload_dir = "storage/album_image/"; 
 		$id_genre = $this->getMaxIdGenre() + 1;
         $upload_path = $upload_dir . $id_genre. "_" . $name . "." . self::getExt($image);

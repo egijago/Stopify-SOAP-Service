@@ -39,12 +39,13 @@ function albumsPagination($params)
 
 
 function albumDisplay($id_album, $album_image, $album_title, $artist){
+    $button = $_SESSION["role"] == "admin"? "<div class='edit-btn edit-album'></div>" : null;
     $html=<<<"EOT"
         <div class="song-item-medium" value="$id_album">
             <img class="container-pagination" src="$album_image" />
             <h3>$album_title</h3>
             <p>$artist</p>
-            <div class="edit-btn edit-music"></div>
+            $button
         </div>
     EOT;
     return $html;

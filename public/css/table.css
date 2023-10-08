@@ -31,3 +31,9 @@
     text-align: left;
     font-family: DM Sans;
 }
+
+.search-result .edit-btn{
+    display: inline-block;
+    width: 2rem;
+    position: relative;
+}

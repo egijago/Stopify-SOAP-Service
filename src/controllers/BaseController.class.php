@@ -1,4 +1,6 @@
 <?php
+include_once(PROJECT_ROOT_PATH . "/src/exceptions/BadRequestException.class.php");
+
 abstract class BaseController 
 {
     protected static $instance = null;
@@ -44,13 +46,17 @@ abstract class BaseController
         }
         else 
         {
-            throw new Exception(json_encode($_SERVER));
+            throw new BadRequestException("Unsupported content-type!");
         }
     }
 
-    public static function toResponse($response_code, $message, $payload) 
+    public static function toResponse($response_code, $message, $data, $success = true) 
     {
         http_response_code($response_code);
-        echo(json_encode(["message" => $message, "data" => $payload]));
+        echo(json_encode([
+            "message" => $message, 
+            "data" => $data, 
+            "success" => $success
+        ]));
     }
 }
