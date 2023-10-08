@@ -20,21 +20,21 @@ $router->get('/api/albums/{id_album}' ,AlbumController::class . '::getAlbumByAlb
 $router->get('/api/albums/records/{current_page}/{limit}' ,AlbumController::class . '::getAlbumRecords');
 $router->get('/api/albums/{id_album}/records/{current_page}/{limit}' ,AlbumController::class . '::getMusicRecords');
 $router->get('/api/albums/{id_album}/musics' ,AlbumController::class . '::getMusicByAlbumId');
-$router->put('/api/albums/{id_album}', AlbumController::class . '::editAlbum');
+$router->post('/api/albums/{id_album}', AlbumController::class . '::editAlbum');
 $router->post('/api/albums', AlbumController::class . '::insertAlbum');
 $router->delete('/api/albums/{id_album}', AlbumController::class . '::deleteAlbum');
 
 /* Artist API */
 $router->get('/api/artists', ArtistController::class .'::getAllArtist');
 $router->get('/api/artists/{id_artist}' ,ArtistController::class . '::getArtistbyArtistId');
-$router->post('/api/artists/{id_artist}', ArtistController::class . '::editArtist'); // TODO: PARSE INPUT MANUALLY FOR PUT METHOD
+$router->post('/api/artists/{id_artist}', ArtistController::class . '::editArtist');
 $router->post('/api/artists', ArtistController::class . '::insertArtist');
 $router->delete('/api/artists/{id_artist}', ArtistController::class . '::deleteArtist');
 
 /* Genre API */
 $router->get('/api/genres', GenreController::class .'::getAllGenre');
 $router->get('/api/genres/{id_genre}' ,GenreController::class . '::getGenreByGenreId');
-$router->post('/api/genres/{id_genre}', GenreController::class . '::editGenre'); // TODO: PARSE INPUT MANUALLY FOR PUT METHOD
+$router->post('/api/genres/{id_genre}', GenreController::class . '::editGenre');
 $router->post('/api/genres', GenreController::class . '::insertGenre');
 $router->delete('/api/genres/{id_genre}', GenreController::class . '::deleteGenre');
 
@@ -53,7 +53,7 @@ $router->get('/api/musics/{id_music}' ,MusicController::class . '::getMusicByMus
 $router->get('/api/musics/detail/{id_music}' ,MusicController::class . '::getDetailMusic');
 $router->get('/api/musics/search/' ,MusicController::class . '::searchMusic');
 $router->put('/api/musics', MusicController::class . '::editMusic');
-$router->post('/api/musics/{id_music}', MusicController::class . '::editMusic'); // TODO: PARSE INPUT MANUALLY FOR PUT METHOD
+$router->post('/api/musics/{id_music}', MusicController::class . '::editMusic');
 $router->post('/api/musics', MusicController::class . '::insertMusic');
 $router->delete('/api/musics/{id_music}', MusicController::class . '::deleteMusic');
 

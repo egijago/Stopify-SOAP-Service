@@ -85,11 +85,12 @@ def insert_fake_music(num_music):
     for _ in range(num_music):
         title = fake.sentence()
         id_genre = random.choice(id_genres)
-        audio_url = "1.mp3"
+        audio_url = "/storage/music_aduio/" + "1.mp3"
+        release_date = fake.date_time()
         id_album = random.choice(id_albums)
         cur.execute(
-            "INSERT INTO music (title, id_genre, audio_url, id_album) VALUES (%s, %s, %s, %s)",
-            (title, id_genre, audio_url, id_album)
+            "INSERT INTO music (title, id_genre, audio_url, id_album, release_date) VALUES (%s, %s, %s, %s, %s)",
+            (title, id_genre, audio_url, id_album, release_date)
         )
 
 

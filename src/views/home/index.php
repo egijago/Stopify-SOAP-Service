@@ -22,7 +22,7 @@ require_once(PROJECT_ROOT_PATH . "/src/views/partials/font.php");
     <script src="js/home.js"></script>
 <body>
     <div class="whole-wrapper">
-        <?php echo SideBar(); ?>
+        <?php echo SideBar("Home"); ?>
         <div class="page-wrapper">
             <?php echo icon($_SESSION["username"]); ?>
             <h1 style="margin-top: 5vw;">Good morning, <?php echo $_SESSION["username"] ?></h1>

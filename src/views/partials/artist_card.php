@@ -8,12 +8,15 @@ function artistCard ($id)
     $artist_name = $artist->name;
     $image_url = $artist->image_url;
     $value = $artist->id_artist;
+    $button = $_SESSION["role"] == "admin" ? "<div class='edit-artist edit-btn'></div>" : null;
     $html = <<< "EOT"
     <div class="artist-card" value="$value">
-        <img src="$image_url">
+        <div class="img-container">
+            <img src="$image_url">
+        </div>
         <p class="artist-name">$artist_name</p>
         <p class="card-type">Artist</p>
-        <div class="edit-artist edit-btn"></div>
+        $button
     </div> 
     EOT;
 

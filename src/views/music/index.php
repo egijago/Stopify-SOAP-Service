@@ -25,7 +25,7 @@ require_once(PROJECT_ROOT_PATH . "/src/views/partials/font.php");
 </head>
 <body>
     <div class="whole-wrapper">
-         <?php echo SideBar();?>
+         <?php echo SideBar("Music");?>
         <div class="page-wrapper" id="page-wrapper">
         </div>
     </div>

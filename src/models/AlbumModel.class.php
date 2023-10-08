@@ -105,9 +105,10 @@ class AlbumModel extends BaseModel
     }
     public function editAlbum($id_album, $title, $id_artist, $image)
     {
-        $upload_dir = PROJECT_ROOT_PATH . "/public/storage/album_image/"; 
-        $upload_path = $upload_dir . $id_album . "_" . $title . ".jpg";
+        $upload_dir = "storage/album_image/"; 
+        $upload_path = $upload_dir . $id_album . "_" . $title . "." . self::getExt($image);
         $image_url = $upload_path;
+        self::uploadFile($upload_path, $image);
         
         $this->db->query('UPDATE ' . $this->table . ' SET title = :title, id_artist = :id_artist, image_url = :image_url WHERE id_album = :id_album');
         $this->db->bind('title', $title);
@@ -116,25 +117,23 @@ class AlbumModel extends BaseModel
         $this->db->bind(':id_album', $id_album);
         $this->db->execute();
 
-
-        move_uploaded_file($image["tmp_name"], $upload_path);
         return $this->db->rowCount();
     }
   
     public function insertAlbum($title, $id_artist, $image) 
     {
-        $upload_dir = PROJECT_ROOT_PATH . "/public/storage/album_image/"; 
+        $upload_dir = "storage/album_image/"; 
         $id_album = $this->getMaxIdAlbum() + 1;
-        $upload_path = $upload_dir . $id_album . "_" . $title . ".jpg";
+        $upload_path = $upload_dir . $id_album . "_" . $title . "." . self::getExt($image);
         $image_url = $upload_path;
+        self::uploadFile($upload_path, $image);
 
         $this->db->query('INSERT INTO ' . $this->table . ' (title, id_artist, image_url) VALUES (:title, :id_artist, :image_url)');
         $this->db->bind('title', $title);
         $this->db->bind(':id_artist', $id_artist);
         $this->db->bind(':image_url', $image_url);
         $this->db->execute();
-        
-        move_uploaded_file($image["tmp_name"], $upload_path);
+
         return $this->db->rowCount();
     }
   

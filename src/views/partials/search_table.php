@@ -1,17 +1,16 @@
 <?php
-include_once(PROJECT_ROOT_PATH . "/src/models/MusicModel.php");
+include_once(PROJECT_ROOT_PATH . "/src/models/MusicModel.class.php");
 
-function searchTable($params){
-    $title = $params["sub_str"];
-    $genre = $params["sub_str_param"];
-    $artist = $params["year"];
-    $year = $params["genre"];
-    $sort_by = $params["sort_by"];
-    $current_page = $params["current_page"];
-    $limit = 5;
+function searchTable($params)
+{
+
+    echo json_encode($params);
 
     $model = new MusicModel();
-    $musics = $model->searchMusic($title, $genre, $artist, $year, $sort_by, $current_page, $limit);
+    $musics = $model->searchMusic($params["sub_str"], $params["sub_str_param"], $params["year"], $params["genre"],  $params["sort_by"], $params["current_page"], $params["limit"]);
+    $limit = $params["limit"];
+    // // $musics = $model->searchMusic($title, $genre, $artist, $year, $sort_by, $current_page, $limit);
+    // echo json_encode($musics);
     $trs = "";
     foreach ($musics as $i=>$music) 
     {
@@ -48,7 +47,7 @@ function searchTable($params){
             </tbody>
         </table>
     EOT;
-    $length = count($model->searchMusic($title, $genre, $artist, $year, $sort_by, 1, 1000));
+    $length = count($model->searchMusic($params["sub_str"], $params["sub_str_param"], $params["year"], $params["genre"],  $params["sort_by"], $params["current_page"], 1000));
     $html .= pagination_item(1, ceil($length/$limit));
     echo($html);
 }
