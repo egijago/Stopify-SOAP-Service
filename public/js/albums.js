@@ -58,6 +58,7 @@ function changeLimit() {
     document.getElementById("current-page").innerHTML = 1;
 
     document.getElementById("limit").innerHTML = limit;
+    console.log("limit",limit)
     fillData(limit,1);
 }
 

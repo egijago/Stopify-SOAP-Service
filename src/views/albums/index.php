@@ -37,5 +37,5 @@ require_once(PROJECT_ROOT_PATH . "/src/views/partials/albums.php");
         </div>
     </div>
 </body>
-<script src="js/albums.js"></script>
 </html>
+<script src="js/albums.js"></script>

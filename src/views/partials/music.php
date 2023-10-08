@@ -26,8 +26,7 @@ function musicDetail($params)
 
 function songDetail($img_url, $album, $title, $genre, $artist, $liked)
 {
-    $likeButtonDisabled = $liked ? 'disabled' : '';
-    $unlikeButtonDisabled = $liked ? '' : 'disabled';
+    $likedStatus = $liked ? "Unlike" : 'Like';
 
     $html = "
         <div class='play-song-container'>
@@ -38,8 +37,7 @@ function songDetail($img_url, $album, $title, $genre, $artist, $liked)
                 <br>
                 <p>$genre</p>
                 <p>$artist</p>
-                <button class='love-button' id='likeButton' onclick='handleLoveButtonClick()' $likeButtonDisabled>like ❤️</button>
-                <button class='love-button' id='unlikeButton' onclick='handleUnloveButtonClick()' $unlikeButtonDisabled>unlike ❤️</button>
+                <button class='love-button' id='likeButton' onclick='handleLoveButtonClick()' >$likedStatus ❤️</button>
             </div>
         </div>
     ";

@@ -38,50 +38,23 @@ function handleLoveButtonClick() {
 
         var idUser=document.getElementById("id_user").value;
 
-        xhr.open('POST', '/api/users/'+idUser+'/likes/'+idValue, true);
-    
+        console.log(document.getElementById('likeButton').innerHTML)
+
+        likeStatus=document.getElementById('likeButton').innerHTML == "Like ❤️"
+
+        xhr.open(likeStatus ? 'POST' : 'DELETE', '/api/users/'+idUser+'/likes/'+idValue, true);
+        console.log('/api/users/'+idUser+'/likes/'+idValue)
+        
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
-                    document.getElementById('unlikeButton').disabled = false;
-                    document.getElementById('likeButton').disabled = true;
+                    document.getElementById('likeButton').innerHTML = likeStatus ? "Unlike ❤️" : "Like ❤️";
                 } else {
                     console.error('HTTP error! Status: ', xhr.status);
                 }
             }
         };
-    
-        xhr.send();
-    } catch (error) {
-        console.error('Error fetching data:', error.message);
-    }
-}
 
-function handleUnloveButtonClick() {
-    // Implement the logic for handling the love button click here
-    alert('unlike button clicked!');
-    try {
-        document.getElementById('unlikeButton').disabled = true;
-        const xhr = new XMLHttpRequest();
-        var currentUrl = window.location.href;
-
-        var url = new URL(currentUrl);
-        var idValue = url.searchParams.get("id");
-
-        var idUser=document.getElementById("id_user").value;
-
-        xhr.open('DELETE', '/api/users/'+idUser+'/likes/'+idValue, true);
-    
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
-                    document.getElementById('unlikeButton').disabled = true;
-                    document.getElementById('likeButton').disabled = false;
-                } else {
-                    console.error('HTTP error! Status: ', xhr.status);
-                }
-            }
-        };
     
         xhr.send();
     } catch (error) {
