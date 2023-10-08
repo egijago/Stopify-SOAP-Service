@@ -1,5 +1,5 @@
 <?php 
-
+include_once(PROJECT_ROOT_PATH . "/src/exceptions/UnauthorizedException.class.php");
 
 class Utils 
 {
@@ -12,15 +12,15 @@ class Utils
     {
         if ($_SESSION['role'] !== "admin")
         {
-            throw new Exception();
+            throw new UnauthorizedException();
         }
     }
 
     public static function checkUser($params=[])
     {
-        if ($_SESSION['role'] !== "admin")
+        if ($_SESSION['role'] !== "user")
         {
-            throw new Exception();
+            throw new UnauthorizedException();
         }
     }
 
@@ -28,22 +28,16 @@ class Utils
     {
         if ($_SESSION['username'] !== "admin")
         {
-            throw new Exception();
+            throw new UnauthorizedException();
         }
     }
 
     public static function checkAuthorized($params=[])
     {
-        if ($_SESSION['role'] !== "admin")
+        if (!($_SESSION['role'] == "admin" || $_SESSION['id_user'] == $params["id_user"]))
         {
-            throw new Exception();
+            throw new UnauthorizedException();
         }
-
-        if ($_SESSION['id_user'] !== $params["id_user"])
-        {
-            throw new Exception();
-        }
-
     }
 
     public static function check($params)

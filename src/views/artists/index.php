@@ -26,7 +26,7 @@ require_once(PROJECT_ROOT_PATH . "/src/views/partials/font.php");
         <div class="artists-section">
           <div class="section-header">
             <p class="section-title"> Artists </p>  
-            <div class="add-artist add-btn">
+            <?php if ($_SESSION["role"] == "admin") { echo "<div class='add-artist add-btn'></div>";};?>
             </div>
           </div>
           <hr>

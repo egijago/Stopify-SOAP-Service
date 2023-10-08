@@ -6,23 +6,33 @@ include_once(PROJECT_ROOT_PATH . "/src/models/GenreModel.class.php");
 function musicInput($params) 
 {
     $id = $params["id_music"];
-
+    echo json_encode($params);
     if ($id)
     {
         $music_model = new MusicModel();
         $music = $music_model->getMusicByMusicId($id);
         $title = $music->title;
-        $image_url = $music->image_url;
+        $audio = $music->audio_url;
         $id_album = $music->id_album;
         $id_genre = $music->id_genre;
 
         $album_model = new AlbumModel();
         $albums = $album_model->getAllAlbum();
+
+        $default_image_url = "";
         $album_options = "";
+     
         foreach($albums as $album)
         {
-            
-            $selected = ($album->id_album == $id_album) ? 'selected': null;
+            if ($album->id_album == $id_album) 
+            {
+                $default_image_url = $album->image_url;
+                $selected = "selected";
+            }
+            else 
+            {
+                $selected = null;
+            }
             $value = $album->id_album;
             $image_url = $album->image_url;
             $album_options .= "<option value='$value' image_url='$image_url' $selected>$album->title</option>"; 
@@ -31,9 +41,17 @@ function musicInput($params)
         $genre_model = new GenreModel();
         $genres = $genre_model->getAllGenre();
         $genre_options = "";
+
         foreach($genres as $genre)
         {
-            $selected = ($genre->id_genre == $id_genre) ? "selected": null;
+            if ($genre->id_genre == $id_genre) 
+            {
+                $selected = "selected";
+            }
+            else 
+            {
+                $selected = null;
+            }
             $value = $genre->id_genre;
             $genre_options .= "<option $selected value='$value'>$genre->name</option>"; 
         }
@@ -41,7 +59,7 @@ function musicInput($params)
         $html = <<< "EOT"
         <div class="dialog-wrapper" >
             <div class="dialog" id="dialog-music" id-music="$id">
-                <img id="album-image-preview" src="$image_url"/><br>
+                <img id="album-image-preview" src="$default_image_url"/><br>
                 <label for="music-title">Music title</label><br>
                 <input type="text" id="music-title" value="$title"><br>
                 <label for="song">Audio file</label><br>

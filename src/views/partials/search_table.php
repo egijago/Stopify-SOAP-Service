@@ -18,6 +18,8 @@ function searchTable($params)
         $name = $music->artist_name;
         $genre = $music->genre_name;
         $year = $music->release_year;
+        $id = $music->id_music;
+        $button = $_SESSION["role"] == "admin"? "<div class='edit-btn edit-music' value='$id'></div>" : null;
 
         $trs .= <<< "EOT"
         <tr>
@@ -26,10 +28,12 @@ function searchTable($params)
             <td>$name</td>
             <td>$genre</td>
             <td>$year</td>
+            <td>$button</td>
         </tr>
 
         EOT;
     }
+
     
     $html=<<<EOT
         <table>
@@ -40,6 +44,7 @@ function searchTable($params)
                     <th>Artist</th>
                     <th>Genre</th>
                     <th>Year</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
