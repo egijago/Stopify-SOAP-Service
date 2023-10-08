@@ -4,7 +4,6 @@ document.addEventListener("change", function(event) {
         event.target.matches("#genre-filter") ||
         event.target.matches("#sort-by")) {
             executeSearch()
-
     }
 });
 
