@@ -19,7 +19,6 @@ function albumsPagination($params)
     $total_pages = ceil($total_records / $limit);
 
     $html = icon($_SESSION["username"]);
-    $html .= '<h1 style="margin-top: 5vw;">Good morning, ' . $_SESSION["username"] . '</h1>';
     $html .= limit_page();
     $html .= '<div class="container-pagination" id="container-pagination">';
     $html .= albumDisplay($total_recordsdata[0]->id_album, $total_recordsdata[0]->album_image_url, $total_recordsdata[0]->album_title, $total_recordsdata[0]->artist_name);

@@ -9,8 +9,8 @@ function albumInput($params)
     {
         $album_model = new AlbumModel();
         $album = $album_model->getAlbumByAlbumId($id);
-        $name = $album->name;
-        $image_url = $album->image_url;
+        $album_title = $album->album_title;
+        $image_url = $album->album_image_url;
 
         $artist_model = new ArtistModel();
         $artists = $artist_model->getAllArtist();
@@ -28,7 +28,7 @@ function albumInput($params)
             <div class="dialog" id="dialog-album" id-album="$id">
             <img id="album-image-preview" src="$image_url"/><br>
             <label for="album-title">Album title</label><br>
-            <input type="text" value="$name" id="album-title"><br>
+            <input type="text" value='$album_title' id="album-title"><br>
             <label for="image">Album cover</label><br>
             <div class="file-input">
                 <input type="file" id="input-album-image-url" name="image" accept="image/*">

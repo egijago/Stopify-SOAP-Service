@@ -29,7 +29,7 @@ class GenreController extends BaseController
 	{
 		$body_params = self::getBodyParams();
 		$params = array_merge($path_params, $body_params);
-		$result = self::getInstance()->model->editGenre($params["id"], $params["name"], $params["image"], $params["color"]);
+		$result = self::getInstance()->model->editGenre($params["id_genre"], $params["name"], $params["image"], $params["color"]);
 
 		self::toResponse(200, "", $result);
     }

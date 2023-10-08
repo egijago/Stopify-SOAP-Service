@@ -1,13 +1,24 @@
 <?php
-function SideBar() {
+function SideBar($page) {
+    $page_list = [
+        "Home",
+        "Search",
+        "Albums",
+        "Artists",
+        "Genres",
+        "Liked song",
+        "Log out"
+    ];
+    $elmnt = "";
+    foreach ($page_list as $_page)
+    {
+        $active = ($page == $_page)  ? "class='active'" : null;
+        $elmnt .= "<a $active href='/$_page'>$_page</a>";
+    }
     $html = <<<"EOT"
     <div class="sidebar">
         <p>Stopify</p>
-        <a class="active" href="/home">Home</a>
-        <a href="/search">Search</a>
-        <a href="/albums">Album</a>
-        <a href="/liked">Liked Song</a>
-        <a href="/logout">Logout</a>
+        $elmnt
     </div>
     EOT;
 

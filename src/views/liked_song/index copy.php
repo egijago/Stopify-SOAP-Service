@@ -21,7 +21,7 @@ require_once(PROJECT_ROOT_PATH . "/src/views/partials/table.php");
     </head>
     <body>
         <div class="whole-wrapper">
-            <?php echo SideBar(); ?>
+            <?php echo SideBar(""); ?>
             <div class="page-wrapper">
                 <?php echo icon("vieri"); ?>
                 <div class="liked-detail">

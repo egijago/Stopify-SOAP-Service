@@ -30,10 +30,10 @@ class ArtistModel extends BaseModel
     
     public function editArtist($id_artist, $name, $image)
     {
-		$upload_dir = PROJECT_ROOT_PATH . "/public/storage/artist_image/"; 
-        $upload_path = $upload_dir . $id_artist . "_" . $name . ".jpg";
+		$upload_dir = "storage/artist_image/"; 
+        $upload_path = $upload_dir . $id_artist . "_" . $name . "." . self::getExt($image);
 		$image_url = $upload_path;
-        move_uploaded_file($image["tmp_name"], $upload_path);
+		self::uploadFile($upload_path, $image);
 
 		$this->db->query('UPDATE ' . $this->table . ' SET name = :name, image_url = :image_url WHERE id_artist = :id_artist');
 		$this->db->bind('id_artist', $id_artist);
@@ -46,10 +46,10 @@ class ArtistModel extends BaseModel
     public function insertArtist($name, $image) 
     {
 		$id_artist = $this->getMaxId() + 1;
-		$upload_dir = PROJECT_ROOT_PATH . "/public/storage/artist_image/"; 
-        $upload_path = $upload_dir . $id_artist . "_" . $name . ".jpg";
+		$upload_dir = "storage/artist_image/"; 
+        $upload_path = $upload_dir . $id_artist . "_" . $name . "." . self::getExt($image);
 		$image_url = $upload_path;
-        move_uploaded_file($image["tmp_name"], $upload_path);
+		self::uploadFile($upload_path, $image);
 
 		$this->db->query('INSERT INTO ' . $this->table . ' (name, image_url) VALUES (:name, :image_url)');
 		$this->db->bind('name', $name);
@@ -69,6 +69,8 @@ class ArtistModel extends BaseModel
 		unlink($delete_tuple->image_url);
 		return $this->db->rowCount();
     }
+
+	
 }
 
 // $model = new ArtistModel();

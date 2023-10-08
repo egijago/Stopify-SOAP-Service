@@ -25,9 +25,8 @@ require_once(PROJECT_ROOT_PATH . "/src/views/partials/albums.php");
 <body>
     <div class="dialog-section"></div>
     <div class="whole-wrapper">
-         <?php echo SideBar();?>
+         <?php echo SideBar("Albums");?>
         <div class="page-wrapper" id="page-wrapper">
-
         </div>
     </div>
 </body>

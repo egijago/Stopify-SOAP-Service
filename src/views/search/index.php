@@ -34,7 +34,7 @@
 <body>
   <div class="dialog-section"></div>
   <div class="whole-wrapper"> 
-    <?php echo SideBar(); ?>
+    <?php echo SideBar("Search"); ?>
     <div class="page-wrapper">
       <div class="padding" style="height:10px;">
       </div>
@@ -62,19 +62,6 @@
         <?php genreCard(3); ?>
         <?php genreCard(4); ?>
         <?php genreCard(5); ?>
-      </div>
-      <div class="artists-section">
-        <div class="section-header">
-          <p class="section-title"> Artists </p>  
-          <div class="add-artist add-btn"></div>
-        </div>
-        <hr>
-        <div class="artist-result" id="123">
-            <?php artistCard(1); ?>
-            <?php artistCard(2); ?>
-            <?php artistCard(3); ?>
-            <?php artistCard(4); ?>
-            <?php artistCard(5); ?>
       </div>
     </div>
   </div>

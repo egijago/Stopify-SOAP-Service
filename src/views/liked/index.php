@@ -24,7 +24,7 @@ require_once(PROJECT_ROOT_PATH . "/src/views/partials/liked_song.php");
     <body>
         <input type="hidden" id="custId" name="custId" value="<?php echo $_SESSION["id_user"] ?>">
         <div class="whole-wrapper">
-            <?php echo SideBar(); ?>
+            <?php echo SideBar("Liked song"); ?>
             <div class="page-wrapper" id="page-wrapper">
             </div>
         </div>

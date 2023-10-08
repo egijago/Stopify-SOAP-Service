@@ -45,6 +45,46 @@ document.addEventListener("click", function(event) {
         };
         xhr.send();
     }
+
+    if (event.target.matches(".edit-artist")) {
+        const xhr = new XMLHttpRequest();
+        const method = "GET";
+        const id = event.target.parentElement.getAttribute("value");
+        console.log(id);
+        const url = "/element/artist-input/"+id;
+        xhr.open(method, url);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+              if (xhr.status === 200) {
+                const response = xhr.responseText;
+                document.querySelector(".dialog-section").innerHTML = xhr.responseText;
+            } else {
+                console.error("Request failed with response:", xhr.responseText);
+              }
+            }
+          };
+        xhr.send();
+    }
+
+    if (event.target.matches(".add-artist")) {
+        const xhr = new XMLHttpRequest();
+        const method = "GET";
+        const id = event.target.parentElement.getAttribute("value");
+        console.log(id);
+        const url = "/element/artist-input";
+        xhr.open(method, url);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+              if (xhr.status === 200) {
+                const response = xhr.responseText;
+                document.querySelector(".dialog-section").innerHTML = xhr.responseText;
+            } else {
+                console.error("Request failed with response:", xhr.responseText);
+              }
+            }
+          };
+        xhr.send();
+    }
 });
 
 document.addEventListener("change", function(event) {
@@ -60,3 +100,5 @@ document.addEventListener("change", function(event) {
         label.innerHTML = event.target.value;    
     }
 });
+
+

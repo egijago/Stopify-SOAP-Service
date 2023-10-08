@@ -30,11 +30,10 @@ class GenreModel extends BaseModel
     
     public function editGenre($id_genre, $name, $image, $color) 
 	{
-		$upload_dir = PROJECT_ROOT_PATH . "/public/storage/album_image/"; 
-		$id_genre = $this->getMaxIdGenre() + 1;
-        $upload_path = $upload_dir . $id_genre. "_" . $name . ".jpg";
+		$upload_dir = "storage/album_image/"; 
+        $upload_path = $upload_dir . $id_genre. "_" . $name . "." . self::getExt($image);
         $image_url = $upload_path;
-		move_uploaded_file($image["tmp_name"], $upload_path);
+		self::uploadFile($upload_path, $image);
 
 		$this->db->query('UPDATE ' . $this->table . ' SET name = :name, image_url = :image_url, color = :color WHERE id_genre = :id_genre');
 		$this->db->bind('id_genre', $id_genre);
@@ -47,11 +46,11 @@ class GenreModel extends BaseModel
   
     public function insertGenre($name, $image, $color) 
 	{
-		$upload_dir = PROJECT_ROOT_PATH . "/public/storage/album_image/"; 
+		$upload_dir = "storage/album_image/"; 
 		$id_genre = $this->getMaxIdGenre() + 1;
-        $upload_path = $upload_dir . $id_genre. "_" . $name . ".jpg";
+        $upload_path = $upload_dir . $id_genre. "_" . $name . "." . self::getExt($image);
         $image_url = $upload_path;
-		move_uploaded_file($image["tmp_name"], $upload_path);
+		self::uploadFile($upload_path, $image);
 		
 		$this->db->query('INSERT INTO ' . $this->table . ' (name, image_url, color) VALUES (:name, :image_url, :color)');
 		$this->db->bind('name', $name);
