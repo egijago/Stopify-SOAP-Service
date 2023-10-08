@@ -97,6 +97,7 @@ class MusicModel extends BaseModel
 	
 		$this->db->query(
 			"SELECT 
+				music.id_music AS id_music,
 				album.image_url AS image_url,
 				album.title AS album_title,
 				music.title AS music_title,

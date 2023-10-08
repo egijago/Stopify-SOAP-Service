@@ -32,7 +32,7 @@ function likedSong($params)
                     </div>
                 </div>';
     $html .= $liked;
-    $html .= limit_page();
+    $html .= limit_page($limit);
 
     $html .= '<div class="table-container" id="container-pagination">';
     $heading = ["Title Song","Genre ","Album","Artist","Realease Year"];
