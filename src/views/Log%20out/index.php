@@ -13,6 +13,6 @@ session_destroy();
 </head>
 <body>
   <h1>you have logged out</h1>
-  <a href="login" style="font-style: italic; text-decoration: underline;">login</a>
+  <a href="login" style="font-style: italic; text-decoration: underline; color:white;">login</a>
 </body>
 </html>

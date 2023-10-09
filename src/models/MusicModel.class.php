@@ -21,7 +21,7 @@ class MusicModel extends BaseModel
 		return $this->db->resultSet();
 	}
 
-	public function getAllDetailMusic()
+	public function getRandomDetailMusic()
 	{
 		$this->db->query(
 			'SELECT 
@@ -40,10 +40,14 @@ class MusicModel extends BaseModel
 			JOIN 
 				genre ON music.id_genre = genre.id_genre
 			JOIN 
-				artist ON album.id_artist = artist.id_artist;
-		');
+				artist ON album.id_artist = artist.id_artist
+			ORDER BY RANDOM()
+			LIMIT 10;'
+		);
+
 		return $this->db->resultSet();
 	}
+
 
 	public function getFiveNewSong()
 	{

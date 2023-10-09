@@ -49,17 +49,23 @@ async function sendForm(){
     xhr.open("POST", "/api/register", true);
 
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    var data = `email=${encodeURIComponent(email)}&username=${encodeURIComponent(name)}&password=${encodeURIComponent(password)}`;
+    xhr.send(data);
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
                 try {
-                    if (xhr.responseText.data === 1) {
+                    var jsonResponse = JSON.parse(xhr.responseText);
+
+                    var dataValue = jsonResponse.data;
+                    console.log(dataValue);
+                    if (dataValue == 1) {
                         window.location.href = "login";
                         alert("Register success!");
                     } else {
                         window.location.href = "register";
-                        alert("Register failed");
+                        alert(xhr.responseText);
                     }
                 } catch (error) {
                     console.error("Error parsing JSON response:", error);
@@ -72,6 +78,4 @@ async function sendForm(){
         }
     };
     
-    var data = `email=${encodeURIComponent(email)}&username=${encodeURIComponent(name)}&password=${encodeURIComponent(password)}`;
-    xhr.send(data);
 }
