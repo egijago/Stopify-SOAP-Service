@@ -16,6 +16,9 @@ $router->get('/element/liked_songs/{id_user}/{page}/{limit}', 'likedSong');
 $router->get('/element/liked_albums/{id_user}/{page}/{limit}', 'likedAlbum');
 $router->get('/element/music_pagination/{id_album}/{page}/{limit}', 'musicRecordByAlbum');
 $router->get('/element/music/{music_id}', 'musicDetail');
+$router->get('/element/genres_pagination/{page}/{limit}', 'genresPagination');
+$router->get('/element/artists_pagination/{page}/{limit}', 'artistPagination');
+$router->get('/element/fyp', 'forYourPage');
 
 $router->get('/element/genre-input', 'genreInput');
 $router->get('/element/genre-input/{id_genre}', 'genreInput');
