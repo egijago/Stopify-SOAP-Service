@@ -17,5 +17,5 @@ function genreCard($id)
         </div>
     EOT;
 
-    echo($html);
+    return $html;
 }

@@ -20,6 +20,21 @@ class GenreModel extends BaseModel
 		$this->db->query('SELECT * FROM ' . $this->table);
 		return $this->db->resultSet();
     }
+	public function getGenreRecors($current_page,$limit)
+    {
+        $offset = ($current_page - 1) * $limit;
+        $this->db->query(
+        'SELECT DISTINCT
+            id_genre
+        FROM
+            genre
+        LIMIT :limit OFFSET :offset
+        ');
+        $this->db->bind(':limit', $limit);
+        $this->db->bind(':offset', $offset);
+        return $this->db->resultSet();
+
+    }
   
     public function getGenreByGenreId($id_genre)
     {

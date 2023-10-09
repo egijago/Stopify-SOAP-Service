@@ -20,6 +20,22 @@ class ArtistModel extends BaseModel
 		$this->db->query('SELECT * FROM ' . $this->table);
 		return $this->db->resultSet();
     }
+
+	public function getArtistRecords($current_page,$limit)
+    {
+        $offset = ($current_page - 1) * $limit;
+        $this->db->query(
+        'SELECT DISTINCT
+            id_artist
+        FROM
+            artist
+        LIMIT :limit OFFSET :offset
+        ');
+        $this->db->bind(':limit', $limit);
+        $this->db->bind(':offset', $offset);
+        return $this->db->resultSet();
+
+    }
   
     public function getArtistByArtistId($id_artist)
     {
