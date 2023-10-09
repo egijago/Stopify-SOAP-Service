@@ -14,7 +14,9 @@ require_once(PROJECT_ROOT_PATH . "/src/views/partials/font.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/limit_page.css">
     <script src="js/artist_input.js"></script>
+    <script src="js/artist.js"></script>
     <?php echo Font(); ?>
     <title>Stopify - Artists</title>
 </head>
@@ -30,12 +32,8 @@ require_once(PROJECT_ROOT_PATH . "/src/views/partials/font.php");
             </div>
           </div>
           <hr>
-          <div class="artist-result" id="123">
-            <?php artistCard(1); ?>
-            <?php artistCard(2); ?>
-            <?php artistCard(3); ?>
-            <?php artistCard(4); ?>
-            <?php artistCard(5); ?>
+          
+          <div class="result" id="artist-pagination">
           </div>
         </div>
     </div>

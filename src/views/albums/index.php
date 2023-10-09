@@ -32,7 +32,7 @@ require_once(PROJECT_ROOT_PATH . "/src/views/partials/albums.php");
                 <?php if ($_SESSION["role"] == "admin") { echo "<div class='add-album add-btn'></div>";};?>
             </div><hr>
             <div id="album-items">
-
+                
             </div>
         </div>
     </div>
