@@ -20,6 +20,6 @@ function artistCard ($id)
     </div> 
     EOT;
 
-    echo($html);
+    return $html;
 
 }

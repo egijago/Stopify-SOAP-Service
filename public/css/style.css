@@ -384,8 +384,9 @@ h1,h2,h3,h4,h5,h6,p{
     font-family: DM Sans;
 }
 a {
-    text-decoration: none;
-}
+    color: white;
+    text-decoration: none; /* no underline */
+  }
 th{
     color: white;
 }
