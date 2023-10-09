@@ -1,16 +1,21 @@
 <?php
-function limit_page()
+function limit_page($limit)
 {
-
+    
     $html = <<< "EOT"
         <div class="limit-page">
             <p>Limit: </p>
-            <select name="limit_page" id="limit">
+            <select name="limit_page" id="limit" >
         EOT;
     $option ="";
     for($i = 1; $i <= 10; $i++){
         $res= $i * 5;
-        $option .= "<option value=$res>$res</option>";
+        if($res == $limit){
+            $option .= "<option value=$res selected>$res</option>";
+        }
+        else{
+            $option .= "<option value=$res>$res</option>";
+        }
     }
     $html .= $option;
     $html .= <<< "EOT"

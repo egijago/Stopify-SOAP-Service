@@ -45,6 +45,15 @@ class UsersModel extends BaseModel
     
     public function insertUser($email, $username, $password)
     {
+        $query = "SELECT * FROM users WHERE email = :email OR username = :username";
+        $this->db->query($query);
+        $this->db->bind('email', $email);
+        $this->db->bind('username', $username);
+        $this->db->execute();
+        if($this->db->rowCount() != 0)
+        {
+            return 0;
+        }
         $query = "INSERT INTO users (email, username, password, role) values (:email, :username, :password, 'user')";
         $this->db->query($query);
         $this->db->bind('email', $email);

@@ -50,10 +50,25 @@ async function sendForm(){
 
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-    xhr.onreadystatechange = () => {
-        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-            console.log(xhr.responseText)
-            window.location.href = "/login";
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                try {
+                    if (xhr.responseText.data === 1) {
+                        window.location.href = "login";
+                        alert("Register success!");
+                    } else {
+                        window.location.href = "register";
+                        alert("Register failed");
+                    }
+                } catch (error) {
+                    console.error("Error parsing JSON response:", error);
+                    alert("An error occurred while processing the login.");
+                }
+            } else {
+                console.error("Request failed with status:", xhr.status);
+                alert("An error occurred while processing the login.");
+            }
         }
     };
     

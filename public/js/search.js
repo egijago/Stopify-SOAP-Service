@@ -81,25 +81,26 @@ document.addEventListener("click", function(event) {
 
 
 function nextPage() {
-  var limit = 5;
+  var limit = 10;
   var currentPageElement = document.getElementById("current-page");
   var page = parseInt(currentPageElement.innerHTML) + 1;
 
-  console.log(document.getElementById("max-page").innerHTML);
+  console.log('max ',document.getElementById("max-page").innerHTML);
   if(page > parseInt(document.getElementById("max-page").innerHTML)) {
     page = parseInt(document.getElementById("max-page").innerHTML);
     return;
   }
   fillData(limit, page);
-
   currentPageElement.innerHTML = page;
+  console.log('next',page);
+
 
   // history.pushState(null, null, "?limit=" + limit + "&page=" + page);
 
 }
 
 function prevPage() {
-  var limit = 5;
+  var limit = 10;
   var currentPageElement = document.getElementById("current-page");
   var page = parseInt(currentPageElement.innerHTML) - 1;
 
@@ -108,16 +109,22 @@ function prevPage() {
     return;
     
   }
+  currentPageElement.innerHTML = page;
 
   fillData(limit, page);
 
-  currentPageElement.innerHTML = page;
 
   // history.pushState(null, null, "?limit=" + limit + "&page=" + page);
 }
 
-async function fillData() {
+async function fillData(limit,page) {
   try {
+    const searchQuery = document.querySelector(".search-bar").value;
+    const searchBy = document.querySelector("#search-by").value;
+    const yearFilter = document.querySelector("#year-filter").value;
+    const genreFilter = document.querySelector("#genre-filter").value;
+    const sortBy = document.querySelector("#sort-by").value;
+
     const method = "GET";
     const url = "/element/search-table/"
     const queryParams = {
@@ -126,9 +133,10 @@ async function fillData() {
         "year": yearFilter, 
         "genre": genreFilter,
         "sort_by": sortBy,
-        "current_page": document.getElementById("current-page").innerHTML,
-        "limit": 5
+        "current_page": page,
+        "limit": limit
     };
+    console.log("current ",queryParams.current_page)
     const queryString = Object.keys(queryParams)
         .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(queryParams[key])}`)
         .join('&');
@@ -140,6 +148,7 @@ async function fillData() {
           if (xhr.status === 200) {
             const response = xhr.responseText;
             document.querySelector(".search-result").innerHTML = response;
+            document.getElementById("current-page").innerHTML = queryParams.current_page;
           } else {
             console.error("Request failed with response:", xhr.responseText);
           }

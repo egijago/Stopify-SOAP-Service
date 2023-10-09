@@ -14,7 +14,7 @@ function searchTable($params)
     $trs = "";
     foreach ($musics as $i=>$music) 
     {
-        $title = $music->music_title;
+        $title = '<a href="/music?id=' . $music->id_music . '">' . $music->music_title . '</a>';
         $name = $music->artist_name;
         $genre = $music->genre_name;
         $year = $music->release_year;
@@ -52,7 +52,7 @@ function searchTable($params)
             </tbody>
         </table>
     EOT;
-    $length = count($model->searchMusic($params["sub_str"], $params["sub_str_param"], $params["year"], $params["genre"],  $params["sort_by"], $params["current_page"], 1000));
-    $html .= pagination_item(1, ceil($length/$limit));
+    $length = count($model->searchMusic($params["sub_str"], $params["sub_str_param"], $params["year"], $params["genre"],  $params["sort_by"], 1, 1000));
+    $html .= pagination_item($params["current_page"], ceil($length / $limit));
     echo($html);
 }

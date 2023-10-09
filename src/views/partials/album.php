@@ -22,7 +22,7 @@ function musicRecordByAlbum($params)
     $detailAlbum = $albumModel->getAlbumByAlbumId($id_album);
     $html = icon($_SESSION["username"]);
     $html .= albumContainer($detailAlbum->album_image_url, $detailAlbum->album_title, $detailAlbum->artist_name);
-    $html .= limit_page();
+    $html .= limit_page($limit);
 
     $html .= '<div class="table-container" id="container-pagination">';
     $heading=["Title Song","Genre ","Realease Year"];

@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
     passwordInput.addEventListener('input', validateForm);
 });
 
-async function sendForm(){
+function sendForm() {
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
 
@@ -37,13 +37,31 @@ async function sendForm(){
     xhr.open("POST", "/api/login", true);
 
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    
-    xhr.onreadystatechange = () => {
-        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-            window.location.href = "home";
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                try {
+                    // const responseData = JSON.parse(xhr.responseText);
+
+                    if (xhr.responseText.data === "gagal") {
+                        window.location.href = "login";
+                        alert("Login failed!");
+                    } else {
+                        window.location.href = "home";
+                        alert("Logged in!");
+                    }
+                } catch (error) {
+                    console.error("Error parsing JSON response:", error);
+                    alert("An error occurred while processing the login.");
+                }
+            } else {
+                console.error("Request failed with status:", xhr.status);
+                alert("An error occurred while processing the login.");
+            }
         }
     };
-    
+
     var data = `email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`;
     xhr.send(data);
 }

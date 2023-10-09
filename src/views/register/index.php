@@ -40,6 +40,7 @@
                     <div class="submit_form">
                         <input type="submit" name="submit" value="Sign up" id="submitButton" disabled>
                     </div>
+                    <p>Already have an account?<a href="login">Log in</a></p>
                 </form>
             </div>
         </div>

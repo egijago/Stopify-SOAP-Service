@@ -33,7 +33,7 @@
                     <div class="submit_form">
                         <input id="submitButton" type="submit" name="submit" value="Log in" onclick="sendForm()">
                     </div>
-                    <p>Don't have an account?<a href="register">Sign up for spotify</a></p>
+                    <p>Don't have an account?<a href="register">Sign up for stopify</a></p>
                     
                 </form>
             </div>
