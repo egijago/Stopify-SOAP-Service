@@ -52,7 +52,7 @@ Pindahkan isi dari repository ini ke htdocs pada XAMPP. Konfigurasi database dap
 
 ### Daftar Genre
 
-![](ss/genre.png)
+![](ss/genres.png)
 
 ### Daftar Liked Song
 
@@ -60,58 +60,60 @@ Pindahkan isi dari repository ini ke htdocs pada XAMPP. Konfigurasi database dap
 
 ### Edit Album
 
-![](screenshots/20221028144756.png)
-
-![](screenshots/20221028144822.png)
-
-![](screenshots/20221028144848.png)
+![](ss/editalbum.png)
 
 ### Edit Lagu
 
-![](screenshots/20221028144935.png)
+![](ss/edit.png)
+
+### Edit Genre
+
+![](ss/genreedit.png)
 
 ### Tambah Album
 
-![](screenshots/20221028144949.png)
+![](ss/addalbum.png)
 
 ### Tambah Lagu
 
-![](screenshots/20221028145002.png)
+![](ss/edit.png)
+
+### Tambah Genre
+
+![](ss/genreinput.png)
 
 # Pembagian tugas
 
 ## Frontend / Client-side
 
-1. Login: 13520016, 13520073
-2. Register: 13520016, 13520073
-3. Home: 13520073
-4. Daftar Album: 13520076
-5. Search, Sort, Filter: 13520016, 13520073
-6. Detail Lagu: 13520073
-7. Detail Album: 13520076
-8. Edit Lagu: 13520073
-9. Edit Album: 13520076
-10. Tambah Album: 13520076
-11. Tambah Lagu: 13520073
-12. Daftar User: 13520073
-13. 404 : 13520076
-14. Navbar: 13520073
-15. Responsive Adjustments: 13520073, 13520076
-16. Global Styling: 13520016
-17. Initial Design: 13520073, 13520076
+1. Login: 13521099
+2. Register: 13521099
+3. Home: 13521099
+4. Daftar Album: 13521099
+5. Daftar Genre : 13521056, 13521099
+6. Daftar Artist : 13521056, 13521099
+5. Search, Sort, Filter: 13521056
+6. Detail Lagu: 13521099
+7. Detail Album: 13521099
+8. Edit Lagu: 13521056
+9. Edit Album: 13521056
+10. Tambah Album: 13521056
+11. Tambah Lagu: 13521056
+14. Navbar: 13521056
+15. Responsive Adjustments: 10023089, 13521056, 13521099
+16. Global Styling: 10023089, 13521056, 13521099
+17. Initial Design: 10023089, 13521056, 13521099
 
 ## Backend / Server-side
 
-1. Auth (Login, Register, Logout): 13520016
-2. Guest & Limiting: 13520016, 13520076
-3. Home: 13520073
-4. Search, Sort, Filter: 13520016
-5. Detail Lagu: 13520073
-6. Detail Album: 13520076
-7. Daftar Album: 13520076
-8. Edit Lagu: 13520016, 13520073
-9. Edit Album: 13520016
-10. Tambah Album: 13520016
-11. Tambah Lagu: 13520016
-12. Daftar User: 13520073
-13. Initial Project, Database & Docker Setup: 13520016
+1. Auth (Login, Register, Logout): 13521056, 13521099
+3. Home: 13521056, 13521099
+4. Search, Sort, Filter: 13521056, 13521099
+5. Detail Lagu: 13521056, 13521099
+6. Detail Album: 13521056, 13521099
+7. Daftar Album: 13521056, 13521099
+8. Edit Lagu: 13521056, 13521099
+9. Edit Album: 13521056, 13521099
+10. Tambah Album: 13521056, 13521099
+11. Tambah Lagu: 13521056
+13. Initial Project, Database : 10023089, 13521056, 13521099
