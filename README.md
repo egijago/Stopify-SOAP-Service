@@ -20,43 +20,43 @@ Pindahkan isi dari repository ini ke htdocs pada XAMPP. Konfigurasi database dap
 
 ### Login Page
 
-![](screenshots/login.png)
+![](ss/login.png)
 
 ### Register Page
 
-![](screenshots/register.png)
+![](ss/register.png)
 
 ### Home Page
 
-![](screenshots/home.png)
+![](ss/home.png)
 
 ### Search, Sort, Filter Page
 
-![](screenshots/search.png)
+![](ss/search.png)
 
 ### Daftar Album Page
 
-![](screenshots/albums.png)
+![](ss/albums.png)
 
 ### Detail Album Page
 
-![](screenshots/album.png)
+![](ss/album.png)
 
 ### Detail Lagu Page
 
-![](screenshots/music.png)
+![](ss/music.png)
 
 ### Daftar Artist
 
-![](screenshots/artist.png)
+![](ss/artist.png)
 
 ### Daftar Genre
 
-![](screenshots/genre.png)
+![](ss/genre.png)
 
 ### Daftar Liked Song
 
-![](screenshots/liked.png)
+![](ss/liked.png)
 
 ### Edit Album
 
