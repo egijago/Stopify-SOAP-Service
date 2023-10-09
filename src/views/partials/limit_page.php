@@ -4,7 +4,7 @@ function limit_page($limit)
     
     $html = <<< "EOT"
         <div class="limit-page">
-            <p>Limit: </p>
+            <label for="limit"><p>Limit: </p></label>
             <select name="limit_page" id="limit" >
         EOT;
     $option ="";

@@ -30,7 +30,7 @@ function songDetail($img_url, $album, $title, $genre, $artist, $liked)
 
     $html = "
         <div class='play-song-container'>
-            <img src='$img_url' alt=''>
+            <img src='$img_url'  alt='image/none.jpg'>
             <div class='play-song-detail'>
                 <h3>$album</h3>
                 <h4>$title</h4>

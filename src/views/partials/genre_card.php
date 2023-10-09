@@ -12,7 +12,7 @@ function genreCard($id)
     $html = <<< "EOT"
         <div class="genre-card" value="$value" style="background-color:$color;">
             <p>$genre_name</p>
-            <img src="$image_url">
+            <img src="$image_url"  alt="image/none.jpg">
             $button
         </div>
     EOT;

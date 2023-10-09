@@ -14,7 +14,7 @@ function long($img_url, $song_title, $artist, $id_music){
     $html = <<<EOT
     <a href="/music?id=$id_music">        
         <div class="song-item-long">
-            <img class="second" src="$img_url"/>
+            <img class="second" src="$img_url" alt='image/none.jpg'/>
             <div class="song-item-container">
                 <h4>$song_title</h4>
                 <p>$artist</p>
