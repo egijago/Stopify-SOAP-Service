@@ -41,6 +41,7 @@
           <?php yearFilter();?>
           <?php genreFilter();?>
           <?php sortBy();?>
+          <?php order();?>
         </div>
         <div class="section-header">
             <p class="section-title"> Musics </p>  

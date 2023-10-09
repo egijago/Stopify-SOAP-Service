@@ -2,7 +2,8 @@ document.addEventListener("change", function(event) {
     if (event.target.matches("#search-by") ||
         event.target.matches("#year-filter") ||
         event.target.matches("#genre-filter") ||
-        event.target.matches("#sort-by")) {
+        event.target.matches("#sort-by") ||
+        event.target.matches("#order-by")) {
             executeSearch()
     }
 });
@@ -32,6 +33,7 @@ function callSearch() {
     const yearFilter = document.querySelector("#year-filter").value;
     const genreFilter = document.querySelector("#genre-filter").value;
     const sortBy = document.querySelector("#sort-by").value;
+    const orderBy = document.querySelector("#order-by").value;
 
     
 
@@ -42,7 +44,7 @@ function callSearch() {
         "sub_str_param": searchBy,
         "year": yearFilter, 
         "genre": genreFilter,
-        "sort_by": sortBy,
+        "sort_by": sortBy + " " + orderBy,
         "current_page": 1,
         "limit": 10
     };

@@ -63,3 +63,14 @@ function sortBy()
     EOT;
     echo($html);
 }
+
+function order()
+{
+    $html = <<< "EOT"
+        <select id="order-by" class="search-by-filter">
+            <option value="asc" selected>Order: asc</option>
+            <option value="desc">Order: desc</option>
+        </select>
+    EOT;
+    echo($html);
+}

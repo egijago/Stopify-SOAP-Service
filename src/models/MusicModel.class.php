@@ -103,7 +103,7 @@ class MusicModel extends BaseModel
 		$sub_str_filter = "UPPER($sub_str_param) LIKE UPPER('$sub_str%')";
 		$genre_filter = ($genre == "all") ? "TRUE" : "genre.name = '$genre'";
 		$year_filter = ($year == "all") ? "TRUE" : "EXTRACT(YEAR FROM music.release_date) = '$year'";
-		$order = $sort_by ? "ORDER BY $sort_by ASC" : null; 
+		$order = $sort_by ? "ORDER BY $sort_by" : null; 
 		$offset = ($current_page - 1) * $limit;
 	
 		$this->db->query(
