@@ -11,11 +11,10 @@ class UsersModel extends BaseModel
 
     public function login($email, $password)
     {
-        $this->db->query('SELECT * FROM ' . $this->table . ' WHERE email = :email AND password = :password');
+        $this->db->query('SELECT * FROM ' . $this->table . ' WHERE email = :email');
         $this->db->bind('email', $email);
-        $this->db->bind('password', $password);
         $result= $this->db->single();
-        if($this->db->rowCount() != 0)
+        if($this->db->rowCount() != 0 && password_verify($password, $result->password))
         {
             $_SESSION["username"] = $result->username;
             $_SESSION["role"] = $result->role;    
@@ -58,7 +57,7 @@ class UsersModel extends BaseModel
         $this->db->query($query);
         $this->db->bind('email', $email);
         $this->db->bind('username', $username);
-        $this->db->bind('password', $password);
+        $this->db->bind('password', password_hash($password, PASSWORD_DEFAULT));
         $this->db->execute();
         return $this->db->rowCount();
     }
