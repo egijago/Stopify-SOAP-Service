@@ -21,6 +21,57 @@ class MusicModel extends BaseModel
 		return $this->db->resultSet();
 	}
 
+	public function getAllDetailMusic()
+	{
+		$this->db->query(
+			'SELECT 
+				music.id_music AS id_music,
+				album.image_url AS image_url,
+				album.title AS album_title,
+				music.title AS music_title,
+				genre.name AS genre_name,
+				artist.name AS artist_name,
+				music.audio_url AS audio_url,
+				EXTRACT(YEAR FROM music.release_date) AS release_year
+			FROM 
+				music
+			JOIN 
+				album ON music.id_album = album.id_album
+			JOIN 
+				genre ON music.id_genre = genre.id_genre
+			JOIN 
+				artist ON album.id_artist = artist.id_artist;
+		');
+		return $this->db->resultSet();
+	}
+
+	public function getFiveNewSong()
+	{
+		$this->db->query(
+			'SELECT 
+				music.id_music AS id_music,
+				album.image_url AS image_url,
+				album.title AS album_title,
+				music.title AS music_title,
+				genre.name AS genre_name,
+				artist.name AS artist_name,
+				music.audio_url AS audio_url,
+				EXTRACT(YEAR FROM music.release_date) AS release_year
+			FROM 
+				music
+			JOIN 
+				album ON music.id_album = album.id_album
+			JOIN 
+				genre ON music.id_genre = genre.id_genre
+			JOIN 
+				artist ON album.id_artist = artist.id_artist
+			ORDER BY 
+				music.release_date DESC
+			LIMIT 5;
+		');
+		return $this->db->resultSet();
+	}
+
 	public function getMusicByMusicId($id_music)
 	{
 		$this->db->query('SELECT * FROM ' . $this->table . ' WHERE id_music = :id_music');
