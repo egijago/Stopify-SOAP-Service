@@ -46,14 +46,16 @@ function songDetail($img_url, $album, $title, $genre, $artist, $liked)
 }
 
 function songPlayer($audio_url)
-{
-    $html = "
+{   
+    $ext = pathinfo($audio_url, PATHINFO_EXTENSION);
+    $html = <<< "EOT"
         <div class='audio-player'>
             <audio controls>
-                <source src='public/song/$audio_url' type='audio/mpeg'>
+                <source src="$audio_url" type="audio/$ext">
             </audio>
         </div>
     ";
-
+    EOT;
     return $html;
 }
+

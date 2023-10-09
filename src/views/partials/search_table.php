@@ -14,7 +14,7 @@ function searchTable($params)
     $trs = "";
     foreach ($musics as $i=>$music) 
     {
-        $title = '<a href="/music?id=' . $music->id_music . '">' . $music->music_title . '</a>';
+        $title = $music->music_title;
         $name = $music->artist_name;
         $genre = $music->genre_name;
         $year = $music->release_year;
@@ -24,7 +24,7 @@ function searchTable($params)
         $trs .= <<< "EOT"
         <tr>
             <td>$i</td>
-            <td>$title</td>
+            <td><a href="/music?id=$id">$title</a></td>
             <td>$name</td>
             <td>$genre</td>
             <td>$year</td>
@@ -36,7 +36,7 @@ function searchTable($params)
 
     
     $html=<<<EOT
-        <table>
+        <table class="search-table">
             <thead>
                 <tr>
                     <th>#</th>
