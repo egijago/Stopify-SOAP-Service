@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
 function handleLoveButtonClick() {
     // Implement the logic for handling the love button click here
-    alert('like button clicked!');
+    // alert('like button clicked!');
     try {
         const xhr = new XMLHttpRequest();
         var currentUrl = window.location.href;
