@@ -12,6 +12,9 @@ html, body{
     z-index: 1;
 }
 
+a, a:visited, a:active {
+    color: inherit;
+}
 
 .dialog {
     position: absolute;

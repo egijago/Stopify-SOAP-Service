@@ -25,7 +25,7 @@ function likedSong($params)
 
     $html = icon($_SESSION["username"]);
     $liked = '<div class="liked-detail">
-                    <img src="image/senja.jpg">
+                    <img src="image/senja.jpg"  alt="image/none.jpg">
                     <div class="liked-detail-text">
                         <h1>PLAYLIST</h1>
                         <h2>Liked Songs</h1>
