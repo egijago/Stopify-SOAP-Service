@@ -115,5 +115,5 @@ Pindahkan isi dari repository ini ke htdocs pada XAMPP. Konfigurasi database dap
 8. Edit Lagu: 13521056, 13521099
 9. Edit Album: 13521056, 13521099
 10. Tambah Album: 13521056, 13521099
-11. Tambah Lagu: 13520016
+11. Tambah Lagu: 13521056
 13. Initial Project, Database : 10023089, 13521056, 13521099
