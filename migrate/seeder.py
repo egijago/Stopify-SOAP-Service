@@ -82,10 +82,15 @@ def insert_fake_music(num_music):
     id_albums = cur.fetchall()
     cur.execute(query2)
     id_genres = cur.fetchall() 
-    for _ in range(num_music):
+    
+        
+    folder_path = os.getcwd() + '/../public/storage/music_audio/'
+    music_audios = os.listdir(folder_path)
+    
+    for i in range(min(num_music, len(music_audios))):
         title = fake.sentence()
         id_genre = random.choice(id_genres)
-        audio_url = "/storage/music_aduio/" + "1.mp3"
+        audio_url = "/storage/music_audio/" + music_audios[i]
         release_date = fake.date_time()
         id_album = random.choice(id_albums)
         cur.execute(
