@@ -42,9 +42,11 @@ function albumDisplay($id_album, $album_image, $album_title, $artist){
     $button = $_SESSION["role"] == "admin"? "<div class='edit-btn edit-album'></div>" : null;
     $html=<<<"EOT"
         <div class="song-item-medium" value="$id_album">
-            <img class="container-pagination" src="$album_image" />
-            <h3>$album_title</h3>
-            <p>$artist</p>
+            <a href="album?id=$id_album">
+                <img class="container-pagination" src="$album_image"  alt="image/none.jpg""/>
+                <h3>$album_title</h3>
+                <p>$artist</p>
+            </a>
             $button
         </div>
     EOT;

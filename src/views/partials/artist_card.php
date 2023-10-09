@@ -12,7 +12,7 @@ function artistCard ($id)
     $html = <<< "EOT"
     <div class="artist-card" value="$value">
         <div class="img-container">
-            <img src="$image_url">
+            <img src="$image_url"  alt="image/none.jpg">
         </div>
         <p class="artist-name">$artist_name</p>
         <p class="card-type">Artist</p>
@@ -20,6 +20,6 @@ function artistCard ($id)
     </div> 
     EOT;
 
-    echo($html);
+    return $html;
 
 }
