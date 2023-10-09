@@ -20,31 +20,43 @@ Pindahkan isi dari repository ini ke htdocs pada XAMPP. Konfigurasi database dap
 
 ### Login Page
 
-![](screenshots/20221028142714.png)
+![](ss/login.png)
 
 ### Register Page
 
-![](screenshots/20221028144314.png)
+![](ss/register.png)
 
 ### Home Page
 
-![](screenshots/20221028144337.png)
+![](ss/home.png)
 
 ### Search, Sort, Filter Page
 
-![](screenshots/20221028144543.png)
+![](ss/search.png)
 
 ### Daftar Album Page
 
-![](screenshots/20221028144604.png)
+![](ss/albums.png)
 
 ### Detail Album Page
 
-![](screenshots/20221028144626.png)
+![](ss/album.png)
 
 ### Detail Lagu Page
 
-![](screenshots/20221028144700.png)
+![](ss/music.png)
+
+### Daftar Artist
+
+![](ss/artist.png)
+
+### Daftar Genre
+
+![](ss/genre.png)
+
+### Daftar Liked Song
+
+![](ss/liked.png)
 
 ### Edit Album
 
@@ -65,14 +77,6 @@ Pindahkan isi dari repository ini ke htdocs pada XAMPP. Konfigurasi database dap
 ### Tambah Lagu
 
 ![](screenshots/20221028145002.png)
-
-### Daftar User
-
-![](screenshots/20221028145102.png)
-
-### 404 Page
-
-![](screenshots/20221028145125.png)
 
 # Pembagian tugas
 
@@ -111,29 +115,3 @@ Pindahkan isi dari repository ini ke htdocs pada XAMPP. Konfigurasi database dap
 11. Tambah Lagu: 13520016
 12. Daftar User: 13520073
 13. Initial Project, Database & Docker Setup: 13520016
-
-# New Feature
-
-We added premium artists, a feature introduced in Binotify Premium. Now you can subscribe to your favorite artists and listen their songs!
-
-### Premium Artists
-![](screenshots/20221202141739.png)  
-
-### Premium Artist: Song
-![](screenshots/20221202141858.png)
-
-### All Premium Songs
-![](screenshots/20221202141944.png)  
-
-## Frontend / Client-side
-
-1. List Premium Artist: 13520073
-2. List Premium Songs by Artist: 13520073
-3. List All Premium Songs (Bonus for UX): 13520073
-
-## Backend / Server-side
-
-1. List Premium Artist: 13520016
-2. List Premium Songs by Artist: 13520016
-3. List All Premium Songs: 13520016
-4. Callback Endpoint + Polling: 13520016
