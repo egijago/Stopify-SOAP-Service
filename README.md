@@ -7,7 +7,7 @@ Aplikasi web ini merupakan sebuah platform sederhana yang memungkinkan pengguna 
 # Cara instalasi
 
 1. Clone repository ini
-2. Install XAMPP or Docker
+2. Install XAMPP
 
 # Cara menjalankan server
 
@@ -15,6 +15,10 @@ Aplikasi web ini merupakan sebuah platform sederhana yang memungkinkan pengguna 
 
 Pindahkan isi dari repository ini ke htdocs pada XAMPP. Konfigurasi database dapat dilihat pada inc/dotenv.php .
 
+### Terminal 
+
+1. cd public
+2. jalankan command php -S localhost:portnumber
 
 # Screenshot tampilan aplikasi
 
