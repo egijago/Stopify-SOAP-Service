@@ -64,7 +64,7 @@ Pindahkan isi dari repository ini ke htdocs pada XAMPP. Konfigurasi database dap
 
 ### Edit Lagu
 
-![](ss/edit.png)
+![](ss/editsong.png)
 
 ### Edit Genre
 
@@ -76,7 +76,7 @@ Pindahkan isi dari repository ini ke htdocs pada XAMPP. Konfigurasi database dap
 
 ### Tambah Lagu
 
-![](ss/edit.png)
+![](ss/addsong.png)
 
 ### Tambah Genre
 
@@ -97,6 +97,8 @@ Pindahkan isi dari repository ini ke htdocs pada XAMPP. Konfigurasi database dap
 7. Detail Album: 13521099
 8. Edit Lagu: 13521056
 9. Edit Album: 13521056
+10. Edit Genre : 13521056
+11. Edit Artist : 13521056
 10. Tambah Album: 13521056
 11. Tambah Lagu: 13521056
 14. Navbar: 13521056
