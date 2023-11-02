@@ -1,10 +1,30 @@
 document.addEventListener('DOMContentLoaded', function () {
     const emailInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
+    const axios = require('axios');
 
     const emailError = document.getElementById('emailError');
     const passwordError = document.getElementById('passwordError');
     const submitButton = document.getElementById('submitButton');
+    const soapRequest = `
+        <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://your-websevice-namespace">
+            <soapenv:Header/>
+            <soapenv:body>
+                <web:LoginRequest>
+                    <web:Username>yourUsername</web:Username>
+                    <web:password>yourPassword</web:password>
+                </web:LoginRequest>
+            </soapenv:body>
+        </soapenv:Envelope>
+    `;
+    
+        axios.post('http://Stopify/LoginService', soapRequest, {
+            Headers: { 'Content-Type': 'text/xml' },
+        }).then(Response => {
+
+        }).catch(error => {
+
+        })
 
     function validateEmail() {
         const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value);
