@@ -1,6 +1,7 @@
 package services.subscription;
 
 import cores.Repository;
+import services.payment.PaymentRepository;
 import services.subscription.SubscriptionModel;
 
 import java.sql.ResultSet;
@@ -9,9 +10,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SubscriptionRepository extends Repository {
-
-    public SubscriptionRepository() {
+    private static SubscriptionRepository instance ;
+    private SubscriptionRepository() {
         super("subscription");
+    }
+    public static SubscriptionRepository getInstance() {
+        if (instance == null) {
+            instance = new SubscriptionRepository();
+        }
+        return instance;
     }
     public List<SubscriptionModel> fetchById(int id) throws SQLException {
         String sql = "SELECT * FROM " + tableName
