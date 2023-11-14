@@ -14,20 +14,22 @@ import java.sql.SQLException;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PaymentModel extends Model {
-    private int idPayment;
-    private int idUser;
-    private int value;
+    private Integer idPayment;
+    private Integer idUser;
+    private Integer idArtist;
+    private Integer amount;
     private String cardNumber;
     private String cardOwner;
-    private int cardExpMonth;
-    private int cardExpYear;
-    private int cardCvc;
+    private Integer cardExpMonth;
+    private Integer cardExpYear;
+    private Integer cardCvc;
 
     @Override
     public void initializeFromResultSet(ResultSet rs) throws SQLException {
         this.idPayment = rs.getInt("id_payment");
         this.idUser = rs.getInt("id_user");
-        this.value = rs.getInt("value");
+        this.idArtist = rs.getInt("id_artist");
+        this.amount = rs.getInt("amount");
         this.cardNumber = rs.getString("card_number");
         this.cardOwner = rs.getString("card_owner");
         this.cardExpMonth = rs.getInt("card_exp_month");
