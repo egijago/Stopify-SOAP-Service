@@ -1,6 +1,8 @@
 import services.payment.PaymentServiceImpl;
+import services.payment.PaymentServiceProxy;
 import services.subscription.SubscriptionServiceImpl;
 
+import services.subscription.SubscriptionServiceProxy;
 import utils.Config;
 import javax.xml.ws.Endpoint;
 
@@ -14,10 +16,10 @@ public class Main {
         final String SUBSCRIPTION_SERV_PATH = "/ws/subscription";
         try {
             Endpoint.publish(SERVER_HOST + ":" + SERVER_PORT + PAYMENT_SERV_PATH,
-                    new PaymentServiceImpl()
+                    new PaymentServiceProxy()
             );
             Endpoint.publish(SERVER_HOST + ":" + SERVER_PORT + SUBSCRIPTION_SERV_PATH,
-                    new SubscriptionServiceImpl()
+                    new SubscriptionServiceProxy()
             );
             System.out.println("Server started at " + SERVER_HOST + ":" + SERVER_PORT );
         } catch (Exception e) {
