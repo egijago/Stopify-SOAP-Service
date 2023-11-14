@@ -20,24 +20,35 @@ public class SubscriptionRepository extends Repository {
         }
         return instance;
     }
-    public List<SubscriptionModel> fetchById(int id) throws SQLException {
+    public SubscriptionModel fetchOne(SubscriptionModel subscription) throws SQLException {
         String sql = "SELECT * FROM " + tableName
-                +" WHERE id_subscription = ?;";
-        List<SubscriptionModel> resultList = new ArrayList<SubscriptionModel>();
-        ResultSet rs = executeQuery(sql, id);
-        while (rs.next()) {
-            SubscriptionModel model = new SubscriptionModel();
-            model.initializeFromResultSet(rs);
-            resultList.add(model);
+                + " WHERE"
+                + (subscription.getIdSubscription() != null? " id_subscription = " + subscription.getIdSubscription(): " true") + " and"
+                + (subscription.getIdArtist() != null? " id_artist = " + subscription.getIdArtist(): " true") + " and"
+                + (subscription.getStatus() != null? " status = " + subscription.getStatus(): " true") + " and"
+                + (subscription.getIdUser() != null? " id_user = " + subscription.getIdUser(): " true;")
+                + " LIMIT 1;";
+        ResultSet rs = executeQuery(sql);
+
+        if (!rs.next()) {
+            return null;
         }
+
+        SubscriptionModel model = new SubscriptionModel();
+        model.initializeFromResultSet(rs);
         rs.close();
-        return resultList;
+        return model;
     }
 
-    public List<SubscriptionModel> fetchAll() throws SQLException {
-        String sql = "SELECT * FROM " + tableName +";";
-        List<SubscriptionModel> resultList = new ArrayList<SubscriptionModel>();
+    public List<SubscriptionModel> fetchAll(SubscriptionModel subscription) throws SQLException {
+        String sql = "SELECT * FROM " + tableName
+                + " WHERE"
+                + (subscription.getIdSubscription() != null? " id_subscription = " + subscription.getIdSubscription(): " true") + " and"
+                + (subscription.getIdArtist() != null? " id_artist = " + subscription.getIdArtist(): " true") + " and"
+                + (subscription.getStatus() != null? " status = " + subscription.getStatus(): " true") + " and"
+                + (subscription.getIdUser() != null? " id_user = " + subscription.getIdUser(): " true;");
         ResultSet rs = executeQuery(sql);
+        List<SubscriptionModel> resultList = new ArrayList<SubscriptionModel>();
         while (rs.next()) {
             SubscriptionModel model = new SubscriptionModel();
             model.initializeFromResultSet(rs);
@@ -48,15 +59,15 @@ public class SubscriptionRepository extends Repository {
     }
 
     public int insert(SubscriptionModel subscription) throws SQLException {
-        String sql = "INSERT INTO " + tableName + "(id_artist, id_user) "
-                + "VALUES(?, ?);";
-        int affectedRow = executeUpdate(sql, subscription.getIdArtist(), subscription.getIdUser());
+        String sql = "INSERT INTO " + tableName + "(id_artist, id_user, status) "
+                + "VALUES(?, ?, ?);";
+        int affectedRow = executeUpdate(sql, subscription.getIdArtist(), subscription.getIdUser(), SubscriptionModel.STAT_PENDING);
         return affectedRow;
     }
 
     public int update(SubscriptionModel subscription) throws SQLException {
-        String sql = "UPDATE " + tableName + " SET id_artist = ?, id_user = ? WHERE id_subscription = ?";
-        int affectedRow = executeUpdate(sql, subscription.getIdArtist(), subscription.getIdUser(), subscription.getIdSubscription());
+        String sql = "UPDATE " + tableName + " SET id_artist = ?, id_user = ?, status = ? WHERE id_subscription = ?";
+        int affectedRow = executeUpdate(sql, subscription.getIdArtist(), subscription.getIdUser(), subscription.getStatus(), subscription.getIdSubscription());
         return affectedRow;
     }
 
