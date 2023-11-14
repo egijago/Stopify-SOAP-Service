@@ -30,7 +30,7 @@ CREATE TABLE `logging` (
   `description` text NOT NULL,
   `requested_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id_logging`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +39,7 @@ CREATE TABLE `logging` (
 
 LOCK TABLES `logging` WRITE;
 /*!40000 ALTER TABLE `logging` DISABLE KEYS */;
-INSERT INTO `logging` VALUES (2,'API_KEY_2','192.168.1.2','/endpoint2','Description for endpoint 2','2023-11-07 05:30:00'),(3,'API_KEY_3','192.168.1.3','/endpoint3','Description for endpoint 3','2023-11-07 06:00:00'),(4,'1','1','1','1','2023-11-08 10:24:12'),(5,'1','1','1','1','2023-11-08 10:24:26');
+INSERT INTO `logging` VALUES (1,'API_KEY_1','192.168.1.1','/endpoint1','Description for endpoint 1','2023-11-07 05:00:00'),(2,'API_KEY_2','192.168.1.2','/endpoint2','Description for endpoint 2','2023-11-07 05:30:00'),(3,'API_KEY_3','192.168.1.3','/endpoint3','Description for endpoint 3','2023-11-07 06:00:00'),(4,'node-api-key','0:0:0:0:0:0:0:1','{http://payment.services/}processPayment','arg 0 : 1;arg 1 : 2;arg 2 : 5;arg 3 : PHP;arg 4 : 123;arg 5 : 543;arg 6 : 1233;arg 7 : 127;','2023-11-14 13:44:11'),(5,'node-api-key','0:0:0:0:0:0:0:1','{http://payment.services/}getTotalPaymentByIdArtist','arg 0 : 0;','2023-11-14 14:10:26'),(6,'node-api-key','0:0:0:0:0:0:0:1','{http://payment.services/}getTotalPaymentByIdArtist','arg 0 : 0;','2023-11-14 14:15:38'),(7,'node-api-key','0:0:0:0:0:0:0:1','{http://payment.services/}getTotalPaymentByIdArtist','arg 0 : 0;','2023-11-14 14:18:57'),(8,'node-api-key','0:0:0:0:0:0:0:1','{http://payment.services/}getTotalPaymentByIdArtist','arg 0 : 0;','2023-11-14 14:26:09'),(9,'node-api-key','0:0:0:0:0:0:0:1','{http://subscription.services/}confirmSubscription','arg 0 : 12;arg 1 : 12;','2023-11-14 14:27:14'),(10,'node-api-key','0:0:0:0:0:0:0:1','{http://subscription.services/}confirmSubscription','arg 0 : 12;arg 1 : 12;','2023-11-14 14:28:07'),(11,'node-api-key','0:0:0:0:0:0:0:1','{http://subscription.services/}confirmSubscription','arg 0 : 12;arg 1 : 12;','2023-11-14 14:33:15');
 /*!40000 ALTER TABLE `logging` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -53,14 +53,15 @@ DROP TABLE IF EXISTS `payment`;
 CREATE TABLE `payment` (
   `id_payment` int(11) NOT NULL AUTO_INCREMENT,
   `id_user` int(11) NOT NULL,
-  `value` bigint(20) NOT NULL,
+  `id_artist` int(11) NOT NULL,
+  `amount` bigint(20) NOT NULL,
   `card_number` varchar(16) NOT NULL,
   `card_owner` varchar(255) NOT NULL,
   `card_exp_month` int(11) NOT NULL,
   `card_exp_year` int(11) NOT NULL,
   `card_cvc` int(11) NOT NULL,
   PRIMARY KEY (`id_payment`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,7 +70,7 @@ CREATE TABLE `payment` (
 
 LOCK TABLES `payment` WRITE;
 /*!40000 ALTER TABLE `payment` DISABLE KEYS */;
-INSERT INTO `payment` VALUES (1,1,100000,'1234567890123456','John Doe',10,2025,123),(2,2,100000,'9876543210987654','Jane Smith',12,2024,456),(3,3,100000,'5555444433332222','Mike Johnson',8,2023,789);
+INSERT INTO `payment` VALUES (1,1,2,5,'PHP','123',543,1233,127);
 /*!40000 ALTER TABLE `payment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -84,8 +85,9 @@ CREATE TABLE `subscription` (
   `id_subscription` int(11) NOT NULL AUTO_INCREMENT,
   `id_artist` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
+  `status` varchar(16) NOT NULL,
   PRIMARY KEY (`id_subscription`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,7 +96,6 @@ CREATE TABLE `subscription` (
 
 LOCK TABLES `subscription` WRITE;
 /*!40000 ALTER TABLE `subscription` DISABLE KEYS */;
-INSERT INTO `subscription` VALUES (1,1,2),(2,2,3),(3,3,1);
 /*!40000 ALTER TABLE `subscription` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -107,4 +108,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-09  9:23:16
+-- Dump completed on 2023-11-14 21:38:24
