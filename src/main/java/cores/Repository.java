@@ -20,6 +20,7 @@ public abstract class Repository<Model> {
         for (int i = 0; i < parameters.length; i++) {
             preparedStatement.setObject(i + 1, parameters[i]);
         }
+        System.out.println(preparedStatement.toString());
         return preparedStatement.executeQuery();
     }
     protected int executeUpdate(String sql, Object... parameters) throws SQLException {
@@ -28,6 +29,7 @@ public abstract class Repository<Model> {
         for (int i = 0; i < parameters.length; i++) {
             preparedStatement.setObject(i + 1, parameters[i]);
         }
+        System.out.println(preparedStatement.toString());
         return preparedStatement.executeUpdate();
     }
 
