@@ -1,6 +1,4 @@
 package services.subscription;
-
-import javax.jws.WebService;
 import java.util.List;
 
 public class SubscriptionServiceImpl implements SubscriptionService {
@@ -11,6 +9,10 @@ public class SubscriptionServiceImpl implements SubscriptionService {
         SubscriptionModel subscription = new SubscriptionModel();
         subscription.setIdArtist(idArtist);
         subscription.setIdUser(idUser);
+        SubscriptionModel rs = repo.fetchOne(subscription);
+        if (rs != null) {
+            return false;
+        }
         subscription.setStatus(SubscriptionModel.STAT_PENDING);
         int rowAffected = repo.insert(subscription);
         return rowAffected == 1;
@@ -42,6 +44,18 @@ public class SubscriptionServiceImpl implements SubscriptionService {
         subscription.setStatus(SubscriptionModel.STAT_DECLINED);
         int rowAffected = repo.update(subscription);
         return rowAffected == 1;
+    }
+
+    @Override
+    public String getSubscriptionStatus(int idArtist, int idUser) throws Exception {
+        SubscriptionModel subscription = new SubscriptionModel();
+        subscription.setIdArtist(idArtist);
+        subscription.setIdUser(idUser);
+        subscription = repo.fetchOne(subscription);
+        if (subscription == null) {
+            return null;
+        }
+        return subscription.getStatus();
     }
 
     @Override

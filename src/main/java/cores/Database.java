@@ -13,10 +13,9 @@ public class Database {
     private Connection connection;
     public Database() {
         try {
-            Config config = Config.getInstance();
-            String url = config.get("db.url");
-            String user = config.get("db.user");
-            String pass = config.get("db.pass");
+            String url = System.getenv("DB_URL");
+            String user = System.getenv("DB_USER");
+            String pass = System.getenv("DB_PASS");
             System.out.println("Trying to connect to database at " + url + " with user " + user + " and pass " + pass);
 
             DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());

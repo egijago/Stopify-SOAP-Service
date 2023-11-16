@@ -40,6 +40,7 @@ public class SubscriptionServiceProxy extends Proxy implements SubscriptionServi
         try {
             return service.declineSubscription(idArtist, idUser);
         } catch (Exception e) {
+            e.printStackTrace();
             throw new UnspecifiedErrorException();
         }
     }
@@ -51,6 +52,7 @@ public class SubscriptionServiceProxy extends Proxy implements SubscriptionServi
         try {
             return service.getAllPendingSubscriberByIdArtist(idArtist);
         } catch (Exception e) {
+            e.printStackTrace();
             throw new UnspecifiedErrorException();
         }
     }
@@ -62,7 +64,32 @@ public class SubscriptionServiceProxy extends Proxy implements SubscriptionServi
         try {
             return service.getAllConfirmedSubscribeeByIdUser(idUser);
         } catch (Exception e) {
+            e.printStackTrace();
             throw new UnspecifiedErrorException();
         }
     }
+
+    @Override
+    public String getSubscriptionStatus(int idArtist, int idUser) throws Exception {
+        validate();
+        log(idArtist, idUser);
+        try {
+            return service.getSubscriptionStatus(idArtist, idUser);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new UnspecifiedErrorException();
+        }
+    }
+
+    
+    // @WebMethod
+    // public String getAllSUbcs(int idArtist, int idUser) throws Exception {
+    //     validate();
+    //     log(idArtist, idUser);
+    //     try {
+    //         return service.getSubscriptionStatus(idArtist, idUser);
+    //     } catch (Exception e) {
+    //         throw new UnspecifiedErrorException();
+    //     }
+    // }
 }

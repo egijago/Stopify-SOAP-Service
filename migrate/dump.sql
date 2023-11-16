@@ -86,7 +86,8 @@ CREATE TABLE `subscription` (
   `id_artist` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `status` varchar(16) NOT NULL,
-  PRIMARY KEY (`id_subscription`)
+  PRIMARY KEY (`id_subscription`),
+  UNIQUE KEY `uq_subscription` (`id_artist`,`id_user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -108,4 +109,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-14 21:38:24
+-- Dump completed on 2023-11-16 20:35:12

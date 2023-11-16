@@ -25,7 +25,7 @@ public class SubscriptionRepository extends Repository {
                 + " WHERE"
                 + (subscription.getIdSubscription() != null? " id_subscription = " + subscription.getIdSubscription(): " true") + " and"
                 + (subscription.getIdArtist() != null? " id_artist = " + subscription.getIdArtist(): " true") + " and"
-                + (subscription.getStatus() != null? " status = " + subscription.getStatus(): " true") + " and"
+                + (subscription.getStatus() != null? " status = \"" + subscription.getStatus() +"\"" : " true") + " and"
                 + (subscription.getIdUser() != null? " id_user = " + subscription.getIdUser(): " true;")
                 + " LIMIT 1;";
         ResultSet rs = executeQuery(sql);
@@ -45,7 +45,7 @@ public class SubscriptionRepository extends Repository {
                 + " WHERE"
                 + (subscription.getIdSubscription() != null? " id_subscription = " + subscription.getIdSubscription(): " true") + " and"
                 + (subscription.getIdArtist() != null? " id_artist = " + subscription.getIdArtist(): " true") + " and"
-                + (subscription.getStatus() != null? " status = " + subscription.getStatus(): " true") + " and"
+                + (subscription.getStatus() != null? " status = \"" + subscription.getStatus() +"\"" : " true") + " and"
                 + (subscription.getIdUser() != null? " id_user = " + subscription.getIdUser(): " true;");
         ResultSet rs = executeQuery(sql);
         List<SubscriptionModel> resultList = new ArrayList<SubscriptionModel>();
